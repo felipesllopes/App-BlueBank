@@ -5,6 +5,7 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "reac
 export default function Register() {
 
     const navigation = useNavigation();
+
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -49,9 +50,10 @@ export default function Register() {
             />
 
             <View style={styles.viewButton}>
-                <TouchableOpacity style={styles.enterButton}>
+                <TouchableOpacity style={styles.enterButton} onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.textButton}>Cadastrar</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                     <Text style={{ fontSize: 16 }}>Já sou cliente</Text>
                 </TouchableOpacity>

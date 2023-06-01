@@ -1,0 +1,26 @@
+Este contrato ("Contrato") é celebrado entre [Nome do Banco], uma instituição bancária devidamente registrada e localizada em [Endereço do Banco], doravante denominado "Banco", e [Nome do Cliente], residente em [Endereço do Cliente], doravante denominado "Cliente".
+
+Serviços Bancários: O Banco fornecerá serviços bancários ao Cliente, incluindo, mas não se limitando a:
+a) Abertura e manutenção de contas bancárias;
+b) Depósitos e retiradas;
+c) Empréstimos e financiamentos;
+d) Serviços de cartão de crédito e débito;
+e) Investimentos e gerenciamento de ativos;
+f) Outros serviços bancários conforme acordado entre as partes.
+
+Conta Bancária: O Cliente concorda em fornecer informações precisas e atualizadas ao Banco no momento da abertura da conta bancária. O Cliente será responsável pela segurança de sua conta, incluindo senhas, PINs e informações de acesso. O Banco tomará medidas razoáveis para proteger a privacidade e a segurança das informações do Cliente.
+
+Tarifas e Taxas: O Cliente concorda em pagar as tarifas e taxas associadas aos serviços bancários conforme definido pelo Banco. O Banco fornecerá ao Cliente uma lista atualizada de tarifas e taxas aplicáveis.
+
+Responsabilidade: O Cliente reconhece que o Banco não será responsável por perdas ou danos decorrentes de eventos além do controle razoável do Banco. O Cliente é responsável por monitorar suas transações bancárias e notificar o Banco imediatamente sobre qualquer atividade suspeita ou não autorizada.
+
+Rescisão: Este Contrato pode ser rescindido por qualquer uma das partes mediante aviso prévio por escrito. A rescisão não afetará as obrigações financeiras existentes entre as partes até a data efetiva da rescisão.
+
+Lei Aplicável: Este Contrato será regido e interpretado de acordo com as leis do [país/estado] aplicáveis.
+
+As partes abaixo concordam com os termos e condições deste Contrato:
+
+Banco:
+[Nome do Banco]
+[Assinatura]
+[Data]

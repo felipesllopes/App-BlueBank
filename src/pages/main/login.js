@@ -32,9 +32,10 @@ export default function Login() {
             />
 
             <View style={styles.viewButton}>
-                <TouchableOpacity style={styles.enterButton}>
+                <TouchableOpacity style={styles.enterButton} onPress={() => navigation.navigate('Home')}>
                     <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                     <Text style={{ fontSize: 16 }}>Quero me tornar cliente</Text>
                 </TouchableOpacity>

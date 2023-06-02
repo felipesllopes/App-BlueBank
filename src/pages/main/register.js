@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import firebase from "../../firebase/firebaseConnection";
 
 export default function Register() {
 
@@ -10,6 +11,32 @@ export default function Register() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    async function register() {
+
+        if (name === '' || lastName === '' || email === "" || password === "") {
+            alert('Preencha os campos')
+            return;
+        }
+        else {
+            await firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((value) => {
+                    firebase.database().ref('usuario').child(value.user.uid).set({
+                        nome: name,
+                        sobrenome: lastName,
+                        saldo: 50,
+                    })
+                    alert("Cliente cadastrado com sucesso!")
+                    navigation.navigate('Login')
+                })
+                .catch((error) => {
+                    console.log("Erro: ", error)
+                    alert("Ops! Ocorreu algum erro!")
+                    return;
+                }
+                )
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -50,7 +77,7 @@ export default function Register() {
             />
 
             <View style={styles.viewButton}>
-                <TouchableOpacity style={styles.enterButton} onPress={() => navigation.navigate('Login')}>
+                <TouchableOpacity style={styles.enterButton} onPress={register}>
                     <Text style={styles.textButton}>Cadastrar</Text>
                 </TouchableOpacity>
 

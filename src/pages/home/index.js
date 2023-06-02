@@ -1,17 +1,26 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { useState } from "react";
-import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { useState } from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import firebase from '../../firebase/firebaseConnection';
+import { useRoute } from '@react-navigation/native';
 
 export default function Home() {
 
+    const route = useRoute();
     const navigation = useNavigation();
 
-    const [name, setName] = useState("Felipe");
-    const [balance, setBalance] = useState(7325.90);
+    const [name, setName] = useState(route.params?.nome);
+    const [balance, setBalance] = useState(route.params?.saldo);
 
     function navegate(pag) {
         navigation.navigate(pag)
+    }
+
+    async function logout() {
+        alert("Usuário deslogado")
+        await firebase.auth().signOut();
+        navigation.goBack();
     }
 
     return (
@@ -24,7 +33,7 @@ export default function Home() {
                 </View>
                 <Text style={styles.welcome}>Olá, {name}!</Text>
                 <Text style={styles.balance}>Saldo disponível</Text>
-                <Text style={styles.balance}>R$ {balance.toFixed(2)}</Text>
+                <Text style={styles.balance}>R$ {balance}</Text>
             </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -76,7 +85,7 @@ export default function Home() {
                 <Text style={styles.helpText}>Leia os termos de contrato</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={() => navegate('Login')}>
+            <TouchableOpacity style={styles.logoutButton} onPress={logout}>
                 <Text style={styles.logoutText}>Sair</Text>
             </TouchableOpacity>
 

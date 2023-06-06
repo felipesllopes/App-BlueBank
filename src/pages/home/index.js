@@ -1,17 +1,30 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native';
-import { useState } from "react";
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import firebase from '../../firebase/firebaseConnection';
-import { useRoute } from '@react-navigation/native';
 
 export default function Home() {
 
     const route = useRoute();
     const navigation = useNavigation();
 
-    const [name, setName] = useState(route.params?.nome);
-    const [balance, setBalance] = useState(route.params?.saldo);
+    const [name, setName] = useState("");
+    const [balance, setBalance] = useState(0);
+    const [keyUser, setKeyUser] = useState(route.params?.keyUser)
+
+    useEffect(() => {
+        (async () => {
+            await firebase.database().ref('usuario').child(keyUser).once('value')
+                .then((snapshot) => {
+                    setName(snapshot.val().nome)
+                    setBalance(snapshot.val().saldo)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        })();
+    }, [])
 
     function navegate(pag) {
         navigation.navigate(pag)
@@ -62,7 +75,7 @@ export default function Home() {
                     <Text style={styles.nameCard}>Saque</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Deposit')}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Deposit', { keyUser: keyUser })}>
                     <Image source={require("../../img/deposit.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Depósito</Text>
                 </TouchableOpacity>

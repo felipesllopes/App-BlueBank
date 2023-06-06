@@ -20,8 +20,8 @@ export default function Login() {
             const user = await firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(async (user) => {
                     setUsuario(user.user.uid)
-                    alert(usuario)
-                    navigation.navigate('Home', { nome: 'Felipe', saldo: (1035.90).toFixed(2) })
+                    alert(user.user.uid)
+                    navigation.navigate('Home', { keyUser: user.user.uid })
                     setEmail(""); setPassword("");
                 })
                 .catch((error) => {

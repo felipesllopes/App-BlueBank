@@ -15,19 +15,17 @@ export default function Home() {
 
     useEffect(() => {
         (async () => {
-            await firebase.database().ref('usuario').child(keyUser).once('value')
-                .then((snapshot) => {
-                    setName(snapshot.val().nome)
-                    setBalance(snapshot.val().saldo)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+            await firebase.database().ref('usuario').child(keyUser).on('value', (snapshot) => {
+
+                setName(snapshot.val().nome)
+                setBalance(snapshot.val().saldo)
+            })
+
         })();
-    }, [])
+    }, [balance])
 
     function navegate(pag) {
-        navigation.navigate(pag)
+        navigation.navigate(pag, { keyUser: keyUser })
     }
 
     async function logout() {
@@ -46,7 +44,7 @@ export default function Home() {
                 </View>
                 <Text style={styles.welcome}>Olá, {name}!</Text>
                 <Text style={styles.balance}>Saldo disponível</Text>
-                <Text style={styles.balance}>R$ {balance}</Text>
+                <Text style={styles.balance}>R$ {balance.toFixed(2)}</Text>
             </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -75,7 +73,7 @@ export default function Home() {
                     <Text style={styles.nameCard}>Saque</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Deposit', { keyUser: keyUser })}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Deposit')}>
                     <Image source={require("../../img/deposit.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Depósito</Text>
                 </TouchableOpacity>
@@ -109,7 +107,7 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ADD8E6'
+        backgroundColor: '#ADD8E6',
     },
     header: {
         backgroundColor: '#0000CD',

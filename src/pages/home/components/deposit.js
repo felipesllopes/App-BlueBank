@@ -8,21 +8,20 @@ export default function Deposit() {
     const route = useRoute();
 
     const keyUser = route.params?.keyUser;
-    const [balance, setBalance] = useState('');
-    const [oldBalance, setOldBalance] = useState();
-    let valor = parseInt(balance);
+    const [deposit, setDeposit] = useState('');
+    const [balance, setBalance] = useState();
+    let valor = parseInt(deposit);
 
     useEffect(() => {
         firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
-            setOldBalance(snapshop.val().saldo);
+            setBalance(snapshop.val().saldo);
         })
-
     }, [])
 
 
-    async function deposit() {
+    async function Deposit() {
 
-        if (balance === '') {
+        if (deposit === '') {
             alert("Digite o valor a ser depositado");
             return;
         }
@@ -33,11 +32,11 @@ export default function Deposit() {
         }
 
         await firebase.database().ref('usuario').child(keyUser).update({
-            saldo: valor + oldBalance,
+            saldo: valor + balance,
         })
             .then(() => {
                 alert(`Depósito de R$${valor.toFixed(2)} realizado com sucesso!`)
-                setBalance('');
+                setDeposit('');
             })
             .catch((error) => {
                 alert('Ocorreu um erro inesperado');
@@ -50,9 +49,9 @@ export default function Deposit() {
     return (
         <View style={styles.container}>
 
-            {oldBalance &&
+            {balance &&
                 <View style={styles.viewBox}>
-                    <Text style={styles.text}>Saldo atual: R${oldBalance.toFixed(2)}</Text>
+                    <Text style={styles.text}>Saldo atual: R${balance.toFixed(2)}</Text>
                 </View>
             }
 
@@ -60,13 +59,13 @@ export default function Deposit() {
                 <Text style={styles.text}>Valor: R$</Text>
                 <TextInput
                     style={styles.textinput}
-                    value={balance}
-                    onChangeText={(text) => setBalance(text)}
+                    value={deposit}
+                    onChangeText={(text) => setDeposit(text)}
                     keyboardType="numeric"
                 />
             </View>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={deposit} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.logoutButton} onPress={Deposit} activeOpacity={0.7}>
                 <Text style={styles.logoutText}>Depositar</Text>
             </TouchableOpacity>
 

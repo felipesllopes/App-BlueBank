@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native';
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import firebase from "../../../firebase/firebaseConnection";
 
 export default function Withdraw() {
@@ -9,16 +9,14 @@ export default function Withdraw() {
 
     const keyUser = route.params?.keyUser;
     const [withdraw, setWithdraw] = useState('');
-    const [balance, setBalance] = useState();
-
-    let valor = parseInt(withdraw);
+    const [balance, setBalance] = useState(null);
+    let valor = parseFloat(withdraw);
 
     useEffect(() => {
         firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
             setBalance(snapshop.val().saldo);
         })
     }, [])
-
 
     async function Withdraw() {
 
@@ -30,6 +28,12 @@ export default function Withdraw() {
 
         if (valor > balance) {
             alert("Você não tem saldo suficiente para realizar saque neste valor.");
+            setWithdraw('');
+            return;
+        }
+
+        if (withdraw === "") {
+            alert("Digite o valor do saque")
             return;
         }
 
@@ -39,6 +43,7 @@ export default function Withdraw() {
             .then(() => {
                 alert(`Saque de R$${valor.toFixed(2)} realizado com sucesso!`)
                 setWithdraw('');
+                Keyboard.dismiss();
             })
             .catch((error) => {
                 alert('Ocorreu um erro inesperado');
@@ -51,11 +56,13 @@ export default function Withdraw() {
     return (
         <View style={styles.container}>
 
-            {balance &&
-                <View style={styles.viewBox}>
+            <View style={styles.viewBox}>
+                {balance === null ?
+                    <Text />
+                    :
                     <Text style={styles.text}>Saldo atual: R${balance.toFixed(2)}</Text>
-                </View>
-            }
+                }
+            </View>
 
             <View style={styles.viewBox}>
                 <Text style={styles.text}>Valor: R$</Text>

@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native';
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import firebase from "../../../firebase/firebaseConnection";
 
 export default function Deposit() {
@@ -9,15 +9,14 @@ export default function Deposit() {
 
     const keyUser = route.params?.keyUser;
     const [deposit, setDeposit] = useState('');
-    const [balance, setBalance] = useState();
-    let valor = parseInt(deposit);
+    const [balance, setBalance] = useState(null);
+    let valor = parseFloat(deposit);
 
     useEffect(() => {
         firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
             setBalance(snapshop.val().saldo);
         })
     }, [])
-
 
     async function Deposit() {
 
@@ -37,6 +36,7 @@ export default function Deposit() {
             .then(() => {
                 alert(`Depósito de R$${valor.toFixed(2)} realizado com sucesso!`)
                 setDeposit('');
+                Keyboard.dismiss();
             })
             .catch((error) => {
                 alert('Ocorreu um erro inesperado');
@@ -49,11 +49,13 @@ export default function Deposit() {
     return (
         <View style={styles.container}>
 
-            {balance &&
-                <View style={styles.viewBox}>
+            <View style={styles.viewBox}>
+                {balance === null ?
+                    <Text />
+                    :
                     <Text style={styles.text}>Saldo atual: R${balance.toFixed(2)}</Text>
-                </View>
-            }
+                }
+            </View>
 
             <View style={styles.viewBox}>
                 <Text style={styles.text}>Valor: R$</Text>

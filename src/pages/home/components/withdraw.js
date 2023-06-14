@@ -10,46 +10,46 @@ export default function Withdraw() {
     const keyUser = route.params?.keyUser;
     const [withdraw, setWithdraw] = useState('');
     const [balance, setBalance] = useState(null);
-    let valor = parseFloat(withdraw);
+    // let valor = parseFloat(withdraw);
 
     useEffect(() => {
-        firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
-            setBalance(snapshop.val().saldo);
-        })
+        // firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
+        //     setBalance(snapshop.val().saldo);
+        // })
     }, [])
 
     async function Withdraw() {
 
-        if (valor <= 0) {
-            alert("Operação inválida. Digite um valor válido.")
-            setWithdraw('')
-            return;
-        }
+        // if (valor <= 0) {
+        //     alert("Operação inválida. Digite um valor válido.")
+        //     setWithdraw('')
+        //     return;
+        // }
 
-        if (valor > balance) {
-            alert("Você não tem saldo suficiente para realizar saque neste valor.");
-            setWithdraw('');
-            return;
-        }
+        // if (valor > balance) {
+        //     alert("Você não tem saldo suficiente para realizar saque neste valor.");
+        //     setWithdraw('');
+        //     return;
+        // }
 
-        if (withdraw === "") {
-            alert("Digite o valor do saque")
-            return;
-        }
+        // if (withdraw === "") {
+        //     alert("Digite o valor do saque")
+        //     return;
+        // }
 
-        await firebase.database().ref('usuario').child(keyUser).update({
-            saldo: (balance - valor),
-        })
-            .then(() => {
-                alert(`Saque de R$${valor.toFixed(2)} realizado com sucesso!`)
-                setWithdraw('');
-                Keyboard.dismiss();
-            })
-            .catch((error) => {
-                alert('Ocorreu um erro inesperado');
-                console.log(error)
-                return;
-            })
+        // await firebase.database().ref('usuario').child(keyUser).update({
+        //     saldo: (balance - valor),
+        // })
+        //     .then(() => {
+        //         alert(`Saque de R$${valor.toFixed(2)} realizado com sucesso!`)
+        //         setWithdraw('');
+        //         Keyboard.dismiss();
+        //     })
+        //     .catch((error) => {
+        //         alert('Ocorreu um erro inesperado');
+        //         console.log(error)
+        //         return;
+        //     })
     }
 
 
@@ -60,7 +60,7 @@ export default function Withdraw() {
                 {balance === null ?
                     <Text />
                     :
-                    <Text style={styles.text}>Saldo atual: R${balance.toFixed(2)}</Text>
+                    <Text style={styles.text}>Saldo atual: R${balance}</Text>
                 }
             </View>
 

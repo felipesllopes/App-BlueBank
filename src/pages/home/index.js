@@ -1,37 +1,28 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { useEffect, useState } from "react";
+import { useNavigation } from '@react-navigation/native';
+import { useContext, useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { AuthContext } from '../../context/auth';
 import firebase from '../../firebase/firebaseConnection';
 
 export default function Home() {
 
-    const route = useRoute();
     const navigation = useNavigation();
-
-    const [name, setName] = useState("");
+    const { user, logout } = useContext(AuthContext);
     const [balance, setBalance] = useState(0);
-    const [keyUser, setKeyUser] = useState(route.params?.keyUser)
 
     useEffect(() => {
-        (async () => {
-            await firebase.database().ref('usuario').child(keyUser).on('value', (snapshot) => {
-
-                setName(snapshot.val().nome)
-                setBalance(snapshot.val().saldo)
-            })
-
-        })();
-    }, [balance])
+        firebase.database().ref('usuario').child(user.uid).on('value', (snapshot) => {
+            setBalance(snapshot.val().saldo)
+        })
+    }, [])
 
     function navegate(pag) {
-        navigation.navigate(pag, { keyUser: keyUser })
+        navigation.navigate(pag)
     }
 
-    async function logout() {
-        alert("Usuário deslogado")
-        await firebase.auth().signOut();
-        navigation.goBack();
+    async function handleLogout() {
+        logout();
     }
 
     return (
@@ -42,7 +33,7 @@ export default function Home() {
                     <Image source={require('../../img/logo-bb.png')} style={styles.logo} />
                     <Text style={styles.bankName}>Blue Bank</Text>
                 </View>
-                <Text style={styles.welcome}>Olá, {name}!</Text>
+                <Text style={styles.welcome}>Olá, {user.name}!</Text>
                 <Text style={styles.balance}>Saldo disponível</Text>
                 <Text style={styles.balance}>R$ {balance.toFixed(2)}</Text>
             </View>
@@ -96,7 +87,7 @@ export default function Home() {
                 <Text style={styles.helpText}>Leia os termos de contrato</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
                 <Text style={styles.logoutText}>Sair</Text>
             </TouchableOpacity>
 

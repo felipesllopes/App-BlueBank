@@ -10,39 +10,39 @@ export default function Deposit() {
     const keyUser = route.params?.keyUser;
     const [deposit, setDeposit] = useState('');
     const [balance, setBalance] = useState(null);
-    let valor = parseFloat(deposit);
+    // let valor = parseFloat(deposit);
 
     useEffect(() => {
-        firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
-            setBalance(snapshop.val().saldo);
-        })
+        // firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
+        //     setBalance(snapshop.val().saldo);
+        // })
     }, [])
 
     async function Deposit() {
 
-        if (deposit === '') {
-            alert("Digite o valor a ser depositado");
-            return;
-        }
+        // if (deposit === '') {
+        //     alert("Digite o valor a ser depositado");
+        //     return;
+        // }
 
-        if (valor <= 0) {
-            alert("Digite um valor válido");
-            return;
-        }
+        // if (valor <= 0) {
+        //     alert("Digite um valor válido");
+        //     return;
+        // }
 
-        await firebase.database().ref('usuario').child(keyUser).update({
-            saldo: valor + balance,
-        })
-            .then(() => {
-                alert(`Depósito de R$${valor.toFixed(2)} realizado com sucesso!`)
-                setDeposit('');
-                Keyboard.dismiss();
-            })
-            .catch((error) => {
-                alert('Ocorreu um erro inesperado');
-                console.log(error)
-                return;
-            })
+        // await firebase.database().ref('usuario').child(keyUser).update({
+        //     saldo: valor + balance,
+        // })
+        //     .then(() => {
+        //         alert(`Depósito de R$${valor.toFixed(2)} realizado com sucesso!`)
+        //         setDeposit('');
+        //         Keyboard.dismiss();
+        //     })
+        //     .catch((error) => {
+        //         alert('Ocorreu um erro inesperado');
+        //         console.log(error)
+        //         return;
+        //     })
     }
 
 
@@ -53,7 +53,7 @@ export default function Deposit() {
                 {balance === null ?
                     <Text />
                     :
-                    <Text style={styles.text}>Saldo atual: R${balance.toFixed(2)}</Text>
+                    <Text style={styles.text}>Saldo atual: R${balance}</Text>
                 }
             </View>
 

@@ -2,38 +2,22 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import firebase from "../../firebase/firebaseConnection";
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth";
 
 export default function Login() {
 
     const navigation = useNavigation();
+    const { login } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [usuario, setUsuario] = useState(null);
 
-    async function login() {
-        if (email === "" || password === "") {
-            alert("Preencha os campos")
-            return
-        }
-        else {
-            const user = await firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(async (user) => {
-                    setUsuario(user.user.uid)
-                    alert(user.user.uid)
-                    navigation.navigate('Home', { keyUser: user.user.uid })
-                    setEmail(""); setPassword("");
-                })
-                .catch((error) => {
-                    console.log(error)
-                    alert("Email ou senha inválido")
-                })
-        }
+    function logar() {
+        login(email, password)
     }
 
-    async function listar() {
-
-    }
 
     return (
         <View style={styles.container}>
@@ -56,7 +40,7 @@ export default function Login() {
             />
 
             <View style={styles.viewButton}>
-                <TouchableOpacity style={styles.enterButton} onPress={login}>
+                <TouchableOpacity style={styles.enterButton} onPress={logar}>
                     <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>
 

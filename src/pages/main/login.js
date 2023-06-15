@@ -1,18 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import firebase from "../../firebase/firebaseConnection";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { ActivityIndicator, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
 
 export default function Login() {
 
     const navigation = useNavigation();
-    const { login } = useContext(AuthContext);
+    const { login, loading } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [usuario, setUsuario] = useState(null);
 
     function logar() {
         login(email, password)
@@ -41,7 +38,11 @@ export default function Login() {
 
             <View style={styles.viewButton}>
                 <TouchableOpacity style={styles.enterButton} onPress={logar}>
-                    <Text style={styles.textButton}>Entrar</Text>
+                    {loading ?
+                        <ActivityIndicator size={30} color={'#FFF'} />
+                        :
+                        <Text style={styles.textButton}>Entrar</Text>
+                    }
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate('Register')}>

@@ -11,7 +11,8 @@ export default function AppRoutes() {
         <Stack.Navigator
             screenOptions={{
                 tabBarActiveBackgroundColor: '#E0FFFF',
-                tabBarStyle: { borderTopWidth: 0, }
+                tabBarStyle: { borderTopWidth: 0, },
+                tabBarInactiveTintColor: '#000',
             }}
         >
 
@@ -19,7 +20,7 @@ export default function AppRoutes() {
                 options={{
                     headerShown: false, title: 'Início',
                     tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="home" size={30} color={'#0000CD'} />
+                        <FontAwesome name="home" size={35} color={'#0000CD'} />
                     )
                 }}
             />
@@ -28,7 +29,7 @@ export default function AppRoutes() {
                 options={{
                     headerShown: false, title: 'Transações',
                     tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="money" size={30} color={'#0000CD'} />
+                        <FontAwesome name="money" size={35} color={'#0000CD'} />
                     )
                 }}
             />
@@ -37,7 +38,7 @@ export default function AppRoutes() {
                 options={{
                     headerShown: false, title: 'Perfil',
                     tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="user" size={30} color={'#0000CD'} />
+                        <FontAwesome name="user" size={35} color={'#0000CD'} />
                     )
                 }}
             />

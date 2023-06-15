@@ -2,11 +2,12 @@ import { useNavigation } from "@react-navigation/native";
 import { useContext, useState } from "react";
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
+import { ActivityIndicator } from "react-native";
 
 export default function Register() {
 
     const navigation = useNavigation();
-    const { register } = useContext(AuthContext);
+    const { register, loading } = useContext(AuthContext);
 
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -57,7 +58,11 @@ export default function Register() {
 
             <View style={styles.viewButton}>
                 <TouchableOpacity style={styles.enterButton} onPress={handleRegister}>
-                    <Text style={styles.textButton}>Cadastrar</Text>
+                    {loading ?
+                        <ActivityIndicator size={30} color={'#FFF'} />
+                        :
+                        <Text style={styles.textButton}>Cadastrar</Text>
+                    }
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate('Login')}>

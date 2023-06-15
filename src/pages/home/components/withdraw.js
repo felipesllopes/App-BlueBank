@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from '../../../context/auth';
 import firebase from "../../../firebase/firebaseConnection";
 
@@ -19,6 +19,7 @@ export default function Withdraw() {
     async function handleWithdraw() {
         withdraw(value, balance);
         setValue('');
+        Keyboard.dismiss();
     }
 
     return (

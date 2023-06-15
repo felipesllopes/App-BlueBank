@@ -1,48 +1,24 @@
-import { useRoute } from '@react-navigation/native';
-import { useEffect, useState } from "react";
-import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useContext, useEffect, useState } from "react";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { AuthContext } from '../../../context/auth';
 import firebase from "../../../firebase/firebaseConnection";
 
 export default function Deposit() {
 
-    const route = useRoute();
+    const { user, deposit } = useContext(AuthContext);
 
-    const keyUser = route.params?.keyUser;
-    const [deposit, setDeposit] = useState('');
-    const [balance, setBalance] = useState(null);
-    // let valor = parseFloat(deposit);
+    const [value, setValue] = useState('');
+    const [balance, setBalance] = useState(0);
 
     useEffect(() => {
-        // firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
-        //     setBalance(snapshop.val().saldo);
-        // })
+        firebase.database().ref('usuario').child(user && user.uid).on('value', (snapshop) => {
+            setBalance(snapshop.val().saldo);
+        })
     }, [])
 
-    async function Deposit() {
-
-        // if (deposit === '') {
-        //     alert("Digite o valor a ser depositado");
-        //     return;
-        // }
-
-        // if (valor <= 0) {
-        //     alert("Digite um valor válido");
-        //     return;
-        // }
-
-        // await firebase.database().ref('usuario').child(keyUser).update({
-        //     saldo: valor + balance,
-        // })
-        //     .then(() => {
-        //         alert(`Depósito de R$${valor.toFixed(2)} realizado com sucesso!`)
-        //         setDeposit('');
-        //         Keyboard.dismiss();
-        //     })
-        //     .catch((error) => {
-        //         alert('Ocorreu um erro inesperado');
-        //         console.log(error)
-        //         return;
-        //     })
+    async function handleDeposit() {
+        deposit(value, balance);
+        setValue('');
     }
 
 
@@ -50,24 +26,20 @@ export default function Deposit() {
         <View style={styles.container}>
 
             <View style={styles.viewBox}>
-                {balance === null ?
-                    <Text />
-                    :
-                    <Text style={styles.text}>Saldo atual: R${balance}</Text>
-                }
+                <Text style={styles.text}>Saldo atual: R${balance.toFixed(2)}</Text>
             </View>
 
             <View style={styles.viewBox}>
                 <Text style={styles.text}>Valor: R$</Text>
                 <TextInput
                     style={styles.textinput}
-                    value={deposit}
-                    onChangeText={(text) => setDeposit(text)}
+                    value={value}
+                    onChangeText={(text) => setValue(text)}
                     keyboardType="numeric"
                 />
             </View>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={Deposit} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleDeposit} activeOpacity={0.7}>
                 <Text style={styles.logoutText}>Depositar</Text>
             </TouchableOpacity>
 

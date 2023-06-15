@@ -1,8 +1,8 @@
-import { BottomTabBar, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Logout from "../Logout";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Profile from "../pages/Profile";
 import HomeRoutes from "./home.routes";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import HistoricTransation from "../pages/HistoricTransation";
 
 const Stack = createBottomTabNavigator();
 
@@ -11,7 +11,7 @@ export default function AppRoutes() {
         <Stack.Navigator
             screenOptions={{
                 tabBarActiveBackgroundColor: '#E0FFFF',
-                tabBarStyle: { borderTopWidth: 0 }
+                tabBarStyle: { borderTopWidth: 0, }
             }}
         >
 
@@ -20,6 +20,15 @@ export default function AppRoutes() {
                     headerShown: false, title: 'Início',
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome name="home" size={30} color={'#0000CD'} />
+                    )
+                }}
+            />
+
+            <Stack.Screen name="HistoricTransation" component={HistoricTransation}
+                options={{
+                    headerShown: false, title: 'Transações',
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome name="money" size={30} color={'#0000CD'} />
                     )
                 }}
             />
@@ -33,14 +42,6 @@ export default function AppRoutes() {
                 }}
             />
 
-            <Stack.Screen name="Logout" component={Logout}
-                options={{
-                    headerShown: false, title: 'Sair',
-                    tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="sign-out" size={30} color={'#0000CD'} />
-                    )
-                }}
-            />
 
         </Stack.Navigator>
     )

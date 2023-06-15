@@ -1,7 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AuthContext } from '../../context/auth';
 import firebase from '../../firebase/firebaseConnection';
 
@@ -12,8 +12,8 @@ export default function Home() {
     const [balance, setBalance] = useState(0);
 
     useEffect(() => {
-        firebase.database().ref('usuario').child(user.uid).on('value', (snapshot) => {
-            setBalance(snapshot.val().saldo)
+        firebase.database().ref('usuario').child(user && user.uid).on('value', (snapshot) => {
+            setBalance(snapshot.val().saldo);
         })
     }, [])
 
@@ -26,14 +26,14 @@ export default function Home() {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
 
             <View style={styles.header}>
                 <View style={styles.boxSalutation}>
                     <Image source={require('../../img/logo-bb.png')} style={styles.logo} />
                     <Text style={styles.bankName}>Blue Bank</Text>
                 </View>
-                <Text style={styles.welcome}>Olá, {user.name}!</Text>
+                <Text style={styles.welcome}>Olá, {user && user.name}!</Text>
                 <Text style={styles.balance}>Saldo disponível</Text>
                 <Text style={styles.balance}>R$ {balance.toFixed(2)}</Text>
             </View>
@@ -91,7 +91,7 @@ export default function Home() {
                 <Text style={styles.logoutText}>Sair</Text>
             </TouchableOpacity>
 
-        </View>
+        </ScrollView>
     )
 }
 

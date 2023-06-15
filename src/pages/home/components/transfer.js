@@ -1,24 +1,23 @@
-import { useRoute } from '@react-navigation/native';
-import { useEffect, useState } from "react";
-import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import firebase from "../../../firebase/firebaseConnection";
+import { useContext, useEffect, useState } from "react";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { AuthContext } from '../../../context/auth';
+import firebase from '../../../firebase/firebaseConnection';
 
 export default function Transfer() {
 
-    const route = useRoute();
+    const { user } = useContext(AuthContext);
 
-    const keyUser = route.params?.keyUser;
+    const [balance, setBalance] = useState(0);
     const [transfer, setTransfer] = useState('');
-    const [balance, setBalance] = useState(null);
-    // let valor = parseFloat(transfer);
 
     useEffect(() => {
-        // firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
-        //     setBalance(snapshop.val().saldo);
-        // })
-    }, [])
+        firebase.database().ref('usuario').child(user.uid).once('value')
+            .then((snapshop) => {
+                setBalance(snapshop.val().saldo);
+            })
+    }, [balance])
 
-    async function Transfer() {
+    async function handleTransfer() {
 
         // if (valor <= 0) {
         //     alert("Operação inválida. Digite um valor válido.")
@@ -47,11 +46,7 @@ export default function Transfer() {
         <View style={styles.container}>
 
             <View style={styles.viewBox}>
-                {balance === null ?
-                    <Text />
-                    :
-                    <Text style={styles.text}>Saldo atual: R${balance}</Text>
-                }
+                <Text style={styles.text}>Saldo atual: R${balance && balance.toFixed(2)}</Text>
             </View>
 
             <View style={styles.viewBox}>
@@ -64,7 +59,7 @@ export default function Transfer() {
                 />
             </View>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={Transfer} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleTransfer} activeOpacity={0.7}>
                 <Text style={styles.logoutText}>Transferir</Text>
             </TouchableOpacity>
 

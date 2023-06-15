@@ -1,80 +1,44 @@
-import { useRoute } from '@react-navigation/native';
-import { useEffect, useState } from "react";
-import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useContext, useEffect, useState } from "react";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { AuthContext } from '../../../context/auth';
 import firebase from "../../../firebase/firebaseConnection";
 
 export default function Withdraw() {
 
-    const route = useRoute();
+    const { user, withdraw } = useContext(AuthContext);
 
-    const keyUser = route.params?.keyUser;
-    const [withdraw, setWithdraw] = useState('');
-    const [balance, setBalance] = useState(null);
-    // let valor = parseFloat(withdraw);
+    const [value, setValue] = useState('');
+    const [balance, setBalance] = useState(0);
 
     useEffect(() => {
-        // firebase.database().ref('usuario').child(keyUser).on('value', (snapshop) => {
-        //     setBalance(snapshop.val().saldo);
-        // })
+        firebase.database().ref('usuario').child(user && user.uid).on('value', (snapshot) => {
+            setBalance(snapshot.val().saldo);
+        })
     }, [])
 
-    async function Withdraw() {
-
-        // if (valor <= 0) {
-        //     alert("Operação inválida. Digite um valor válido.")
-        //     setWithdraw('')
-        //     return;
-        // }
-
-        // if (valor > balance) {
-        //     alert("Você não tem saldo suficiente para realizar saque neste valor.");
-        //     setWithdraw('');
-        //     return;
-        // }
-
-        // if (withdraw === "") {
-        //     alert("Digite o valor do saque")
-        //     return;
-        // }
-
-        // await firebase.database().ref('usuario').child(keyUser).update({
-        //     saldo: (balance - valor),
-        // })
-        //     .then(() => {
-        //         alert(`Saque de R$${valor.toFixed(2)} realizado com sucesso!`)
-        //         setWithdraw('');
-        //         Keyboard.dismiss();
-        //     })
-        //     .catch((error) => {
-        //         alert('Ocorreu um erro inesperado');
-        //         console.log(error)
-        //         return;
-        //     })
+    async function handleWithdraw() {
+        withdraw(value, balance);
+        setValue('');
     }
-
 
     return (
         <View style={styles.container}>
 
             <View style={styles.viewBox}>
-                {balance === null ?
-                    <Text />
-                    :
-                    <Text style={styles.text}>Saldo atual: R${balance}</Text>
-                }
+                <Text style={styles.text}>Saldo atual: R${balance.toFixed(2)}</Text>
             </View>
 
             <View style={styles.viewBox}>
                 <Text style={styles.text}>Valor: R$</Text>
                 <TextInput
                     style={styles.textinput}
-                    value={withdraw}
-                    onChangeText={(text) => setWithdraw(text)}
+                    value={value}
+                    onChangeText={(text) => setValue(text)}
                     keyboardType="numeric"
                 />
             </View>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={Withdraw} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleWithdraw} activeOpacity={0.7}>
                 <Text style={styles.logoutText}>Sacar</Text>
             </TouchableOpacity>
 

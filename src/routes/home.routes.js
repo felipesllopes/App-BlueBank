@@ -12,7 +12,13 @@ export default function HomeRoutes() {
     const Stack = createNativeStackNavigator();
 
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerTintColor: '#0000CD',
+                headerStyle: { backgroundColor: '#FFF' },
+
+            }}
+        >
 
             <Stack.Screen name='Home' component={Home}
                 options={{ headerShown: false }}

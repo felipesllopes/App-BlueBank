@@ -15,7 +15,10 @@ export default function AuthProvider({ children }) {
     async function login(email, password) {
 
         if (email === "" || password === "") {
-            alert("Preencha os campos")
+            Alert.alert(
+                "Atenção",
+                "Preencha os campos"
+            )
             return;
         }
         else {
@@ -31,54 +34,90 @@ export default function AuthProvider({ children }) {
                                 lastName: snapshot.val().sobrenome,
                                 email: value.user.email,
                                 balance: snapshot.val().saldo,
+                                cpf: snapshot.val().cpf,
                             }
                             setUser(data);
                             setLoading(false);
                         })
-                        .catch((error) => { console.log(error) })
+                        .catch((error) => {
+                            console.log(error)
+                            setLoading(false)
+                        })
                 })
                 .catch((error) => {
+                    setLoading(false);
                     console.log(error);
-                    alert(error);
+                    Alert.alert(
+                        "Erro inesperado!",
+                        `${error}`
+                    );
                 })
         }
     }
 
     // função para criar cadastro de usuário
-    async function register(email, password, name, lastName) {
+    async function register(email, password, name, lastName, cpf) {
 
-        if (name === '' || lastName === '' || email === "" || password === "") {
-            alert('Preencha os campos')
+        if (name === '' || lastName === '' || email === "" || password === "" || cpf === "") {
+            Alert.alert(
+                'Atenção!',
+                'Preencha todos os campos!'
+            )
             return;
         }
-        else {
-            await firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then((value) => {
-                    let uid = value.user.uid;
-                    firebase.database().ref('usuario').child(uid).set({
-                        nome: name,
-                        sobrenome: lastName,
-                        saldo: 50,
-                    })
-                        .then(() => {
-                            let data = {
-                                uid: uid,
-                                name: name,
-                                lastName: lastName,
-                                email: value.user.email,
-                                balance: snapshot.val().saldo,
-                            }
-                            setUser(data);
-                            alert("Cliente cadastrado com sucesso!")
-                        })
-                        .catch((error) => { console.log(error) })
-                })
-                .catch((error) => {
-                    console.log("Erro: ", error)
-                    alert("Ops! Ocorreu algum erro!")
-                    return;
-                })
+        if (cpf.length != 11) {
+            Alert.alert(
+                'Atenção!',
+                'Digite o CPF completo!',
+            )
+            return;
         }
+
+        setLoading(true);
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((value) => {
+                let uid = value.user.uid;
+                firebase.database().ref('usuario').child(uid).set({
+                    nome: name,
+                    sobrenome: lastName,
+                    cpf: cpf,
+                    saldo: 50,
+                })
+                    .then(() => {
+                        let data = {
+                            uid: uid,
+                            name: name,
+                            lastName: lastName,
+                            email: value.user.email,
+                            balance: 50,
+                            cpf: cpf,
+                        }
+                        setUser(data);
+                        setLoading(false);
+
+                        Alert.alert(
+                            'Bem-vindo(a)!',
+                            `Olá, ${name} ${lastName}, seja bem-vindo(a) ao Blue Bank!`,
+                        )
+
+                    })
+                    .catch((error) => {
+                        setLoading(false);
+                        console.log(error)
+                        Alert.alert(
+                            "Erro inesperado!",
+                            `${error}`
+                        );
+                    })
+            })
+            .catch((error) => {
+                setLoading(false);
+                console.log(error)
+                Alert.alert(
+                    "Erro inesperado!",
+                    `${error}`
+                );
+            })
     }
 
     // função para deslogar o usuário

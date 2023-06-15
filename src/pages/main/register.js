@@ -11,11 +11,12 @@ export default function Register() {
 
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     async function handleRegister() {
-        register(email, password, name, lastName)
+        register(email, password, name, lastName, cpf)
     }
 
     return (
@@ -38,6 +39,15 @@ export default function Register() {
                 style={styles.input}
                 value={lastName}
                 onChangeText={(text) => setLastName(text)}
+            />
+
+            <Text style={styles.textInput}>CPF (apenas dígitos)</Text>
+            <TextInput
+                style={styles.input}
+                value={cpf}
+                onChangeText={(text) => setCpf(text)}
+                keyboardType="numeric"
+                maxLength={11}
             />
 
             <Text style={styles.textInput}>Email</Text>

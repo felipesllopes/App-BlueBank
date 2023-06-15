@@ -19,7 +19,17 @@ To connect to the bank, you need to have an account, or open one. Through the re
 
 ![tela-deposit](https://github.com/felipesllopes/App-BlueBank/assets/99768939/950368f4-6cf4-4464-8f07-e71092b9e53a)
 
-### Tools used
+### Used library
 
-- Firebase
-- Navigation
+- [react-navigation](https://reactnavigation.org/docs/getting-started/)
+- [stack-navigator](https://reactnavigation.org/docs/stack-navigator)
+- [bottom-tab-navigator](https://reactnavigation.org/docs/bottom-tab-navigator)
+
+### Service used
+
+[firebase](https://firebase.google.com/?hl=pt-br)
+
+#### Tools
+
+- Authentication
+- Realtime Database

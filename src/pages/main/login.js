@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useContext, useState } from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
 
 export default function Login() {
@@ -17,7 +17,7 @@ export default function Login() {
 
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Image source={require('../../img/logo-bb.png')} style={styles.logo} />
 
             <Text style={styles.textInput}>Email</Text>
@@ -50,7 +50,7 @@ export default function Login() {
                 </TouchableOpacity>
             </View>
 
-        </View>
+        </ScrollView>
     )
 }
 

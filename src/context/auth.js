@@ -47,10 +47,53 @@ export default function AuthProvider({ children }) {
                 .catch((error) => {
                     setLoading(false);
                     console.log(error);
+
+                    if (error.code == "auth/invalid-email") {
+                        Alert.alert(
+                            'Email inválido!',
+                            "O email digitado não é um email válido!",
+                        );
+                        return;
+                    }
+
+                    if (error.code == "auth/user-disabled") {
+                        Alert.alert(
+                            'Conta desativada!',
+                            "A conta de usuário está desativada!",
+                        );
+                        return;
+                    }
+
+                    if (error.code == "auth/user-not-found") {
+                        Alert.alert(
+                            'Conta não encontrada!',
+                            "A conta de usuário não foi encontrada!",
+                        );
+                        return;
+                    }
+
+                    if (error.code == "auth/wrong-password") {
+                        Alert.alert(
+                            "Senha incorreta!",
+                            "A senha está incorreta!",
+                        );
+                        return;
+                    }
+
+                    if (error.code == "auth/email-already-in-use") {
+                        Alert.alert(
+                            "Email em uso!",
+                            "O email digitado já está em uso!",
+                        );
+                        return;
+                    }
+
                     Alert.alert(
                         "Erro inesperado!",
-                        `${error}`
+                        "Verifique seus dados e tente novamente!",
                     );
+                    return;
+
                 })
         }
     }
@@ -103,20 +146,49 @@ export default function AuthProvider({ children }) {
                     })
                     .catch((error) => {
                         setLoading(false);
-                        console.log(error)
+                        console.log(error);
+
                         Alert.alert(
-                            "Erro inesperado!",
-                            `${error}`
-                        );
+                            'Erro inexperado!',
+                            'Parece que ocorreu um erro inesperado!',
+                        )
                     })
             })
             .catch((error) => {
                 setLoading(false);
                 console.log(error)
+
+                if (error.code == "auth/invalid-email") {
+                    Alert.alert(
+                        "Email inválido!",
+                        "O email digitado não corresponde a um endereço de email!"
+                    );
+                    return;
+                }
+
+                if (error.code == "auth/weak-password") {
+                    Alert.alert(
+                        "Senha inválida!",
+                        "A senha deve conter pelo menos 6 dígitos!"
+                    );
+                    return;
+                }
+
+                if (error.code == "auth/email-already-in-use") {
+                    Alert.alert(
+                        "Email em uso!",
+                        "Este email já está sendo usado por outro usuário!"
+                    );
+                    return;
+                }
+
                 Alert.alert(
                     "Erro inesperado!",
-                    `${error}`
+                    "Não foi possível identificar o erro!"
                 );
+                return;
+
+
             })
     }
 
@@ -124,7 +196,7 @@ export default function AuthProvider({ children }) {
     async function logout() {
         Alert.alert(
             'Deseja sair?',
-            'Você será deslogado do aplicativo.',
+            'Deseja sair do aplicativo?',
             [{
                 text: 'Cancelar',
                 style: 'cancel',

@@ -40,17 +40,17 @@ export default function Home() {
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Payment')}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Payment')} activeOpacity={0.7}>
                     <Image source={require("../../img/payment.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Pagamento</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Pix')}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Pix')} activeOpacity={0.7}>
                     <Image source={require("../../img/pix.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Pix</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Transfer')}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Transfer')} activeOpacity={0.7}>
                     <Image source={require("../../img/transfer.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Transferência</Text>
                 </TouchableOpacity>
@@ -59,19 +59,19 @@ export default function Home() {
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Withdraw')}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Withdraw')} activeOpacity={0.7}>
                     <Image source={require("../../img/withdraw.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Saque</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Deposit')}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Deposit')} activeOpacity={0.7}>
                     <Image source={require("../../img/deposit.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Depósito</Text>
                 </TouchableOpacity>
 
             </View>
 
-            <TouchableOpacity style={styles.help}>
+            <TouchableOpacity style={styles.help} activeOpacity={0.7}>
                 <View style={styles.alignIcon}>
                     <Text style={styles.helpTittle}>Precisa de ajuda?</Text>
                     <FontAwesome name="question-circle-o" size={22} color={'black'} />
@@ -79,7 +79,7 @@ export default function Home() {
                 <Text style={styles.helpText}>Entre em contato conosco e converse com um de nossos atendentes</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.help} onPress={() => navegate('Contract')}>
+            <TouchableOpacity style={styles.help} onPress={() => navegate('Contract')} activeOpacity={0.7}>
                 <View style={styles.alignIcon}>
                     <Text style={styles.helpTittle}>Contrato</Text>
                     <FontAwesome name="file-text-o" size={22} color={'black'} />

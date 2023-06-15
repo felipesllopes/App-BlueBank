@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useContext, useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
 import { ActivityIndicator } from "react-native";
 
@@ -20,7 +20,7 @@ export default function Register() {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
 
             <View style={styles.header}>
                 <Image source={require('../../img/logo-bb.png')} style={{ height: 40, width: 40 }} />
@@ -80,7 +80,7 @@ export default function Register() {
                 </TouchableOpacity>
             </View>
 
-        </View>
+        </ScrollView>
     )
 }
 

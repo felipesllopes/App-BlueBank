@@ -56,6 +56,7 @@ export default function Register() {
                 value={email}
                 onChangeText={(text) => setEmail(text)}
                 keyboardType="email-address"
+                autoCapitalize="none"
             />
 
             <Text style={styles.textInput}>Senha</Text>

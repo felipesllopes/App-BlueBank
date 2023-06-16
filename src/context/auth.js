@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import firebase from ".././firebase/firebaseConnection";
 import Deposit from "./auths/deposit";
 import Withdraw from "./auths/withdraw";
+import { format } from 'date-fns';
 
 export const AuthContext = createContext({});
 
@@ -149,7 +150,7 @@ export default function AuthProvider({ children }) {
                         console.log(error);
 
                         Alert.alert(
-                            'Erro inexperado!',
+                            'Erro inesperado!',
                             'Parece que ocorreu um erro inesperado!',
                         )
                     })
@@ -195,13 +196,13 @@ export default function AuthProvider({ children }) {
     // função para deslogar o usuário
     async function logout() {
         Alert.alert(
-            'Deseja sair?',
+            'Sair',
             'Deseja sair do aplicativo?',
             [{
                 text: 'Cancelar',
                 style: 'cancel',
             }, {
-                text: 'Confirmar',
+                text: 'Sair',
                 onPress: async () => {
                     await firebase.auth().signOut();
                     setUser(null);

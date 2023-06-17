@@ -3,7 +3,6 @@ import { Alert } from "react-native";
 import firebase from ".././firebase/firebaseConnection";
 import Deposit from "./auths/deposit";
 import Withdraw from "./auths/withdraw";
-import { format } from 'date-fns';
 
 export const AuthContext = createContext({});
 
@@ -11,6 +10,7 @@ export default function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [transactions, setTransactions] = useState(null);
 
     // função para logar o usuário
     async function login(email, password) {
@@ -221,7 +221,7 @@ export default function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ signed: !!user, user, login, register, logout, withdraw, deposit, loading }}>
+        <AuthContext.Provider value={{ signed: !!user, user, login, register, logout, withdraw, deposit, loading, }}>
             {children}
         </AuthContext.Provider>
     )

@@ -13,7 +13,7 @@ export default function ListTransactions({ data }) {
                 <Text style={styles.balance}> - R${data.balance}</Text>
             </View>
 
-            <Text>{data.date}</Text>
+            <Text style={styles.date}>{data.date}</Text>
 
         </View>
     )
@@ -26,20 +26,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F9F9F9',
         borderRadius: 10,
+        paddingVertical: 6
     },
     box: {
         flexDirection: 'row',
-        // backgroundColor: '#449584',
+        alignItems: 'flex-end',
     },
     type: {
-        textAlignVertical: 'bottom',
+        fontWeight: 'bold',
+        color: '#555',
     },
     value: {
         fontSize: 20,
-        marginLeft: 10
+        marginLeft: 10,
+        fontWeight: 'bold',
     },
     balance: {
         fontSize: 22,
         fontWeight: 'bold',
+        color: '#333',
+    },
+    date: {
+        fontStyle: 'italic',
     }
 })

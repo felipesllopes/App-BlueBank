@@ -10,7 +10,6 @@ export default function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [transactions, setTransactions] = useState(null);
 
     // função para logar o usuário
     async function login(email, password) {

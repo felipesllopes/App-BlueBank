@@ -1,6 +1,5 @@
-import firebase from "../../firebase/firebaseConnection";
 import { Alert } from "react-native";
-import { format } from "date-fns";
+import firebase from "../../firebase/firebaseConnection";
 
 export default async function Withdraw(valueS, balance, user) {
     let currentBalance = balance.toFixed(2);
@@ -48,7 +47,7 @@ export default async function Withdraw(valueS, balance, user) {
                             await firebase.database().ref('transacoes').child(uid).child(key).set({
                                 tipo: 'Saque',
                                 valor: valueN,
-                                data: format(new Date(), 'dd/MM/yyyy'),
+                                data: new Date().toLocaleString(),
                                 saldo: (currentBalance - valueN),
                             })
                         })

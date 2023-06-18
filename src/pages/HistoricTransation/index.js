@@ -23,11 +23,10 @@ export default function HistoricTransation() {
                         date: childIten.val().data,
                         balance: childIten.val().saldo,
                     }
-                    setTransactions(oldArray => [...oldArray, list].reverse());
+                    setTransactions(oldArray => [...oldArray, list]);
                 })
             })
         })();
-        console.log(transactions);
     }, [])
 
     return (
@@ -43,6 +42,8 @@ export default function HistoricTransation() {
 
             <View style={styles.box}>
                 <FlatList
+                    inverted={true} // inverter a ordem de exibição dos elementos (a ordem é invertida no firebase)
+                    style={{ margin: 5 }}
                     data={transactions}
                     renderItem={({ item }) => (<ListTransactions data={item} />)}
                 />
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
-        marginVertical: 10,
+        marginVertical: 15,
         marginRight: 20,
     },
 })

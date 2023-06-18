@@ -7,38 +7,22 @@ export default function Transfer() {
 
     const { user } = useContext(AuthContext);
 
+    const [value, setValue] = useState('');
     const [balance, setBalance] = useState(0);
-    const [transfer, setTransfer] = useState('');
 
     useEffect(() => {
-        firebase.database().ref('usuario').child(user.uid).once('value')
-            .then((snapshop) => {
+        (async () => {
+            firebase.database().ref('usuario').child(await user.uid).on('value', (snapshop) => {
                 setBalance(snapshop.val().saldo);
             })
-    }, [balance])
+
+        })();
+        console.log("R$" + balance.toFixed(2))
+        console.log(user)
+    }, [])
 
     async function handleTransfer() {
 
-        // if (valor <= 0) {
-        //     alert("Operação inválida. Digite um valor válido.")
-        //     setTransfer('')
-        //     return;
-        // }
-
-        // if (valor > balance) {
-        //     alert("Você não tem saldo suficiente para realizar transferência neste valor.");
-        //     setTransfer('');
-        //     return;
-        // }
-
-        // if (transfer === "") {
-        //     alert("Digite o valor da transferência")
-        //     return;
-        // }
-
-        // alert("Transação realizada com sucesso!")
-        // Keyboard.dismiss();
-        // setTransfer('');
     }
 
 
@@ -53,7 +37,7 @@ export default function Transfer() {
                 <Text style={styles.text}>Valor: R$</Text>
                 <TextInput
                     style={styles.textinput}
-                    value={transfer}
+                    value={value}
                     onChangeText={(text) => setTransfer(text)}
                     keyboardType="numeric"
                 />

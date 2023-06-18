@@ -1,65 +1,94 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
-import { useContext, useEffect } from "react";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { AuthContext } from "../../context/auth";
+import { useContext } from 'react';
+import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { AuthContext } from '../../context/auth';
 
-export default function Profile() {
+export default function EditProfile() {
 
     const { user } = useContext(AuthContext);
     const navigation = useNavigation();
 
-    useEffect(() => {
-        console.log(user)
-    }, [])
+    function saveEditions() {
+        Alert.alert(
+            'Salvar alterações',
+            'Deseja salvar as alterações feitas?',
+            [
+                {
+                    text: 'Cancelar',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Salvar',
+                    onPress: () => { alert("Alterações feitas"); navigation.goBack() }
+                }
+            ]
+        )
+    }
 
     return (
         <ScrollView style={styles.container}>
-            <View style={styles.header}>
-                <Image style={styles.photo} source={require('../../img/user-photo.jpg')} />
-                <FontAwesome name="camera" size={20} color={"#FFF"} />
-                <TouchableOpacity activeOpacity={0.7}>
-                    <Text style={styles.textButtonPhoto}>Editar foto</Text>
-                </TouchableOpacity>
-            </View>
 
             {user &&
                 <View style={styles.body}>
-                    <Text style={styles.tittle}>Meu perfil</Text>
+                    <Text style={styles.tittle}>Editar perfil</Text>
 
                     <Text style={styles.topic}>Meus dados</Text>
 
                     <Text style={styles.text}>Nome</Text>
-                    <Text style={styles.information}>{user.name} {user.lastName}</Text>
+                    <TextInput
+                        style={styles.information}
+                        placeholder={`${user.name} ${user.lastName}`}
+                    />
 
                     <Text style={styles.text}>Email</Text>
-                    <Text style={styles.information}>{user.email}</Text>
+                    <TextInput
+                        style={styles.information}
+                        placeholder={user.email}
+                    />
 
                     <Text style={styles.text}>Telefone</Text>
-                    <Text style={styles.information}>{ }</Text>
+                    <TextInput
+                        style={styles.information}
+                        placeholder={""}
+                        keyboardType='phone-pad'
+                    />
 
                     <Text style={styles.text}>CPF</Text>
-                    <Text style={styles.information}>{user.cpf}</Text>
+                    <TextInput
+                        style={styles.information}
+                        placeholder={user.cpf}
+                    />
 
 
                     <Text style={styles.topic}>Endereço</Text>
 
                     <Text style={styles.text}>Logradouro</Text>
-                    <Text style={styles.information}>{ }</Text>
+                    <TextInput
+                        style={styles.information}
+                        placeholder={""}
+                    />
 
                     <Text style={styles.text}>Complemento</Text>
-                    <Text style={styles.information}>{ }</Text>
+                    <TextInput
+                        style={styles.information}
+                        placeholder={""}
+                    />
 
                     <Text style={styles.text}>Bairro</Text>
-                    <Text style={styles.information}>{ }</Text>
+                    <TextInput
+                        style={styles.information}
+                        placeholder={""}
+                    />
+
                 </View>
             }
 
             <TouchableOpacity
                 style={styles.buttonEdit}
                 activeOpacity={0.7}
-                onPress={() => navigation.navigate('EditProfile')}>
-                <Text style={styles.textEdit}>Editar informações</Text>
+                onPress={saveEditions}
+            >
+                <Text style={styles.textEdit}>Salvar alterações</Text>
             </TouchableOpacity>
 
         </ScrollView>
@@ -70,22 +99,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ADD8E6'
-    },
-    header: {
-        backgroundColor: '#0000CD',
-        alignItems: 'center',
-        paddingVertical: 20,
-    },
-    photo: {
-        backgroundColor: '#FFF',
-        height: 100,
-        width: 100,
-        borderRadius: 80,
-        marginBottom: 20,
-    },
-    textButtonPhoto: {
-        color: '#FFF',
-        marginTop: 10,
     },
     body: {
         padding: 10,

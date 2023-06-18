@@ -1,8 +1,8 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Profile from "../pages/Profile";
-import HomeRoutes from "./home.routes";
 import HistoricTransation from "../pages/HistoricTransation";
+import HomeRoutes from "./home.routes";
+import ProfileRoutes from "./profile.routes";
 
 const Stack = createBottomTabNavigator();
 
@@ -34,7 +34,7 @@ export default function AppRoutes() {
                 }}
             />
 
-            <Stack.Screen name="Profile" component={Profile}
+            <Stack.Screen name="ProfileRoutes" component={ProfileRoutes}
                 options={{
                     headerShown: false, title: 'Perfil',
                     tabBarIcon: ({ color, size }) => (

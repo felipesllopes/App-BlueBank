@@ -11,9 +11,11 @@ export default function Withdraw() {
     const [balance, setBalance] = useState(0);
 
     useEffect(() => {
-        firebase.database().ref('usuario').child(user && user.uid).on('value', (snapshot) => {
-            setBalance(snapshot.val().saldo);
-        })
+        (async () => {
+            firebase.database().ref('usuario').child(await user.uid).on('value', (snapshot) => {
+                setBalance(snapshot.val().saldo);
+            })
+        })();
     }, [])
 
     async function handleWithdraw() {

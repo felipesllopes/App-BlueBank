@@ -11,9 +11,12 @@ export default function Deposit() {
     const [balance, setBalance] = useState(0);
 
     useEffect(() => {
-        firebase.database().ref('usuario').child(user && user.uid).on('value', (snapshop) => {
-            setBalance(snapshop.val().saldo);
-        })
+        (async () => {
+            firebase.database().ref('usuario').child(await user.uid).on('value', (snapshop) => {
+                setBalance(snapshop.val().saldo);
+            })
+        })()
+
     }, [])
 
     async function handleDeposit() {

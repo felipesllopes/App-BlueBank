@@ -1,8 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useContext, useState } from "react";
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
-import { ActivityIndicator } from "react-native";
 
 export default function Register() {
 
@@ -120,6 +119,7 @@ const styles = StyleSheet.create({
     viewButton: {
         alignItems: 'center',
         marginTop: 20,
+        marginBottom: 40,
     },
     enterButton: {
         backgroundColor: '#00BFFF',

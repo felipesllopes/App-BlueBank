@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { Alert } from "react-native";
 import firebase from ".././firebase/firebaseConnection";
+import AlertErrorCode from "./alertError/errorCode";
 import Deposit from "./auths/deposit";
 import Withdraw from "./auths/withdraw";
 
@@ -21,81 +22,35 @@ export default function AuthProvider({ children }) {
             )
             return;
         }
-        else {
-            setLoading(true);
-            await firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(async (value) => {
-                    let uid = value.user.uid;
-                    await firebase.database().ref('usuario').child(uid).once('value')
-                        .then((snapshot) => {
-                            let data = {
-                                uid: uid,
-                                name: snapshot.val().nome,
-                                lastName: snapshot.val().sobrenome,
-                                email: value.user.email,
-                                balance: snapshot.val().saldo,
-                                cpf: snapshot.val().cpf,
-                            }
-                            setUser(data);
-                            setLoading(false);
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                            setLoading(false)
-                        })
-                })
-                .catch((error) => {
-                    setLoading(false);
-                    console.log(error);
 
-                    if (error.code == "auth/invalid-email") {
-                        Alert.alert(
-                            'Email inválido!',
-                            "O email digitado não é um email válido!",
-                        );
-                        return;
-                    }
-
-                    if (error.code == "auth/user-disabled") {
-                        Alert.alert(
-                            'Conta desativada!',
-                            "A conta de usuário está desativada!",
-                        );
-                        return;
-                    }
-
-                    if (error.code == "auth/user-not-found") {
-                        Alert.alert(
-                            'Conta não encontrada!',
-                            "A conta de usuário não foi encontrada!",
-                        );
-                        return;
-                    }
-
-                    if (error.code == "auth/wrong-password") {
-                        Alert.alert(
-                            "Senha incorreta!",
-                            "A senha está incorreta!",
-                        );
-                        return;
-                    }
-
-                    if (error.code == "auth/email-already-in-use") {
-                        Alert.alert(
-                            "Email em uso!",
-                            "O email digitado já está em uso!",
-                        );
-                        return;
-                    }
-
-                    Alert.alert(
-                        "Erro inesperado!",
-                        "Verifique seus dados e tente novamente!",
-                    );
-                    return;
-
-                })
-        }
+        setLoading(true);
+        await firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(async (value) => {
+                let uid = value.user.uid;
+                await firebase.database().ref('usuario').child(uid).once('value')
+                    .then((snapshot) => {
+                        let data = {
+                            uid: uid,
+                            name: snapshot.val().nome,
+                            lastName: snapshot.val().sobrenome,
+                            email: value.user.email,
+                            balance: snapshot.val().saldo,
+                            cpf: snapshot.val().cpf,
+                        }
+                        setUser(data);
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        setLoading(false)
+                        AlertErrorCode(error);
+                    })
+            })
+            .catch((error) => {
+                setLoading(false);
+                console.log(error);
+                AlertErrorCode(error);
+            })
     }
 
     // função para criar cadastro de usuário
@@ -142,53 +97,17 @@ export default function AuthProvider({ children }) {
                             'Bem-vindo(a)!',
                             `Olá, ${name} ${lastName}, seja bem-vindo(a) ao Blue Bank!`,
                         )
-
                     })
                     .catch((error) => {
                         setLoading(false);
                         console.log(error);
-
-                        Alert.alert(
-                            'Erro inesperado!',
-                            'Parece que ocorreu um erro inesperado!',
-                        )
+                        AlertErrorCode(error);
                     })
             })
             .catch((error) => {
                 setLoading(false);
                 console.log(error)
-
-                if (error.code == "auth/invalid-email") {
-                    Alert.alert(
-                        "Email inválido!",
-                        "O email digitado não corresponde a um endereço de email!"
-                    );
-                    return;
-                }
-
-                if (error.code == "auth/weak-password") {
-                    Alert.alert(
-                        "Senha inválida!",
-                        "A senha deve conter pelo menos 6 dígitos!"
-                    );
-                    return;
-                }
-
-                if (error.code == "auth/email-already-in-use") {
-                    Alert.alert(
-                        "Email em uso!",
-                        "Este email já está sendo usado por outro usuário!"
-                    );
-                    return;
-                }
-
-                Alert.alert(
-                    "Erro inesperado!",
-                    "Não foi possível identificar o erro!"
-                );
-                return;
-
-
+                AlertErrorCode(error);
             })
     }
 

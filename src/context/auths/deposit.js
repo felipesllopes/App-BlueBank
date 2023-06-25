@@ -37,7 +37,7 @@ export default async function Deposit(value, balance, user) {
                             await firebase.database().ref('transacoes').child(uid).child(key).set({
                                 tipo: 'Depósito',
                                 valor: valueN,
-                                data: new Date().toLocaleString(),
+                                data: new Date().toLocaleDateString(),
                                 saldo: (parseFloat(currentBalance) + valueN),
                             })
                         })

@@ -47,7 +47,7 @@ export default async function Withdraw(valueS, balance, user) {
                             await firebase.database().ref('transacoes').child(uid).child(key).set({
                                 tipo: 'Saque',
                                 valor: valueN,
-                                data: new Date().toLocaleString(),
+                                data: new Date().toLocaleDateString(),
                                 saldo: (currentBalance - valueN),
                             })
                         })

@@ -1,11 +1,10 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useIsFocused } from "@react-navigation/native";
 import { useContext, useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AuthContext } from '../../context/auth';
 import firebase from '../../firebase/firebaseConnection';
 import ListTransactions from './listtransactions';
-import { Alert } from 'react-native';
 
 export default function HistoricTransation() {
 
@@ -17,10 +16,8 @@ export default function HistoricTransation() {
 
     useEffect(() => {
         (async () => {
-            await firebase.database().ref('transacoes').child(await user.uid).orderByChild('data').once('value')
+            await firebase.database().ref('transacoes').child(await user.uid).once('value')
                 .then((snapshot) => {
-                    // setLoading(true)
-
                     setTransactions([]);
 
                     snapshot.forEach((childIten) => {
@@ -38,6 +35,7 @@ export default function HistoricTransation() {
                     setLoading(false);
                 })
                 .catch((error) => {
+                    setLoading(false);
                     Alert.alert(
                         'Erro!',
                         'Um imprevisto aconteceu. Tente novamente mais tarde!'
@@ -45,9 +43,13 @@ export default function HistoricTransation() {
                     console.log(error)
                 })
         })();
-
+        // teste para verificar em qual renderização a flatList recebe a const. Retirar após a conclusão do codigo
         console.log(array)
-    }, [focused]);
+    }, [focused, loading]);
+
+    function openDate() {
+        alert(new Date().toLocaleDateString());
+    }
 
     function renderItem({ item }) {
         return <ListTransactions data={item} />
@@ -59,7 +61,7 @@ export default function HistoricTransation() {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
                 <Text style={styles.tittle}>Histórico de transações</Text>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={openDate}>
                     <FontAwesome name="calendar" size={30} color={'#000'} />
                 </TouchableOpacity>
             </View>

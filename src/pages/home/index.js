@@ -59,12 +59,12 @@ export default function Home() {
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Withdraw')} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navigation.navigate('CashMachine', { type: 'withdraw' })} activeOpacity={0.7}>
                     <Image source={require("../../img/withdraw.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Saque</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Deposit')} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navigation.navigate('CashMachine', { type: 'deposit' })} activeOpacity={0.7}>
                     <Image source={require("../../img/deposit.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Depósito</Text>
                 </TouchableOpacity>

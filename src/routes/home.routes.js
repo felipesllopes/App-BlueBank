@@ -1,11 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../pages/home';
+import CashMachine from '../pages/home/components/cashMachine';
 import Contract from '../pages/home/components/contract';
-import Deposit from '../pages/home/components/deposit';
 import Payment from '../pages/home/components/payment';
 import Pix from '../pages/home/components/pix';
 import Transfer from '../pages/home/components/transfer';
-import Withdraw from '../pages/home/components/withdraw';
 
 export default function HomeRoutes() {
 
@@ -16,7 +15,6 @@ export default function HomeRoutes() {
             screenOptions={{
                 headerTintColor: '#0000CD',
                 headerStyle: { backgroundColor: '#FFF' },
-
             }}
         >
 
@@ -30,9 +28,7 @@ export default function HomeRoutes() {
 
             <Stack.Screen name='Transfer' component={Transfer} options={{ title: 'Transferência' }} />
 
-            <Stack.Screen name='Withdraw' component={Withdraw} options={{ title: 'Saque' }} />
-
-            <Stack.Screen name='Deposit' component={Deposit} options={{ title: 'Depósito' }} />
+            <Stack.Screen name='CashMachine' component={CashMachine} options={{ title: 'Caixa Eletrônico' }} />
 
             <Stack.Screen name='Contract' component={Contract} options={{ title: 'Contrato' }} />
 

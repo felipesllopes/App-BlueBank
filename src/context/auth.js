@@ -7,12 +7,22 @@ import Withdraw from "./auths/withdraw";
 
 export const AuthContext = createContext({});
 
+/**
+ * Function with authentication libraries for information access
+ * @param {*} param0 
+ * @returns 
+ */
 export default function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // função para logar o usuário
+    /**
+     * Function to login user.
+     * @param {*} email 
+     * @param {*} password 
+     * @returns 
+     */
     async function login(email, password) {
 
         if (email === "" || password === "") {
@@ -41,19 +51,25 @@ export default function AuthProvider({ children }) {
                         setLoading(false);
                     })
                     .catch((error) => {
-                        console.log(error)
                         setLoading(false)
                         AlertErrorCode(error);
                     })
             })
             .catch((error) => {
                 setLoading(false);
-                console.log(error);
                 AlertErrorCode(error);
             })
     }
 
-    // função para criar cadastro de usuário
+    /**
+     * Function to register user. Mandatory parameters.
+     * @param {*} email 
+     * @param {*} password 
+     * @param {*} name 
+     * @param {*} lastName 
+     * @param {*} cpf 
+     * @returns 
+     */
     async function register(email, password, name, lastName, cpf) {
 
         if (name === '' || lastName === '' || email === "" || password === "" || cpf === "") {
@@ -100,18 +116,18 @@ export default function AuthProvider({ children }) {
                     })
                     .catch((error) => {
                         setLoading(false);
-                        console.log(error);
                         AlertErrorCode(error);
                     })
             })
             .catch((error) => {
                 setLoading(false);
-                console.log(error)
                 AlertErrorCode(error);
             })
     }
 
-    // função para deslogar o usuário
+    /**
+     * Function to logout user. Mandatory parameters.
+     */
     async function logout() {
         Alert.alert(
             'Sair',
@@ -122,18 +138,27 @@ export default function AuthProvider({ children }) {
             }, {
                 text: 'Sair',
                 onPress: async () => {
-                    await firebase.auth().signOut();
-                    setUser(null);
+                    await firebase.auth().signOut()
+                        .then(() => setUser(null))
+                        .catch((error) => { alert("Um erro inesperado ocorreu!") })
                 }
             }])
     }
 
-    // função para realizar saque
+    /**
+     * Function to withdraw. Mandatory parameters.
+     * @param {*} valueS 
+     * @param {*} balance 
+     */
     async function withdraw(valueS, balance) {
         Withdraw(valueS, balance, user);
     }
 
-    // função para realizar depósito
+    /**
+     * Function to deposit. Mandatory parameters.
+     * @param {*} value 
+     * @param {*} balance 
+     */
     async function deposit(value, balance) {
         Deposit(value, balance, user)
     }

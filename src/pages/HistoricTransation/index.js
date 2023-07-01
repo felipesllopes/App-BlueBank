@@ -45,6 +45,7 @@ export default function HistoricTransation() {
         }
     }
 
+    // Function to renderize the flatList
     function renderItem({ item }) {
         return <ListTransactions data={item} />
     }

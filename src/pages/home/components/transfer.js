@@ -30,7 +30,7 @@ export default function Transfer() {
         <View style={styles.container}>
 
             <View style={styles.viewBox}>
-                <Text style={styles.text}>Saldo atual: R${balance && balance.toFixed(2)}</Text>
+                <Text style={styles.text}>Saldo atual: R${balance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</Text>
             </View>
 
             <View style={styles.viewBox}>
@@ -38,7 +38,7 @@ export default function Transfer() {
                 <TextInput
                     style={styles.textinput}
                     value={value}
-                    onChangeText={(text) => setTransfer(text)}
+                    onChangeText={(text) => setValue(text)}
                     keyboardType="numeric"
                 />
             </View>

@@ -9,9 +9,9 @@ export default function ListTransactions({ data }) {
                     <Text style={styles.type}>{data.type}</Text>
 
                     <Text style={[styles.value, { color: data.type === 'Saque' ? 'red' : 'green' }]}>
-                        {data.type === 'Saque' ? '-' : '+'} R${data.value.toFixed(2)}</Text>
+                        {data.type === 'Saque' ? '-' : '+'} R${(data.value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</Text>
 
-                    <Text style={styles.balance}> - R${data.balance.toFixed(2)}</Text>
+                    <Text style={styles.balance}> - R${(data.balance).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</Text>
                 </View>
             }
 

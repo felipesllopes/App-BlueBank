@@ -35,7 +35,7 @@ export default function Home() {
                 </View>
                 <Text style={styles.welcome}>Olá, {user && user.name}!</Text>
                 <Text style={styles.balance}>Saldo disponível</Text>
-                <Text style={styles.balance}>R$ {balance.toFixed(2)}</Text>
+                <Text style={styles.balance}>R$ {balance.toLocaleString('pr-BR', { minimumFractionDigits: 2 })}</Text>
             </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>

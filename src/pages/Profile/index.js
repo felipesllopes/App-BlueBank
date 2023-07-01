@@ -1,6 +1,6 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
 
@@ -8,10 +8,6 @@ export default function Profile() {
 
     const { user } = useContext(AuthContext);
     const navigation = useNavigation();
-
-    useEffect(() => {
-        console.log(user)
-    }, [])
 
     return (
         <ScrollView style={styles.container}>

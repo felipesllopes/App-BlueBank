@@ -20,6 +20,9 @@ export default function CashMachine() {
         })()
     }, [])
 
+    /**
+     * Function to define which operation to perform. Withdrawal or Deposit.
+     */
     async function handleOperation() {
         if (type === 'deposit') {
             deposit(value, balance);
@@ -27,7 +30,6 @@ export default function CashMachine() {
         if (type === 'withdraw') {
             withdraw(value, balance);
         }
-
         setValue('');
         Keyboard.dismiss();
     }
@@ -38,7 +40,7 @@ export default function CashMachine() {
 
             <View style={styles.box}>
                 <View style={styles.viewBox}>
-                    <Text style={styles.text}>Saldo atual: R${balance.toFixed(2)}</Text>
+                    <Text style={styles.text}>Saldo atual: R${balance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</Text>
                 </View>
 
                 <View style={styles.viewBox}>

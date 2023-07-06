@@ -10,12 +10,13 @@ export default function Home() {
     const navigation = useNavigation();
     const { user, logout } = useContext(AuthContext);
     const [balance, setBalance] = useState(0);
+    const [visibleBalance, setVisibleBalance] = useState(false);
 
     useEffect(() => {
         firebase.database().ref('usuario').child(user && user.uid).on('value', (snapshot) => {
             setBalance(snapshot.val().saldo);
         })
-    }, [])
+    }, [visibleBalance])
 
     function navegate(pag) {
         navigation.navigate(pag)
@@ -23,6 +24,10 @@ export default function Home() {
 
     async function handleLogout() {
         logout();
+    }
+
+    function handlevisibleBalance() {
+        setVisibleBalance(current => (current === true ? false : true))
     }
 
     return (
@@ -34,8 +39,21 @@ export default function Home() {
                     <Text style={styles.bankName}>Blue Bank</Text>
                 </View>
                 <Text style={styles.welcome}>Olá, {user && user.name}!</Text>
-                <Text style={styles.balance}>Saldo disponível</Text>
-                <Text style={styles.balance}>R$ {balance.toLocaleString('pr-BR', { minimumFractionDigits: 2 })}</Text>
+
+                <View style={styles.showBalance}>
+                    <Text style={styles.balance}>Saldo disponível</Text>
+                    <TouchableOpacity activeOpacity={0.7} onPress={() => handlevisibleBalance()}>
+                        <FontAwesome
+                            name={visibleBalance ? 'caret-down' : 'caret-up'}
+                            size={30} color={'white'}
+                            style={{ marginLeft: 10 }}
+                        />
+                    </TouchableOpacity>
+                </View>
+
+                <Text
+                    style={[styles.balance, { display: visibleBalance ? 'flex' : 'none' }]}>R${balance.toLocaleString('pr-BR', { minimumFractionDigits: 2 })}
+                </Text>
             </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -103,8 +121,8 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#0000CD',
         padding: 10,
-        paddingBottom: 20,
-        marginBottom: 40,
+        marginBottom: 30,
+        height: 200
     },
     boxSalutation: {
         flexDirection: 'row',
@@ -127,6 +145,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         marginVertical: 10,
+    },
+    showBalance: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     balance: {
         textAlign: 'center',

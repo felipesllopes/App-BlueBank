@@ -18,8 +18,8 @@ export default function HistoricTransation() {
     useEffect(() => {
         (async () => {
             firebase.database().ref('transacoes').child(await user.uid).orderByChild('data').equalTo(format(newDate, 'dd/MM/yyyy')).on('value', (snapshot) => {
-                setTransactions([]);
 
+                setTransactions([]);
                 snapshot.forEach((childIten) => {
                     let list = {
                         type: childIten.val().tipo,
@@ -30,8 +30,8 @@ export default function HistoricTransation() {
                     setTransactions(oldArray => [...oldArray, list]);
                 })
             })
-            setLoading(false);
         })();
+        setLoading(false);
     }, [newDate]);
 
     function openDate() {
@@ -48,6 +48,10 @@ export default function HistoricTransation() {
     // Function to renderize the flatList
     function renderItem({ item }) {
         return <ListTransactions data={item} />
+    }
+
+    function listEmptyComponent() {
+        return (<Text style={styles.notResult}>Não foi encontrada nenhuma transação nesta data.</Text>);
     }
 
     return (
@@ -67,17 +71,12 @@ export default function HistoricTransation() {
                 {loading ?
                     <ActivityIndicator size={30} color={'black'} style={styles.loadingActivity} />
                     :
-                    <View>
-                        {transactions && transactions.length == 0 ?
-                            <Text style={styles.notResult}>Não foi encontrada nenhuma transação nesta data.</Text>
-                            :
-                            <FlatList
-                                style={{ margin: 5 }}
-                                data={transactions}
-                                renderItem={renderItem}
-                            />
-                        }
-                    </View>
+                    <FlatList
+                        style={{ margin: 5 }}
+                        data={transactions}
+                        renderItem={renderItem}
+                        ListEmptyComponent={() => listEmptyComponent()}
+                    />
                 }
             </View>
 

@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../pages/home';
-import CashMachine from '../pages/home/components/cashMachine';
 import Contract from '../pages/home/components/contract';
 import Payment from '../pages/home/components/payment';
 import Pix from '../pages/home/components/pix';
@@ -27,8 +26,6 @@ export default function HomeRoutes() {
             <Stack.Screen name='Pix' component={Pix} />
 
             <Stack.Screen name='Transfer' component={Transfer} options={{ title: 'Transferência' }} />
-
-            <Stack.Screen name='CashMachine' component={CashMachine} options={{ title: 'Caixa Eletrônico' }} />
 
             <Stack.Screen name='Contract' component={Contract} options={{ title: 'Contrato' }} />
 

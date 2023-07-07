@@ -58,14 +58,18 @@ export default function Home() {
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Payment')} activeOpacity={0.7}>
-                    <Image source={require("../../img/payment.png")} style={styles.imageCard} />
-                    <Text style={styles.nameCard}>Pagamento</Text>
-                </TouchableOpacity>
-
                 <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Pix')} activeOpacity={0.7}>
                     <Image source={require("../../img/pix.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Pix</Text>
+                </TouchableOpacity>
+
+            </View>
+
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Payment')} activeOpacity={0.7}>
+                    <Image source={require("../../img/payment.png")} style={styles.imageCard} />
+                    <Text style={styles.nameCard}>Pagamento</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Transfer')} activeOpacity={0.7}>
@@ -75,19 +79,6 @@ export default function Home() {
 
             </View>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navigation.navigate('CashMachine', { type: 'withdraw' })} activeOpacity={0.7}>
-                    <Image source={require("../../img/withdraw.png")} style={styles.imageCard} />
-                    <Text style={styles.nameCard}>Saque</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navigation.navigate('CashMachine', { type: 'deposit' })} activeOpacity={0.7}>
-                    <Image source={require("../../img/deposit.png")} style={styles.imageCard} />
-                    <Text style={styles.nameCard}>Depósito</Text>
-                </TouchableOpacity>
-
-            </View>
 
             <TouchableOpacity style={styles.help} activeOpacity={0.7}>
                 <View style={styles.alignIcon}>

@@ -18,6 +18,11 @@ export default async function Withdraw(valueS, balance, user) {
         return;
     }
 
+    if (valueN > 1000) {
+        alert('Limite de saque é de R$1000,00!')
+        return
+    }
+
     if (valueN > currentBalance) {
         alert("Saldo insuficiente para saque neste valor!")
         return;

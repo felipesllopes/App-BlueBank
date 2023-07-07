@@ -1,6 +1,7 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HistoricTransation from "../pages/HistoricTransation";
+import VirtualMachine from "../pages/VirtualMachine";
 import HomeRoutes from "./home.routes";
 import ProfileRoutes from "./profile.routes";
 
@@ -29,7 +30,7 @@ export default function AppRoutes() {
                 options={{
                     headerShown: false, title: 'Transações',
                     tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="money" size={35} color={'#0000CD'} />
+                        <FontAwesome name="bar-chart" size={35} color={'#0000CD'} />
                     )
                 }}
             />
@@ -39,6 +40,15 @@ export default function AppRoutes() {
                     headerShown: false, title: 'Perfil',
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome name="user" size={35} color={'#0000CD'} />
+                    )
+                }}
+            />
+
+            <Stack.Screen name="VirtualMachine" component={VirtualMachine}
+                options={{
+                    headerShown: false, title: 'Caixa Eletrônico',
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome name="money" size={35} color={'#0000CD'} />
                     )
                 }}
             />

@@ -1,6 +1,7 @@
 import { useRoute } from "@react-navigation/native";
 import { useContext, useEffect, useState, } from "react";
 import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import Boxkeyboard from "../../../Components/Boxkeyboard";
 import { AuthContext } from '../../../context/auth';
 import firebase from "../../../firebase/firebaseConnection";
 
@@ -44,19 +45,24 @@ export default function CashMachine() {
                 </View>
 
                 <View style={styles.viewBox}>
-                    <Text style={styles.text}>Valor: R$</Text>
+                    {/* <Text style={styles.text}>Valor: R$</Text>
                     <TextInput
                         style={styles.textinput}
                         value={value}
                         onChangeText={(text) => setValue(text)}
                         keyboardType="numeric"
-                    />
+                    /> */}
+
                 </View>
             </View>
 
             <TouchableOpacity style={styles.logoutButton} onPress={handleOperation} activeOpacity={0.7}>
                 <Text style={styles.logoutText}>{type === 'deposit' ? 'Depositar' : 'Sacar'}</Text>
             </TouchableOpacity>
+
+            <View style={{ position: 'absolute', width: '100%', bottom: 20 }}>
+                <Boxkeyboard />
+            </View>
 
         </View>
     )
@@ -65,8 +71,7 @@ export default function CashMachine() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
-        backgroundColor: '#ADD8E6',
+        backgroundColor: '#EEE',
         paddingTop: 30,
     },
     box: {

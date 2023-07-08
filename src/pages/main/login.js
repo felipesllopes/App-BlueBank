@@ -11,20 +11,38 @@ export default function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [aviso, setAviso] = useState(false);
+    const [msg, setMsg] = useState('');
+    const opacity = 0.7;
 
     const inputRef1 = useRef();
     const inputRef2 = useRef();
 
+    /**
+     * Function to move focus to the next input.
+     * @param {*} nextInputRef 
+     */
     function focusNextInput(nextInputRef) {
         nextInputRef.current.focus(); // Passa para o próximo TextInput
     };
 
+    /**
+     * Function to close the keyboard after the last input and call the login function.
+     */
     function handleLastInputSubmit() {
         Keyboard.dismiss(); // Fecha o teclado após o último TextInput
         logar();
     };
 
+    /**
+     * Function to login the user. 
+     */
     function logar() {
+        if (email === '' || password === '') {
+            setAviso(true);
+            setMsg("Preencha todos os campos!");
+            return;
+        }
         login(email, password)
     }
 
@@ -33,9 +51,8 @@ export default function Login() {
         <ScrollView style={styles.container}>
             <Image source={require('../../img/logo-bb.png')} style={styles.logo} resizeMode="contain" />
 
-            <Text style={styles.textInput}>Email</Text>
             <TextInput
-                placeholder="Ex. joaosilva@gmail.com"
+                placeholder="Email"
                 ref={inputRef1} // referenciar a tela p o input
                 onSubmitEditing={() => focusNextInput(inputRef2)} // mudar foco p proximo input
                 style={styles.input}
@@ -45,8 +62,8 @@ export default function Login() {
                 autoCapitalize="none" // nao começar com maiuscula
             />
 
-            <Text style={styles.textInput}>Senha</Text>
             <TextInput
+                placeholder="Senha"
                 ref={inputRef2}
                 onSubmitEditing={handleLastInputSubmit}
                 style={styles.input}
@@ -56,7 +73,12 @@ export default function Login() {
             />
 
             <View style={styles.viewButton}>
-                <TouchableOpacity style={styles.enterButton} onPress={logar}>
+
+                <View style={{ marginBottom: 10, display: aviso ? 'flex' : 'none' }}>
+                    <Text>{msg}</Text>
+                </View>
+
+                <TouchableOpacity style={styles.enterButton} onPress={logar} activeOpacity={opacity}>
                     {loading ?
                         <ActivityIndicator size={30} color={'#FFF'} />
                         :
@@ -64,8 +86,8 @@ export default function Login() {
                     }
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                    <Text style={{ fontSize: 16 }}>Quero me tornar cliente</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Register')} activeOpacity={opacity}>
+                    <Text style={styles.chageScreen}>Quero me tornar cliente</Text>
                 </TouchableOpacity>
             </View>
 

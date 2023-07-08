@@ -7,11 +7,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#ADD8E6'
     },
     logo: {
-        height: 130,
-        width: 130,
+        height: 125,
+        width: 125,
         alignSelf: 'center',
-        marginTop: 30,
-        marginBottom: 10
+        marginVertical: 30,
     },
     header: {
         flexDirection: 'row',
@@ -23,32 +22,35 @@ const styles = StyleSheet.create({
     salutation: {
         fontSize: 22,
         fontWeight: 'bold',
-        marginLeft: 10,
+        marginRight: 10,
     },
-    textInput: {
+    slogan: {
         fontSize: 18,
-        marginVertical: 4,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#444',
+        marginBottom: 20,
+        marginHorizontal: 10
     },
     input: {
         borderWidth: 2,
         paddingHorizontal: 10,
-        height: 44,
+        height: 42,
         borderRadius: 4,
         fontSize: 18,
-        marginBottom: 5,
+        marginBottom: 20,
         backgroundColor: 'white'
     },
     viewButton: {
         alignItems: 'center',
-        marginTop: 12,
     },
     enterButton: {
         backgroundColor: '#00BFFF',
         padding: 5,
         borderRadius: 10,
         width: '100%',
-        marginVertical: 14,
+        marginBottom: 15,
+        marginTop: 10
     },
     textButton: {
         fontSize: 20,
@@ -56,6 +58,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#FFF'
     },
+    chageScreen: {
+        fontSize: 17,
+        textDecorationLine: 'underline'
+    }
 })
 
 export default styles;

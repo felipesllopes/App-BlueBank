@@ -25,14 +25,6 @@ export default function AuthProvider({ children }) {
      */
     async function login(email, password) {
 
-        if (email === "" || password === "") {
-            Alert.alert(
-                "Atenção",
-                "Preencha os campos"
-            )
-            return;
-        }
-
         setLoading(true);
         await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(async (value) => {
@@ -71,21 +63,6 @@ export default function AuthProvider({ children }) {
      * @returns 
      */
     async function register(email, password, name, lastName, cpf) {
-
-        if (name === '' || lastName === '' || email === "" || password === "" || cpf === "") {
-            Alert.alert(
-                'Atenção!',
-                'Preencha todos os campos!'
-            )
-            return;
-        }
-        if (cpf.length != 11) {
-            Alert.alert(
-                'Atenção!',
-                'Digite o CPF completo!',
-            )
-            return;
-        }
 
         setLoading(true);
         await firebase.auth().createUserWithEmailAndPassword(email, password)

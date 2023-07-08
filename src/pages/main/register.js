@@ -20,15 +20,40 @@ export default function Register() {
     const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [aviso, setAviso] = useState(false);
+    const [msg, setMsg] = useState('');
+    const opacity = 0.7;
 
+    /**
+     * Function to register user.
+     * @returns 
+     */
     async function handleRegister() {
-        register(email, password, name, lastName, cpf)
+        if (name === '' || lastName === '' || cpf === '' || email === '' || password === '') {
+            setAviso(true);
+            setMsg("Preencha todos os campos!");
+            return;
+        }
+        if (cpf.length < 11) {
+            setAviso(true);
+            setMsg("Digite o CPF completo!");
+            return;
+        }
+        setAviso(false);
+        await register(email, password, name, lastName, cpf);
     }
 
+    /**
+     * Function to move focus to the next input.
+     * @param {*} nextInputRef 
+     */
     function focusNextInput(nextInputRef) {
         nextInputRef.current.focus(); // Passa para o próximo TextInput
     };
 
+    /**
+     * Function to close the keyboard after the last input and call the login function.
+     */
     function handleLastInputSubmit() {
         Keyboard.dismiss(); // Fecha o teclado após o último TextInput
     };
@@ -37,13 +62,14 @@ export default function Register() {
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 
             <View style={styles.header}>
+                <Text style={styles.salutation}>Bem-vindo(a) ao Blue Bank!</Text>
                 <Image source={require('../../img/logo-bb.png')} style={{ height: 40, width: 40 }} />
-                <Text style={styles.salutation}>Bem vindo(a) ao Blue Bank!</Text>
             </View>
 
-            <Text style={styles.textInput}>Nome</Text>
+            <Text style={styles.slogan}>Cadastre-se conosco e aproveite o app do melhor banco!</Text>
+
             <TextInput
-                placeholder="Ex. João"
+                placeholder="Nome"
                 ref={inputRef1}
                 onSubmitEditing={() => focusNextInput(inputRef2)}
                 style={styles.input}
@@ -51,9 +77,8 @@ export default function Register() {
                 onChangeText={(text) => setName(text)}
             />
 
-            <Text style={styles.textInput}>Sobrenome</Text>
             <TextInput
-                placeholder="Ex. Silva"
+                placeholder="Sobrenome"
                 ref={inputRef2}
                 onSubmitEditing={() => focusNextInput(inputRef3)}
                 style={styles.input}
@@ -61,9 +86,8 @@ export default function Register() {
                 onChangeText={(text) => setLastName(text)}
             />
 
-            <Text style={styles.textInput}>CPF (apenas dígitos)</Text>
             <TextInput
-                placeholder="Ex. 12345678910"
+                placeholder="CPF (apenas números)"
                 ref={inputRef3}
                 onSubmitEditing={() => focusNextInput(inputRef4)}
                 style={styles.input}
@@ -73,9 +97,8 @@ export default function Register() {
                 maxLength={11}
             />
 
-            <Text style={styles.textInput}>Email</Text>
             <TextInput
-                placeholder="Ex. joaosilva@gmail.com"
+                placeholder="Email"
                 ref={inputRef4}
                 onSubmitEditing={() => focusNextInput(inputRef5)}
                 style={styles.input}
@@ -85,9 +108,8 @@ export default function Register() {
                 autoCapitalize="none"
             />
 
-            <Text style={styles.textInput}>Senha (min. 6 dígitos)</Text>
             <TextInput
-                // placeholder="******"
+                placeholder="Senha (mínimo 6 dígitos)"
                 ref={inputRef5}
                 onSubmitEditing={handleLastInputSubmit}
                 style={styles.input}
@@ -96,12 +118,13 @@ export default function Register() {
                 secureTextEntry={true}
             />
 
-            {name != '' && lastName != '' && cpf != '' && email != '' & password != '' ?
-                <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>*Verifique os dados antes de se cadastrar!*</Text> : <View />
-            }
-
             <View style={styles.viewButton}>
-                <TouchableOpacity style={styles.enterButton} onPress={handleRegister}>
+
+                <View style={{ marginBottom: 10, display: aviso ? 'flex' : 'none' }}>
+                    <Text>{msg}</Text>
+                </View>
+
+                <TouchableOpacity style={styles.enterButton} onPress={handleRegister} activeOpacity={opacity}>
                     {loading ?
                         <ActivityIndicator size={30} color={'#FFF'} />
                         :
@@ -109,11 +132,11 @@ export default function Register() {
                     }
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                    <Text style={{ fontSize: 16 }}>Já sou cliente</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')} activeOpacity={opacity}>
+                    <Text style={styles.chageScreen}>Já sou cliente</Text>
                 </TouchableOpacity>
             </View>
 
-        </ScrollView>
+        </ScrollView >
     )
 }

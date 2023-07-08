@@ -11,6 +11,7 @@ export default function Home() {
     const { user, logout } = useContext(AuthContext);
     const [balance, setBalance] = useState(0);
     const [visibleBalance, setVisibleBalance] = useState(false);
+    const opacity = 0.7;
 
     useEffect(() => {
         firebase.database().ref('usuario').child(user && user.uid).on('value', (snapshot) => {
@@ -42,7 +43,7 @@ export default function Home() {
 
                 <View style={styles.showBalance}>
                     <Text style={styles.balance}>Saldo disponível</Text>
-                    <TouchableOpacity activeOpacity={0.7} onPress={() => handlevisibleBalance()}>
+                    <TouchableOpacity activeOpacity={opacity} onPress={() => handlevisibleBalance()}>
                         <FontAwesome
                             name={visibleBalance ? 'caret-down' : 'caret-up'}
                             size={30} color={'white'}
@@ -56,31 +57,30 @@ export default function Home() {
                 </Text>
             </View>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <View style={styles.boxButtons}>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Pix')} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Pix')} activeOpacity={opacity}>
                     <Image source={require("../../img/pix.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Pix</Text>
                 </TouchableOpacity>
 
             </View>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <View style={styles.boxButtons}>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Payment')} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Payment')} activeOpacity={opacity}>
                     <Image source={require("../../img/payment.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Pagamento</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Transfer')} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.cardButtons} onPress={() => navegate('Transfer')} activeOpacity={opacity}>
                     <Image source={require("../../img/transfer.png")} style={styles.imageCard} />
                     <Text style={styles.nameCard}>Transferência</Text>
                 </TouchableOpacity>
 
             </View>
 
-
-            <TouchableOpacity style={styles.help} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.help} activeOpacity={opacity}>
                 <View style={styles.alignIcon}>
                     <Text style={styles.helpTittle}>Precisa de ajuda?</Text>
                     <FontAwesome name="question-circle-o" size={22} color={'black'} />
@@ -88,7 +88,7 @@ export default function Home() {
                 <Text style={styles.helpText}>Entre em contato conosco e converse com um de nossos atendentes</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.help} onPress={() => navegate('Contract')} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.help} onPress={() => navegate('Contract')} activeOpacity={opacity}>
                 <View style={styles.alignIcon}>
                     <Text style={styles.helpTittle}>Contrato</Text>
                     <FontAwesome name="file-text-o" size={22} color={'black'} />
@@ -96,7 +96,8 @@ export default function Home() {
                 <Text style={styles.helpText}>Leia os termos de contrato</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+
+            <TouchableOpacity activeOpacity={opacity} style={styles.logoutButton} onPress={handleLogout}>
                 <Text style={styles.logoutText}>Sair</Text>
             </TouchableOpacity>
 
@@ -112,14 +113,14 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#0000CD',
         padding: 10,
-        marginBottom: 30,
-        height: 200
+        marginBottom: 20,
+        height: 180,
     },
     boxSalutation: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 15,
+        marginVertical: 10,
     },
     logo: {
         height: 35,
@@ -129,11 +130,11 @@ const styles = StyleSheet.create({
         fontSize: 23,
         fontWeight: 'bold',
         marginLeft: 10,
-        color: 'white'
+        color: '#FFF'
     },
     welcome: {
         fontSize: 17,
-        color: 'white',
+        color: '#FFF',
         fontWeight: 'bold',
         marginVertical: 10,
     },
@@ -146,16 +147,20 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 19,
         fontWeight: 'bold',
-        color: 'white'
+        color: '#FFF'
+    },
+    boxButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginBottom: 20,
     },
     cardButtons: {
         height: 100,
         width: 120,
-        backgroundColor: 'white',
+        backgroundColor: '#FFF',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15,
-        marginBottom: 20,
     },
     imageCard: {
         height: 40,
@@ -167,10 +172,11 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     help: {
-        backgroundColor: 'white',
-        margin: 10,
+        backgroundColor: '#FFF',
         borderRadius: 10,
         padding: 6,
+        marginHorizontal: 10,
+        marginBottom: 20,
     },
     alignIcon: {
         flexDirection: 'row',
@@ -189,10 +195,13 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
         margin: 10,
         borderRadius: 10,
+        marginTop: 40
+        // position: 'absolute',
+        // bottom: -10, ///////////////////////////////////
     },
     logoutText: {
         textAlign: 'center',
-        color: 'white',
+        color: '#FFF',
         fontSize: 20,
     }
 })

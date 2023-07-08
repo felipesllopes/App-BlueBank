@@ -17,21 +17,22 @@ export default function HistoricTransation() {
 
     useEffect(() => {
         (async () => {
-            firebase.database().ref('transacoes').child(await user.uid).orderByChild('data').equalTo(format(newDate, 'dd/MM/yyyy')).on('value', (snapshot) => {
+            firebase.database().ref('transacoes').child(await user.uid)
+                .orderByChild('data').equalTo(format(newDate, 'dd/MM/yyyy')).on('value', (snapshot) => {
 
-                setTransactions([]);
-                snapshot.forEach((childIten) => {
-                    let list = {
-                        type: childIten.val().tipo,
-                        value: childIten.val().valor,
-                        date: childIten.val().data,
-                        balance: childIten.val().saldo,
-                    }
-                    setTransactions(oldArray => [...oldArray, list]);
+                    setTransactions([]);
+                    snapshot.forEach((childIten) => {
+                        let list = {
+                            type: childIten.val().tipo,
+                            value: childIten.val().valor,
+                            date: childIten.val().data,
+                            balance: childIten.val().saldo,
+                        }
+                        setTransactions(oldArray => [...oldArray, list]);
+                    })
                 })
-            })
         })();
-        setLoading(false);
+        setLoading(false)
     }, [newDate]);
 
     function openDate() {
@@ -40,18 +41,18 @@ export default function HistoricTransation() {
 
     function closeDate(event, date) {
         setShow(false);
+        setLoading(true);
         if (date) {
             setNewDate(date);
         }
     }
 
-    // Function to renderize the flatList
     function renderItem({ item }) {
         return <ListTransactions data={item} />
     }
 
     function listEmptyComponent() {
-        return (<Text style={styles.notResult}>Não foi encontrada nenhuma transação nesta data.</Text>);
+        return (<Text style={styles.notResult}>Não foi realizada nenhuma transação nesta data.</Text>);
     }
 
     return (

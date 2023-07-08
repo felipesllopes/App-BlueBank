@@ -108,11 +108,6 @@ export default function AuthProvider({ children }) {
                         }
                         setUser(data);
                         setLoading(false);
-
-                        Alert.alert(
-                            'Bem-vindo(a)!',
-                            `Olá, ${name} ${lastName}, seja bem-vindo(a) ao Blue Bank!`,
-                        )
                     })
                     .catch((error) => {
                         setLoading(false);

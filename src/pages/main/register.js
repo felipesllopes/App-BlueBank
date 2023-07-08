@@ -43,6 +43,7 @@ export default function Register() {
 
             <Text style={styles.textInput}>Nome</Text>
             <TextInput
+                placeholder="Ex. João"
                 ref={inputRef1}
                 onSubmitEditing={() => focusNextInput(inputRef2)}
                 style={styles.input}
@@ -52,6 +53,7 @@ export default function Register() {
 
             <Text style={styles.textInput}>Sobrenome</Text>
             <TextInput
+                placeholder="Ex. Silva"
                 ref={inputRef2}
                 onSubmitEditing={() => focusNextInput(inputRef3)}
                 style={styles.input}
@@ -61,6 +63,7 @@ export default function Register() {
 
             <Text style={styles.textInput}>CPF (apenas dígitos)</Text>
             <TextInput
+                placeholder="Ex. 12345678910"
                 ref={inputRef3}
                 onSubmitEditing={() => focusNextInput(inputRef4)}
                 style={styles.input}
@@ -72,6 +75,7 @@ export default function Register() {
 
             <Text style={styles.textInput}>Email</Text>
             <TextInput
+                placeholder="Ex. joaosilva@gmail.com"
                 ref={inputRef4}
                 onSubmitEditing={() => focusNextInput(inputRef5)}
                 style={styles.input}
@@ -81,8 +85,9 @@ export default function Register() {
                 autoCapitalize="none"
             />
 
-            <Text style={styles.textInput}>Senha</Text>
+            <Text style={styles.textInput}>Senha (min. 6 dígitos)</Text>
             <TextInput
+                // placeholder="******"
                 ref={inputRef5}
                 onSubmitEditing={handleLastInputSubmit}
                 style={styles.input}
@@ -90,6 +95,10 @@ export default function Register() {
                 onChangeText={(text) => setPassword(text)}
                 secureTextEntry={true}
             />
+
+            {name != '' && lastName != '' && cpf != '' && email != '' & password != '' ?
+                <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>*Verifique os dados antes de se cadastrar!*</Text> : <View />
+            }
 
             <View style={styles.viewButton}>
                 <TouchableOpacity style={styles.enterButton} onPress={handleRegister}>

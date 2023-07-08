@@ -5,7 +5,7 @@ export default function AlertErrorCode(error) {
     if (error.code == "auth/invalid-email") {
         Alert.alert(
             'Email inválido!',
-            "O endereço de e-mail fornecido é inválido. Verifique se o endereço de e-mail está correto.",
+            "O endereço de e-mail fornecido é inválido. Verifique se o e-mail está correto.",
         );
         return;
     }
@@ -29,7 +29,7 @@ export default function AlertErrorCode(error) {
     if (error.code == "auth/user-not-found") {
         Alert.alert(
             'Usuário não encontrado!',
-            "Não foi possível encontrar o usuário. Verifique se o usuário está registrado corretamente.",
+            "Não foi possível encontrar o usuário. Verifique seu cadastro.",
         );
         return;
     }
@@ -37,7 +37,7 @@ export default function AlertErrorCode(error) {
     if (error.code == "auth/wrong-password") {
         Alert.alert(
             "Senha incorreta!",
-            "A senha fornecida está incorreta. Verifique se a senha está digitada corretamente.",
+            "A senha fornecida está incorreta.",
         );
         return;
     }
@@ -45,7 +45,7 @@ export default function AlertErrorCode(error) {
     if (error.code == "auth/email-already-in-use") {
         Alert.alert(
             "Email já em uso!",
-            "O endereço de e-mail fornecido já está associado a outra conta de usuário.",
+            "O endereço de e-mail fornecido já está associado a outra conta.",
         );
         return;
     }

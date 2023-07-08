@@ -21,6 +21,7 @@ export default function Login() {
 
     function handleLastInputSubmit() {
         Keyboard.dismiss(); // Fecha o teclado após o último TextInput
+        logar();
     };
 
     function logar() {
@@ -34,13 +35,14 @@ export default function Login() {
 
             <Text style={styles.textInput}>Email</Text>
             <TextInput
-                ref={inputRef1}
-                onSubmitEditing={() => focusNextInput(inputRef2)}
+                placeholder="Ex. joaosilva@gmail.com"
+                ref={inputRef1} // referenciar a tela p o input
+                onSubmitEditing={() => focusNextInput(inputRef2)} // mudar foco p proximo input
                 style={styles.input}
                 value={email}
                 onChangeText={(text) => setEmail(text)}
                 keyboardType="email-address"
-                autoCapitalize="none"
+                autoCapitalize="none" // nao começar com maiuscula
             />
 
             <Text style={styles.textInput}>Senha</Text>

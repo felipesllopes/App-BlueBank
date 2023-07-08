@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
-import { useContext, useState } from "react";
-import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useContext, useRef, useState } from "react";
+import { ActivityIndicator, Image, Keyboard, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
+import styles from "./Style/styles";
 
 export default function Login() {
 
@@ -11,6 +12,17 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const inputRef1 = useRef();
+    const inputRef2 = useRef();
+
+    function focusNextInput(nextInputRef) {
+        nextInputRef.current.focus(); // Passa para o próximo TextInput
+    };
+
+    function handleLastInputSubmit() {
+        Keyboard.dismiss(); // Fecha o teclado após o último TextInput
+    };
+
     function logar() {
         login(email, password)
     }
@@ -18,10 +30,12 @@ export default function Login() {
 
     return (
         <ScrollView style={styles.container}>
-            <Image source={require('../../img/logo-bb.png')} style={styles.logo} />
+            <Image source={require('../../img/logo-bb.png')} style={styles.logo} resizeMode="contain" />
 
             <Text style={styles.textInput}>Email</Text>
             <TextInput
+                ref={inputRef1}
+                onSubmitEditing={() => focusNextInput(inputRef2)}
                 style={styles.input}
                 value={email}
                 onChangeText={(text) => setEmail(text)}
@@ -31,6 +45,8 @@ export default function Login() {
 
             <Text style={styles.textInput}>Senha</Text>
             <TextInput
+                ref={inputRef2}
+                onSubmitEditing={handleLastInputSubmit}
                 style={styles.input}
                 value={password}
                 onChangeText={(text) => setPassword(text)}
@@ -54,46 +70,3 @@ export default function Login() {
         </ScrollView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#ADD8E6'
-    },
-    logo: {
-        height: 160,
-        width: 160,
-        alignSelf: 'center',
-        marginVertical: 60,
-    },
-    textInput: {
-        fontSize: 18,
-        marginVertical: 4,
-        fontWeight: 'bold'
-    },
-    input: {
-        borderWidth: 2,
-        paddingHorizontal: 10,
-        height: 50,
-        borderRadius: 4,
-        fontSize: 17,
-        marginBottom: 10,
-        backgroundColor: 'white'
-    },
-    viewButton: {
-        alignItems: 'center',
-        marginTop: 20,
-    },
-    enterButton: {
-        backgroundColor: '#00BFFF',
-        padding: 5,
-        borderRadius: 10,
-        width: '100%',
-        marginVertical: 14,
-    },
-    textButton: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-})

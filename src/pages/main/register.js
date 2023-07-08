@@ -1,12 +1,19 @@
 import { useNavigation } from "@react-navigation/native";
-import { useContext, useState } from "react";
-import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useContext, useRef, useState } from "react";
+import { ActivityIndicator, Image, Keyboard, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
+import styles from "./Style/styles";
 
 export default function Register() {
 
     const navigation = useNavigation();
     const { register, loading } = useContext(AuthContext);
+
+    const inputRef1 = useRef();
+    const inputRef2 = useRef();
+    const inputRef3 = useRef();
+    const inputRef4 = useRef();
+    const inputRef5 = useRef();
 
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -18,8 +25,16 @@ export default function Register() {
         register(email, password, name, lastName, cpf)
     }
 
+    function focusNextInput(nextInputRef) {
+        nextInputRef.current.focus(); // Passa para o próximo TextInput
+    };
+
+    function handleLastInputSubmit() {
+        Keyboard.dismiss(); // Fecha o teclado após o último TextInput
+    };
+
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 
             <View style={styles.header}>
                 <Image source={require('../../img/logo-bb.png')} style={{ height: 40, width: 40 }} />
@@ -28,6 +43,8 @@ export default function Register() {
 
             <Text style={styles.textInput}>Nome</Text>
             <TextInput
+                ref={inputRef1}
+                onSubmitEditing={() => focusNextInput(inputRef2)}
                 style={styles.input}
                 value={name}
                 onChangeText={(text) => setName(text)}
@@ -35,6 +52,8 @@ export default function Register() {
 
             <Text style={styles.textInput}>Sobrenome</Text>
             <TextInput
+                ref={inputRef2}
+                onSubmitEditing={() => focusNextInput(inputRef3)}
                 style={styles.input}
                 value={lastName}
                 onChangeText={(text) => setLastName(text)}
@@ -42,6 +61,8 @@ export default function Register() {
 
             <Text style={styles.textInput}>CPF (apenas dígitos)</Text>
             <TextInput
+                ref={inputRef3}
+                onSubmitEditing={() => focusNextInput(inputRef4)}
                 style={styles.input}
                 value={cpf}
                 onChangeText={(text) => setCpf(text)}
@@ -51,6 +72,8 @@ export default function Register() {
 
             <Text style={styles.textInput}>Email</Text>
             <TextInput
+                ref={inputRef4}
+                onSubmitEditing={() => focusNextInput(inputRef5)}
                 style={styles.input}
                 value={email}
                 onChangeText={(text) => setEmail(text)}
@@ -60,6 +83,8 @@ export default function Register() {
 
             <Text style={styles.textInput}>Senha</Text>
             <TextInput
+                ref={inputRef5}
+                onSubmitEditing={handleLastInputSubmit}
                 style={styles.input}
                 value={password}
                 onChangeText={(text) => setPassword(text)}
@@ -83,53 +108,3 @@ export default function Register() {
         </ScrollView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#ADD8E6',
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 50,
-        marginTop: 16,
-    },
-    salutation: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginLeft: 10,
-    },
-    textInput: {
-        fontSize: 18,
-        marginVertical: 4,
-        fontWeight: 'bold'
-    },
-    input: {
-        borderWidth: 2,
-        paddingHorizontal: 10,
-        height: 50,
-        borderRadius: 4,
-        fontSize: 17,
-        marginBottom: 10,
-        backgroundColor: 'white'
-    },
-    viewButton: {
-        alignItems: 'center',
-        marginTop: 20,
-        marginBottom: 40,
-    },
-    enterButton: {
-        backgroundColor: '#00BFFF',
-        padding: 5,
-        borderRadius: 10,
-        width: '100%',
-        marginVertical: 14,
-    },
-    textButton: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-})

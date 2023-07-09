@@ -22,6 +22,7 @@ export default function VirtualKeyboard({ deliveryValue, array, clear, cancel, b
             deposit(arr2, balance);
         }
         clear();
+        cancel();
     }
 
     // Essa função pega o valor na função lisKeyBoard e passa o valor pra função VirtualMachine

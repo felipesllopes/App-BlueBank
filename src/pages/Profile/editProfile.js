@@ -19,7 +19,7 @@ export default function EditProfile() {
                 },
                 {
                     text: 'Salvar',
-                    onPress: () => { alert("Alterações feitas"); navigation.goBack() }
+                    onPress: () => navigation.goBack()
                 }
             ]
         )

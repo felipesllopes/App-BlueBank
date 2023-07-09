@@ -11,34 +11,35 @@ To connect to the bank, you need to have an account, or open one. Through the re
 
 Login screen, where the user must provide email and password to access the account.
 
-![tela1](https://github.com/felipesllopes/App-BlueBank/assets/99768939/16221826-c361-47eb-bab5-d050ca17103c)
+![bluebank-1](https://github.com/felipesllopes/App-BlueBank/assets/99768939/a60b06cc-5991-4906-9808-380aa2345f1a)
 
 ### Registration screen
 
 Registration screen, where the user must fill in all the information in order to create an account.
 
-![tela2](https://github.com/felipesllopes/App-BlueBank/assets/99768939/c69275c5-ca31-47f0-893c-9e9e07a0d71f)
+![bluebank-2](https://github.com/felipesllopes/App-BlueBank/assets/99768939/4ff70920-bd0b-4201-8407-031f3ad1164b)
 
 ### Home screen
 
 Application home screen, where the user will have access to the account and all features. You will be able to carry out transactions and consult them in the history.
 
-![tela3](https://github.com/felipesllopes/App-BlueBank/assets/99768939/a2dd3b1c-4fe1-4a81-a21d-c09e4a91389c)
+![bluebank-3](https://github.com/felipesllopes/App-BlueBank/assets/99768939/39c7ffe4-c659-44d4-8fc9-02199dc36c7f)
 
 ### Functions on the home screen:
 
-- Withdrawal screen
+- Cash machine
 
-Screen that simulates a withdrawal, where it goes through several checks to find out if the user can withdraw a certain amount. If there is not enough balance to carry out the withdrawal, a message is issued to the user. If the withdrawal is allowed, a screen confirming the withdrawal of the determined amount is opened.
+Screen that contains a virtual ATM to simulate transaction of values
 
-![bluebank-4](https://github.com/felipesllopes/App-BlueBank/assets/99768939/168b9b65-9362-4144-984d-b15789a85152)
+![bluebank-4](https://github.com/felipesllopes/App-BlueBank/assets/99768939/6dd06ab4-f098-4a17-98b9-6500be454ac0)
 
-- Deposit Screen
 
-Screen that simulates deposit
+- Withdrawal and deposit screen
 
-![bluebank-10](https://github.com/felipesllopes/App-BlueBank/assets/99768939/760d8690-aa35-4674-9706-d72cbeae2ed9)
-![bluebank-1](https://github.com/felipesllopes/App-BlueBank/assets/99768939/8ed2d329-12e2-4b59-b838-a38892b735fb)
+Screen to simulate withdrawal and deposit
+
+![bluebank-5](https://github.com/felipesllopes/App-BlueBank/assets/99768939/182e57b1-6002-4893-8439-9165d628edb2)
+![bluebank-6](https://github.com/felipesllopes/App-BlueBank/assets/99768939/213f3a93-ba9b-4422-9ce5-5e483dabbc4c)
 
 
 ### Transaction history
@@ -54,16 +55,16 @@ Transaction history screen, where the user can consult his history and verify tr
 
 Profile screen, where the user can see his data and make changes to his profile, such as adding an image.
 
-![bluebank-13](https://github.com/felipesllopes/App-BlueBank/assets/99768939/390240c1-cccf-4197-8482-45ee5dfd952d)
-![bluebank-3](https://github.com/felipesllopes/App-BlueBank/assets/99768939/af7dd6bc-6fa6-4662-9e13-d10601871bfc)
+![bluebank-10](https://github.com/felipesllopes/App-BlueBank/assets/99768939/6788828a-d40f-4925-89ca-63acf38c4d57)
+![bluebank-11](https://github.com/felipesllopes/App-BlueBank/assets/99768939/999853f4-c863-4632-ba50-a0f2f07ff4e5)
 
 
 ### Edit profile
 
 Screen where the user can edit their profile information. (Cannot make changes yet)
 
-![bluebank-12](https://github.com/felipesllopes/App-BlueBank/assets/99768939/bc98e4fd-b805-471f-816b-0ca86ce44550)
-![bluebank-2](https://github.com/felipesllopes/App-BlueBank/assets/99768939/20f749e4-c224-4917-963b-80e0bb1aa8cc)
+![bluebank-12](https://github.com/felipesllopes/App-BlueBank/assets/99768939/b733f16e-599d-4d36-b301-4fd58a132c42)
+![bluebank-13](https://github.com/felipesllopes/App-BlueBank/assets/99768939/6cede18b-770c-4599-8a66-1140de858d16)
 
 
 ### Logout

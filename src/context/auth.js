@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import firebase from ".././firebase/firebaseConnection";
 import AlertErrorCode from "./alertError/errorCode";
@@ -16,6 +16,7 @@ export default function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [userList, setUserList] = useState([]);
 
     /**
      * Function to login user.
@@ -97,6 +98,23 @@ export default function AuthProvider({ children }) {
             })
     }
 
+    useEffect(() => {
+        firebase.database().ref('usuario').on('value', (snapshot) => {
+            const users = [];
+            snapshot.forEach((childSnapShot) => {
+                let data = {
+                    saldo: childSnapShot.val().saldo,
+                    nome: childSnapShot.val().nome,
+                    sobrenome: childSnapShot.val().sobrenome,
+                    cpf: childSnapShot.val().cpf,
+                    chave: childSnapShot.key
+                }
+                users.push(data);
+            });
+            setUserList(users);
+        })
+    }, [])
+
     /**
      * Function to logout user. Mandatory parameters.
      */
@@ -136,7 +154,9 @@ export default function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ signed: !!user, user, login, register, logout, withdraw, deposit, loading, }}>
+        <AuthContext.Provider value={{
+            signed: !!user, user, login, register, logout, withdraw, deposit, loading, userList,
+        }}>
             {children}
         </AuthContext.Provider>
     )

@@ -72,6 +72,19 @@ Screen where the user can edit their profile information. (Cannot make changes y
 ![tela8](https://github.com/felipesllopes/App-BlueBank/assets/99768939/33ebb8d3-f3fd-467d-8ee3-258cbd84c872)
 
 
+## Creating a new account:
+
+https://github.com/felipesllopes/App-BlueBank/assets/99768939/57ed2dee-c4fb-4edb-8224-dafb65227f64
+
+https://github.com/felipesllopes/App-BlueBank/assets/99768939/a8e27a96-91e4-46ae-905b-9f8cef6b98a9
+
+https://github.com/felipesllopes/App-BlueBank/assets/99768939/69a89ad0-098b-4248-a4fe-738101e66939
+
+https://github.com/felipesllopes/App-BlueBank/assets/99768939/0a7903a8-2c87-4e98-8ba4-783a152bd896
+
+
+
+
 ### Used library
 
 - [react-navigation](https://reactnavigation.org/docs/getting-started/)

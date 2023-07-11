@@ -8,8 +8,8 @@ export default function ListTransactions({ data }) {
                 <View style={styles.box}>
                     <Text style={styles.type}>{data.type}</Text>
 
-                    <Text style={[styles.value, { color: data.type === 'Saque' ? 'red' : 'green' }]}>
-                        {data.type === 'Saque' ? '-' : '+'} R${(data.value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</Text>
+                    <Text style={[styles.value, { color: data.type === 'Saque' || data.type === 'PIX enviado' ? 'red' : 'green' }]}>
+                        R${(data.value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</Text>
 
                     <Text style={styles.balance}> - R${(data.balance).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</Text>
                 </View>
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
         color: '#555',
     },
     value: {
-        fontSize: 20,
+        fontSize: 18,
         marginLeft: 10,
         fontWeight: 'bold',
     },
     balance: {
-        fontSize: 22,
+        fontSize: 21,
         fontWeight: 'bold',
         color: '#333',
     },

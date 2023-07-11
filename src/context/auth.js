@@ -4,6 +4,7 @@ import firebase from ".././firebase/firebaseConnection";
 import AlertErrorCode from "./alertError/errorCode";
 import Deposit from "./auths/deposit";
 import Withdraw from "./auths/withdraw";
+import Pix from "./auths/pix";
 
 export const AuthContext = createContext({});
 
@@ -98,9 +99,14 @@ export default function AuthProvider({ children }) {
             })
     }
 
+    function pix(destinatary, valor, balance) {
+        Pix(destinatary, valor, user, balance);
+    }
+
     useEffect(() => {
         firebase.database().ref('usuario').on('value', (snapshot) => {
-            const users = [];
+            let atualUser = user && user.uid;
+            const users = [{ nome: 'Destinatário' }];
             snapshot.forEach((childSnapShot) => {
                 let data = {
                     saldo: childSnapShot.val().saldo,
@@ -109,7 +115,9 @@ export default function AuthProvider({ children }) {
                     cpf: childSnapShot.val().cpf,
                     chave: childSnapShot.key
                 }
-                users.push(data);
+                if (atualUser !== data.chave) { // não inserir o usuario logado na lista
+                    users.push(data);
+                }
             });
             setUserList(users);
         })
@@ -130,7 +138,9 @@ export default function AuthProvider({ children }) {
                 onPress: async () => {
                     await firebase.auth().signOut()
                         .then(() => setUser(null))
-                        .catch((error) => { alert("Um erro inesperado ocorreu!") })
+                        .catch((error) => {
+                            alert("Um erro inesperado ocorreu!")
+                        })
                 }
             }])
     }
@@ -155,7 +165,7 @@ export default function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider value={{
-            signed: !!user, user, login, register, logout, withdraw, deposit, loading, userList,
+            signed: !!user, user, login, register, logout, withdraw, deposit, pix, loading, userList,
         }}>
             {children}
         </AuthContext.Provider>

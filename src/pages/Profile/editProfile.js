@@ -51,12 +51,14 @@ export default function EditProfile() {
                         style={styles.information}
                         placeholder={""}
                         keyboardType='phone-pad'
+                        maxLength={11}
                     />
 
                     <Text style={styles.text}>CPF</Text>
                     <TextInput
                         style={styles.information}
                         placeholder={user.cpf}
+                        maxLength={11}
                     />
 
 

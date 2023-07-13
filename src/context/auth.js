@@ -17,8 +17,8 @@ export default function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [userList, setUserList] = useState([]);
 
+    
     /**
      * Function to login user.
      * @param {*} email 
@@ -103,25 +103,6 @@ export default function AuthProvider({ children }) {
         Pix(destinatary, valor, user, balance);
     }
 
-    useEffect(() => {
-        firebase.database().ref('usuario').on('value', (snapshot) => {
-            let atualUser = user && user.uid;
-            const users = [{ nome: 'Destinatário' }];
-            snapshot.forEach((childSnapShot) => {
-                let data = {
-                    saldo: childSnapShot.val().saldo,
-                    nome: childSnapShot.val().nome,
-                    sobrenome: childSnapShot.val().sobrenome,
-                    cpf: childSnapShot.val().cpf,
-                    chave: childSnapShot.key
-                }
-                if (atualUser !== data.chave) { // não inserir o usuario logado na lista
-                    users.push(data);
-                }
-            });
-            setUserList(users);
-        })
-    }, [])
 
     /**
      * Function to logout user. Mandatory parameters.
@@ -165,7 +146,7 @@ export default function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider value={{
-            signed: !!user, user, login, register, logout, withdraw, deposit, pix, loading, userList,
+            signed: !!user, user, login, register, logout, withdraw, deposit, pix, loading,
         }}>
             {children}
         </AuthContext.Provider>

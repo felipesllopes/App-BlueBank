@@ -69,9 +69,20 @@ export default function Pix() {
                     />
                 </View>
 
-                <TouchableOpacity style={[styles.logoutButton, { display: value != 0 ? 'flex' : 'none' }]} onPress={handleTransfer} activeOpacity={0.7}>
-                    <Text style={styles.logoutText}>Enviar</Text>
-                </TouchableOpacity>
+                <View style={styles.viewButton}>
+                    <TouchableOpacity
+                        style={[styles.button, { display: value != 0 ? 'flex' : 'none' }]}
+                        onPress={() => { setValue(''); setUsers(0) }}
+                        activeOpacity={0.7}
+                    >
+                        <Text style={styles.textButton}>Cancelar</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={[styles.button, { display: value != 0 ? 'flex' : 'none' }]} onPress={handleTransfer} activeOpacity={0.7}>
+                        <Text style={styles.textButton}>Enviar</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
 
         </View>
@@ -91,6 +102,7 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 10,
         paddingVertical: 30,
+        marginHorizontal: 20,
     },
     viewPicker: {
         backgroundColor: '#F9F9F9',
@@ -105,7 +117,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 10,
+        marginBottom: 10,
     },
     destinatary: {
         fontSize: 17,
@@ -126,13 +138,19 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingLeft: 10,
     },
-    logoutButton: {
+    viewButton: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    button: {
         backgroundColor: '#0000CD',
         paddingVertical: 4,
         borderRadius: 10,
         marginTop: 40,
+        width: 120,
     },
-    logoutText: {
+    textButton: {
         textAlign: 'center',
         color: 'white',
         fontSize: 20,

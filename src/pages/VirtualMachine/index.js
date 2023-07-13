@@ -132,11 +132,12 @@ const styles = StyleSheet.create({
         borderColor: '#0000CD',
         borderRadius: 10,
         paddingVertical: 4,
+        width: 180
     },
     textButton: {
-        fontSize: 30,
+        fontSize: 26,
         color: '#FFF',
-        fontWeight: 'bold',
+        textAlign: 'center',
     },
     boxValue: {
         flex: 1,

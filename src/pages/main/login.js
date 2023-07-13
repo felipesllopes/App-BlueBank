@@ -38,6 +38,7 @@ export default function Login() {
      * Function to login the user. 
      */
     function logar() {
+        Keyboard.dismiss();
         if (email === '' || password === '') {
             setAviso(true);
             setMsg("Preencha todos os campos!");

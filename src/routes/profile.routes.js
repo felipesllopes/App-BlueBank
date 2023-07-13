@@ -9,8 +9,8 @@ export default function ProfileRoutes() {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerTintColor: '#0000CD',
-                headerStyle: { backgroundColor: '#FFF' },
+                headerTintColor: '#FFF',
+                headerStyle: { backgroundColor: '#0000CD' },
             }}
         >
 

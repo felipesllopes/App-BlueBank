@@ -3,7 +3,6 @@ import { View, Text, StyleSheet } from "react-native";
 export default function Payment() {
     return (
         <View style={styles.container}>
-            <Text>Pagamento</Text>
         </View>
     )
 }
@@ -11,6 +10,7 @@ export default function Payment() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin: 10,
+        backgroundColor: '#ADD8E6',
+        padding: 10
     }
 })

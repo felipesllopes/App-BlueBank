@@ -17,7 +17,7 @@ export default async function Pix(destinatary, valor, user, balance) {
     }
 
     Alert.alert(
-        'Confirmar saque?',
+        'Confirmar PIX?',
         `Deseja confirmar o PIX no valor de R$${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} para ${destinatary.nome}?`,
         [
             {

@@ -126,6 +126,8 @@ const styles = StyleSheet.create({
         margin: 10,
         paddingVertical: 30,
         marginHorizontal: 20,
+        shadowOpacity: 1,
+        elevation: 3,
     },
     viewPicker: {
         backgroundColor: '#F9F9F9',
@@ -135,6 +137,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 10,
         justifyContent: 'center',
+        shadowOpacity: 1,
+        elevation: 2,
     },
     viewBox: {
         flexDirection: 'row',
@@ -172,6 +176,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 40,
         width: 120,
+        shadowOpacity: 1,
+        elevation: 4,
     },
     textButton: {
         textAlign: 'center',

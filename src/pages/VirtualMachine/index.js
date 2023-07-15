@@ -132,7 +132,9 @@ const styles = StyleSheet.create({
         borderColor: '#0000CD',
         borderRadius: 10,
         paddingVertical: 4,
-        width: 180
+        width: 180,
+        shadowOpacity: 1,
+        elevation: 3,
     },
     textButton: {
         fontSize: 26,

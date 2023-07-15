@@ -115,6 +115,8 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 20,
         height: 180,
+        shadowOpacity: 1,
+        elevation: 10, 
     },
     boxSalutation: {
         flexDirection: 'row',
@@ -161,6 +163,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15,
+        shadowOpacity: 1,
+        elevation: 4,
     },
     imageCard: {
         height: 40,
@@ -177,6 +181,8 @@ const styles = StyleSheet.create({
         padding: 6,
         marginHorizontal: 10,
         marginBottom: 20,
+        shadowOpacity: 1,
+        elevation: 4, 
     },
     alignIcon: {
         flexDirection: 'row',
@@ -195,9 +201,9 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
         margin: 10,
         borderRadius: 10,
-        marginTop: 40
-        // position: 'absolute',
-        // bottom: -10, ///////////////////////////////////
+        marginTop: 40,
+        shadowOpacity: 1,
+        elevation: 3, 
     },
     logoutText: {
         textAlign: 'center',

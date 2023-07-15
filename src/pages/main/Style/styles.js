@@ -30,16 +30,19 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#444',
         marginBottom: 20,
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        backgroundColor: '#FFF',// personalizar
     },
     input: {
         borderWidth: 2,
         paddingHorizontal: 10,
         height: 42,
-        borderRadius: 4,
+        borderRadius: 6,
         fontSize: 18,
         marginBottom: 20,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        shadowOpacity: 1,
+        elevation: 3,
     },
     viewButton: {
         alignItems: 'center',
@@ -50,7 +53,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '100%',
         marginBottom: 15,
-        marginTop: 10
+        marginTop: 10,
+        shadowOpacity: 1,
+        elevation: 3,
+        borderWidth: 2,
+        borderColor: '#00BBFF'
     },
     textButton: {
         fontSize: 20,
@@ -60,7 +67,7 @@ const styles = StyleSheet.create({
     },
     chageScreen: {
         fontSize: 17,
-        textDecorationLine: 'underline'
+        textDecorationLine: 'underline',
     }
 })
 

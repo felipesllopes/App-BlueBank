@@ -1,20 +1,49 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../context/auth";
+import * as ImagePicker from 'expo-image-picker';
+import { useState } from 'react';
 
 export default function Profile() {
 
     const { user } = useContext(AuthContext);
     const navigation = useNavigation();
+    const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        console.log(image)
+    }, [])
+
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        console.log(result);
+
+        if (!result.canceled) {
+            setImage(result.assets[0].uri);
+        }
+    };
 
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <Image style={styles.photo} source={require('../../img/user-photo.jpg')} />
+
+                {image ?
+                    <Image source={{ uri: image }} style={styles.photo} />
+                    :
+                    <Image style={styles.photo} source={require('../../img/user-photo.jpg')} />
+                }
+
                 <FontAwesome name="camera" size={20} color={"#FFF"} />
-                <TouchableOpacity activeOpacity={0.7}>
+                <TouchableOpacity activeOpacity={0.7} onPress={pickImage}>
                     <Text style={styles.textButtonPhoto}>Editar foto</Text>
                 </TouchableOpacity>
             </View>

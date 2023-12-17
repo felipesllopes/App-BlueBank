@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "BlueBank",
+    "slug": "BlueBank",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

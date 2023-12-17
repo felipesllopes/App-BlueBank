@@ -4,7 +4,11 @@ import { ServiceCard } from "./ServiceCard";
 
 export const ServiceCardList: React.FunctionComponent = () => {
     return (
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            style={{ marginBottom: 10 }}
+        >
             <ServiceCard
                 source={require("../assets/cards.png")}
                 screen="Cards"

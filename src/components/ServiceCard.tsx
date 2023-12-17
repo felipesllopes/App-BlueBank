@@ -19,7 +19,7 @@ export const ServiceCard: React.FunctionComponent<IProps> = ({
 
     return (
         <CardButtons
-            style={{ elevation: 10 }}
+            style={{ elevation: 5 }}
             onPress={() => navigate(screen)}
             activeOpacity={0.9}
         >
@@ -37,6 +37,7 @@ const CardButtons = styled.TouchableOpacity`
     justify-content: center;
     border-radius: 15px;
     margin: 6px;
+    margin-bottom: 10px;
 `;
 
 const IconCard = styled.Image`

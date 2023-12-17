@@ -1,18 +1,27 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import theme from "../global/styles/theme";
 import { Cards } from "../pages/Cards";
+import { Contract } from "../pages/Contract";
+import { Deposit } from "../pages/Deposit";
+import { Help } from "../pages/Help";
 import { Home } from "../pages/Home";
 import { Payment } from "../pages/Payment";
 import { Pix } from "../pages/Pix";
 import { Transactions } from "../pages/Transactions";
 import { Transfers } from "../pages/Transfers";
-import { Deposit } from "../pages/Deposit";
 
 const Stack = createNativeStackNavigator();
 
 export const AppRoutes: React.FunctionComponent = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                animation: "slide_from_right",
+                headerTintColor: theme.colors.white,
+                headerStyle: { backgroundColor: theme.colors.darkBlue },
+            }}
+        >
             <Stack.Screen
                 name="Home"
                 component={Home}
@@ -53,6 +62,18 @@ export const AppRoutes: React.FunctionComponent = () => {
                 name="Transactions"
                 component={Transactions}
                 options={{ title: "Transações" }}
+            />
+
+            <Stack.Screen
+                name="Help"
+                component={Help}
+                options={{ title: "Ajuda" }}
+            />
+
+            <Stack.Screen
+                name="Contract"
+                component={Contract}
+                options={{ title: "Contrato" }}
             />
         </Stack.Navigator>
     );

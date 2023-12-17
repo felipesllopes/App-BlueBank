@@ -2,6 +2,8 @@ import firestore from "@react-native-firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
+import { OtherServicesList } from "../../components/OtherServicesList";
+import { SendButton } from "../../components/SendButton";
 import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
 import { IScreenNavigation } from "../../interface";
@@ -14,12 +16,12 @@ import {
     Container,
     HorizontalBar,
     Logo,
+    Scroll,
     ShowBalance,
     TextBalance,
     Transactions,
     Welcome,
 } from "./styles";
-import { SendButton } from "../../components/SendButton";
 
 export const Home: React.FunctionComponent = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -42,41 +44,44 @@ export const Home: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <BoxLogo>
-                <Logo
-                    source={require("../../assets/logo-bb.png")}
-                    resizeMode="contain"
-                />
-                <BankName>Blue Bank</BankName>
-            </BoxLogo>
-
-            <BoxFloat style={{ elevation: 10 }}>
-                <Welcome>Olá, {user && user.name}!</Welcome>
-                <HorizontalBar />
-                <ShowBalance>
-                    <TextBalance>Saldo disponível</TextBalance>
-                    <ButtonCaret
-                        onPress={handlevisibleBalance}
-                        name={visibleBalance ? "caret-up" : "caret-down"}
+            <Scroll>
+                <BoxLogo>
+                    <Logo
+                        source={require("../../assets/logo-bb.png")}
+                        resizeMode="contain"
                     />
-                </ShowBalance>
+                    <BankName>Blue Bank</BankName>
+                </BoxLogo>
 
-                <View style={{ display: visibleBalance ? "flex" : "none" }}>
-                    <TextBalance>
-                        R$
-                        {balance.toLocaleString("pt-BR", {
-                            minimumFractionDigits: 2,
-                        })}
-                    </TextBalance>
-                    <Transactions onPress={() => navigate("Transactions")}>
-                        Transações
-                    </Transactions>
-                </View>
-            </BoxFloat>
+                <BoxFloat style={{ elevation: 10 }}>
+                    <Welcome>Olá, {user && user.name}!</Welcome>
+                    <HorizontalBar />
+                    <ShowBalance>
+                        <TextBalance>Saldo disponível</TextBalance>
+                        <ButtonCaret
+                            onPress={handlevisibleBalance}
+                            name={visibleBalance ? "caret-up" : "caret-down"}
+                        />
+                    </ShowBalance>
 
-            <Body>
-                <ServiceCardList />
-            </Body>
+                    <View style={{ display: visibleBalance ? "flex" : "none" }}>
+                        <TextBalance>
+                            R$
+                            {balance.toLocaleString("pt-BR", {
+                                minimumFractionDigits: 2,
+                            })}
+                        </TextBalance>
+                        <Transactions onPress={() => navigate("Transactions")}>
+                            Transações
+                        </Transactions>
+                    </View>
+                </BoxFloat>
+
+                <Body>
+                    <ServiceCardList />
+                    <OtherServicesList />
+                </Body>
+            </Scroll>
 
             <SendButton onPress={logOut} title="Sair" />
         </Container>

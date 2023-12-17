@@ -1,9 +1,14 @@
-import styled from "styled-components/native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import styled from "styled-components/native";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
     background-color: ${({ theme }) => theme.colors.lightBlue};
+`;
+
+export const Scroll = styled.ScrollView`
+    flex: 1;
+    width: 100%;
 `;
 
 export const BoxLogo = styled.View`
@@ -32,7 +37,7 @@ export const BoxFloat = styled.View`
     align-items: center;
     align-self: center;
     padding: 7px 30px;
-    top: 12%;
+    top: 100px;
     z-index: 2;
 `;
 

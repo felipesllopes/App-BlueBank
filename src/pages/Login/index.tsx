@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import Checkbox from "expo-checkbox";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -10,10 +11,10 @@ import {
 import { SendButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import { IFormLogin } from "../../interface";
-import { Container, ImgLogo, Scroll } from "./styles";
+import { Container, ImgLogo, Scroll, TextCheck, ViewCheckBox } from "./styles";
 
 export const Login: React.FunctionComponent = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn, isChecked, setIsChecked, user } = useContext(AuthContext);
 
     const schema = yup.object({
         email: yup
@@ -26,12 +27,18 @@ export const Login: React.FunctionComponent = () => {
             .required("Digite a sua senha."),
     });
 
+    const defaultValues = {
+        email: isChecked ? user.email : "",
+        password: "",
+    };
+
     const {
         control,
         handleSubmit,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
+        defaultValues,
     });
 
     const handleLogin = (data: IFormLogin) => {
@@ -62,6 +69,15 @@ export const Login: React.FunctionComponent = () => {
                         errors.password && (errors.password?.message as string)
                     }
                 />
+
+                <ViewCheckBox>
+                    <Checkbox
+                        value={isChecked}
+                        onValueChange={setIsChecked}
+                        color={"#00f"}
+                    />
+                    <TextCheck>Manter e-mail conectado.</TextCheck>
+                </ViewCheckBox>
 
                 <AccessButton
                     title="Clique aqui para "

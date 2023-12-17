@@ -1,13 +1,16 @@
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { IFormLogin, IFormRegister, IUser } from "../interface";
 import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface IAuthContext {
     user: IUser;
     signed: boolean;
     loading: boolean;
+    isChecked: boolean;
+    setIsChecked: (value: boolean) => void;
     signUp(data: IFormRegister): void;
     signIn(data: IFormLogin): void;
     logOut(): void;
@@ -22,7 +25,37 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
     const [user, setUser] = useState<IUser>({} as IUser);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isChecked, setIsChecked] = useState<boolean>(false);
     const initialValue: number = 50;
+
+    useEffect(() => {
+        (async () => {
+            setLoading(true);
+            await AsyncStorage.getItem("@keyBoolean")
+                .then(async value => {
+                    if (value === "false") {
+                        return;
+                    }
+                    if (value === "true") {
+                        setIsChecked(true);
+                        await AsyncStorage.getItem("@keyEmailUser").then(
+                            value => {
+                                setUser(current => ({
+                                    ...current,
+                                    email: value,
+                                }));
+                            },
+                        );
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        })();
+    }, []);
 
     const signUp = async (data: IFormRegister) => {
         setLoading(true);
@@ -81,6 +114,19 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                             uid: value.user.uid,
                         };
                         setUser(dados);
+
+                        const valueBooleanString = isChecked ? "true" : "false";
+                        await AsyncStorage.setItem(
+                            "@keyBoolean",
+                            valueBooleanString,
+                        );
+
+                        if (isChecked) {
+                            await AsyncStorage.setItem(
+                                "@keyEmailUser",
+                                data.email,
+                            );
+                        }
                     })
                     .catch(error => {
                         alert("Erro ao buscar os dados do usuário.");
@@ -108,8 +154,11 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                     setLoading(true);
                     await auth()
                         .signOut()
-                        .then(() => {
-                            setUser({} as IUser);
+                        .then(async () => {
+                            await AsyncStorage.clear().then(() => {
+                                setUser({} as IUser);
+                                setIsChecked(false);
+                            });
                         })
                         .catch(error => {
                             alert("Erro ao sair.");
@@ -127,11 +176,13 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
         <AuthContext.Provider
             value={{
                 user,
-                signed: !!user.email,
+                signed: !!user.uid,
                 loading,
                 signUp,
                 signIn,
                 logOut,
+                isChecked,
+                setIsChecked,
             }}
         >
             {children}

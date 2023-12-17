@@ -15,3 +15,15 @@ export const ImgLogo = styled.Image`
     align-self: center;
     margin: 30px 0;
 `;
+
+export const ViewCheckBox = styled.View`
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    margin-bottom: 20px;
+`;
+
+export const TextCheck = styled.Text`
+    font-size: 16px;
+    margin-left: 5px;
+`;

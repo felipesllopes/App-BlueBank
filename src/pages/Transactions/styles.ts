@@ -43,4 +43,5 @@ export const TextDate = styled.Text`
     font-weight: bold;
     text-align: center;
     margin: 10px;
+    color: #666;
 `;

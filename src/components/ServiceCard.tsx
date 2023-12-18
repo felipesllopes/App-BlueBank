@@ -1,8 +1,9 @@
-import styled from "styled-components/native";
-import React from "react";
-import { IScreenNavigation } from "../interface";
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
 import { ImageSourcePropType } from "react-native";
+import styled from "styled-components/native";
+import theme from "../global/styles/theme";
+import { IScreenNavigation } from "../interface";
 
 interface IProps {
     screen: string;
@@ -32,7 +33,7 @@ export const ServiceCard: React.FunctionComponent<IProps> = ({
 const CardButtons = styled.TouchableOpacity`
     height: 100px;
     width: 108px;
-    background-color: #fff;
+    background-color: ${theme.colors.white};
     align-items: center;
     justify-content: center;
     border-radius: 15px;

@@ -1,5 +1,6 @@
-import styled from "styled-components/native";
 import React from "react";
+import styled from "styled-components/native";
+import theme from "../global/styles/theme";
 
 interface IProps {
     title: string;
@@ -18,15 +19,15 @@ export const SendButton: React.FunctionComponent<IProps> = ({
 };
 
 const Button = styled.TouchableOpacity`
-    background-color: blue;
+    background-color: ${theme.colors.darkBlue};
     padding: 4px 20px;
     border-radius: 5px;
     margin: 10px 20px 20px;
-    border-width: 2px;
+    border-width: 1px;
 `;
 
 const TextButton = styled.Text`
     font-size: 19px;
-    color: white;
+    color: ${theme.colors.white};
     text-align: center;
 `;

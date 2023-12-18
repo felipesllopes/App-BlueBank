@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import styled from "styled-components/native";
+import theme from "../global/styles/theme";
 import { IScreenNavigation } from "../interface";
 
 interface IProps {
@@ -29,7 +30,7 @@ export const OtherServices: React.FunctionComponent<IProps> = ({
 };
 
 const CardButton = styled.TouchableOpacity`
-    background-color: #fff;
+    background-color: ${theme.colors.white};
     border-radius: 10px;
     padding: 6px;
     margin: 6px;

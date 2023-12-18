@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Control, Controller } from "react-hook-form";
 import { TextInputProps } from "react-native";
 import styled from "styled-components/native";
+import theme from "../global/styles/theme";
 
 interface IPropsInputControl extends TextInputProps {
     control: Control;
@@ -81,14 +82,12 @@ export const InputPasswordControl: React.FunctionComponent<
 };
 
 const Container = styled.View`
-    /* background-color: yellow; */
     margin: 0 20px 10px;
 `;
 
 const ViewInput = styled.View`
     flex-direction: row;
     align-items: center;
-    /* background-color: red; */
     border-bottom-width: 2px;
     padding: 2px;
     margin-bottom: 25px;
@@ -114,7 +113,7 @@ const TextError = styled.Text`
     bottom: 6px;
     font-size: 15px;
     margin-left: 5px;
-    color: #ff375b;
+    color: ${theme.colors.white};
     position: absolute;
     bottom: 0;
 `;

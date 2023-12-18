@@ -10,6 +10,7 @@ import {
 } from "../../components/InputControl";
 import { SendButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
+import theme from "../../global/styles/theme";
 import { IFormLogin } from "../../interface";
 import { Container, ImgLogo, Scroll, TextCheck, ViewCheckBox } from "./styles";
 
@@ -74,7 +75,7 @@ export const Login: React.FunctionComponent = () => {
                     <Checkbox
                         value={isChecked}
                         onValueChange={setIsChecked}
-                        color={"#00f"}
+                        color={theme.colors.darkBlue}
                     />
                     <TextCheck>Manter e-mail conectado.</TextCheck>
                 </ViewCheckBox>

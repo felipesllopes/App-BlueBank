@@ -1,9 +1,10 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import styled from "styled-components/native";
+import theme from "../../global/styles/theme";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${({ theme }) => theme.colors.lightBlue};
+    background-color: ${theme.colors.lightBlue};
 `;
 
 export const Scroll = styled.ScrollView`
@@ -27,12 +28,12 @@ export const BankName = styled.Text`
     font-size: 25px;
     font-weight: bold;
     margin-left: 10px;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${theme.colors.white};
 `;
 
 export const BoxFloat = styled.View`
     position: absolute;
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${theme.colors.white};
     border-radius: 20px;
     align-items: center;
     align-self: center;
@@ -50,7 +51,7 @@ export const Welcome = styled.Text`
 
 export const HorizontalBar = styled.View`
     height: 2px;
-    background-color: ${({ theme }) => theme.colors.black};
+    background-color: ${theme.colors.black};
     width: 100%;
 `;
 

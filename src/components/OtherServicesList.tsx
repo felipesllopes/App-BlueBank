@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrollView } from "react-native";
-import theme from "../global/styles/theme";
 import { OtherServices } from "./OtherServices";
 
 export const OtherServicesList: React.FunctionComponent = () => {

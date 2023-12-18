@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import theme from "../global/styles/theme";
 
 export const LoadingScreen: React.FunctionComponent = () => {
     return (
@@ -11,7 +12,7 @@ export const LoadingScreen: React.FunctionComponent = () => {
 
 const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${({ theme }) => theme.colors.lightBlue};
+    background-color: ${theme.colors.lightBlue};
     align-items: center;
     justify-content: center;
     padding-bottom: 50px;

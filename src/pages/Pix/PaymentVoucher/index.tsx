@@ -10,7 +10,7 @@ import {
     Line,
     Scroll,
     Value,
-    ViewAlert
+    ViewAlert,
 } from "./styles";
 
 interface RouteParams {
@@ -56,11 +56,7 @@ export const PaymentVoucher: React.FunctionComponent = () => {
                 <Line />
 
                 <Text>Data e hora da transação</Text>
-                <Data>
-                    {new Date().toLocaleDateString()}
-                    {" - "}
-                    {new Date().toLocaleTimeString()}
-                </Data>
+                <Data>{new Date().toLocaleString()}</Data>
             </Scroll>
 
             <SendButton title="Fechar" onPress={() => navigate("Home")} />

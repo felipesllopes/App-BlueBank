@@ -21,7 +21,7 @@ export const handlePix = async (
         .set({
             type: "PIX enviado",
             value: val,
-            data: new Date().toLocaleDateString(),
+            data: new Date().toLocaleString(),
             balance: balance - val,
         })
         .then(async () => {
@@ -42,18 +42,15 @@ export const handlePix = async (
                         .set({
                             type: "PIX recebido",
                             value: val,
-                            data: new Date().toLocaleDateString(),
-                            balance: balance + val,
+                            data: new Date().toLocaleString(),
+                            balance: destinatary.balance + val,
                         })
                         .then(async () => {
                             await firestore()
                                 .collection("users")
                                 .doc(destinUid)
                                 .update({
-                                    balance: balance + val,
-                                })
-                                .then(() => {
-                                    alert("Pix enviado com sucesso!");
+                                    balance: destinatary.balance + val,
                                 })
                                 .catch(error => {
                                     alert("Erro ao tentar realizar Pix.");

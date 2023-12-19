@@ -9,6 +9,7 @@ export const Container = styled.SafeAreaView`
 export const Scroll = styled.ScrollView`
     flex: 1;
     padding: 10px;
+    width: 100%;
 `;
 
 export const ViewAlert = styled.View`
@@ -20,8 +21,12 @@ export const ViewAlert = styled.View`
     padding: 10px;
 `;
 
-export const Value = styled.TextInput`
-    font-size: 26px;
+export const IconCheck = styled(Ionicons)`
+    margin: 0 10px;
+`;
+
+export const Value = styled.Text`
+    font-size: 23px;
     font-weight: bold;
     margin-bottom: 20px;
 `;
@@ -34,25 +39,6 @@ export const Data = styled.Text`
 export const Line = styled.View`
     width: 100%;
     height: 1px;
-    background-color: #000;
+    background-color: ${theme.colors.black};
     margin: 10px 0;
-`;
-
-export const IconCheck = styled(Ionicons)`
-    margin: 0 10px;
-`;
-
-export const Button = styled.TouchableOpacity`
-    border-width: 1px;
-    border-color: ${theme.colors.darkBlue};
-    padding: 7px;
-    background-color: ${theme.colors.white};
-    border-radius: 5px;
-    margin: 10px 0;
-`;
-
-export const TextButton = styled.Text`
-    font-size: 18px;
-    color: ${theme.colors.darkBlue};
-    text-align: center;
 `;

@@ -7,7 +7,10 @@ import { Deposit } from "../pages/Deposit";
 import { Help } from "../pages/Help";
 import { Home } from "../pages/Home";
 import { Payment } from "../pages/Payment";
-import { Pix } from "../pages/Pix";
+import { ConfirmPix } from "../pages/Pix/ConfirmPix";
+import { Pix } from "../pages/Pix/Home";
+import { PayPix } from "../pages/Pix/PayPix";
+import { PaymentVoucher } from "../pages/Pix/PaymentVoucher";
 import { Transactions } from "../pages/Transactions";
 import { Transfers } from "../pages/Transfers";
 
@@ -31,7 +34,7 @@ export const AppRoutes: React.FunctionComponent = () => {
             <Stack.Screen
                 name="Pix"
                 component={Pix}
-                options={{ title: "PIX" }}
+                options={{ title: "Pix" }}
             />
 
             <Stack.Screen
@@ -74,6 +77,24 @@ export const AppRoutes: React.FunctionComponent = () => {
                 name="Contract"
                 component={Contract}
                 options={{ title: "Contrato" }}
+            />
+
+            <Stack.Screen
+                name="PayPix"
+                component={PayPix}
+                options={{ title: "Pagamento" }}
+            />
+
+            <Stack.Screen
+                name="ConfirmPix"
+                component={ConfirmPix}
+                options={{ title: "Confirmar" }}
+            />
+
+            <Stack.Screen
+                name="PaymentVoucher"
+                component={PaymentVoucher}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     );

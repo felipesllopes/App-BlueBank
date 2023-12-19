@@ -1,7 +1,7 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
-import firestore from "@react-native-firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/auth";
+import { getBalance } from "../../functions/getBalance";
 import {
     Body,
     Container,
@@ -19,13 +19,10 @@ export const Transactions: React.FunctionComponent = () => {
     const [show, setShow] = useState<boolean>(false);
 
     useEffect(() => {
-        firestore()
-            .collection("users")
-            .doc(user.uid)
-            .onSnapshot(async val => {
-                setBalance(await val.data().balance);
-            });
-    }, []);
+        (async () => {
+            await getBalance(user.uid, setBalance);
+        })();
+    }, [user.uid]);
 
     const openDate = () => {
         setShow(true);

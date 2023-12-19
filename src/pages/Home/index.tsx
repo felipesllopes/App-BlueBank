@@ -1,4 +1,3 @@
-import firestore from "@react-native-firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
@@ -6,6 +5,7 @@ import { OtherServicesList } from "../../components/OtherServicesList";
 import { SendButton } from "../../components/SendButton";
 import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
+import { getBalance } from "../../functions/getBalance";
 import { IScreenNavigation } from "../../interface";
 import {
     BankName,
@@ -30,13 +30,10 @@ export const Home: React.FunctionComponent = () => {
     const { navigate } = useNavigation<IScreenNavigation>();
 
     useEffect(() => {
-        firestore()
-            .collection("users")
-            .doc(user.uid)
-            .onSnapshot(async value => {
-                setBalance(await value.data().balance);
-            });
-    }, []);
+        (async () => {
+            await getBalance(user.uid, setBalance);
+        })();
+    }, [user.uid]);
 
     const handlevisibleBalance = () => {
         setVisibleBalance(current => (current === true ? false : true));

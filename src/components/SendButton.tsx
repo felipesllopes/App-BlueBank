@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components/native";
 import theme from "../global/styles/theme";
+import { TouchableOpacityProps } from "react-native";
 
-interface IProps {
+interface IProps extends TouchableOpacityProps{
     title: string;
     onPress: () => void;
 }
@@ -10,9 +11,15 @@ interface IProps {
 export const SendButton: React.FunctionComponent<IProps> = ({
     title,
     onPress,
+    ...otherProps
 }) => {
     return (
-        <Button onPress={onPress} activeOpacity={0.7} style={{ elevation: 3 }}>
+        <Button
+            onPress={onPress}
+            activeOpacity={0.7}
+            style={{ elevation: 4 }}
+            {...otherProps}
+        >
             <TextButton>{title}</TextButton>
         </Button>
     );

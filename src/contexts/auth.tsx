@@ -1,9 +1,9 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
-import { IFormLogin, IFormRegister, IUser } from "../interface";
 import { Alert } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { IFormLogin, IFormRegister, IUser } from "../interface";
 
 interface IAuthContext {
     user: IUser;
@@ -69,6 +69,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                     .set({
                         name: data.name,
                         cpf: data.cpf,
+                        email: data.email,
                         balance: initialValue,
                     })
                     .then(() => {

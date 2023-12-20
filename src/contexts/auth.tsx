@@ -9,6 +9,7 @@ interface IAuthContext {
     user: IUser;
     signed: boolean;
     loading: boolean;
+    mountingScreen: boolean;
     isChecked: boolean;
     setIsChecked: (value: boolean) => void;
     signUp(data: IFormRegister): void;
@@ -26,20 +27,22 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
     const [user, setUser] = useState<IUser>({} as IUser);
     const [loading, setLoading] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<boolean>(false);
+    const [mountingScreen, setMountingScreen] = useState<boolean>(false);
     const initialValue: number = 50;
 
     useEffect(() => {
         (async () => {
-            setLoading(true);
+            setMountingScreen(true);
             await AsyncStorage.getItem("@keyBoolean")
                 .then(async value => {
                     if (value === "false") {
+                        setIsChecked(false);
                         return;
                     }
                     if (value === "true") {
                         setIsChecked(true);
                         await AsyncStorage.getItem("@keyEmailUser").then(
-                            value => {
+                            async value => {
                                 setUser(current => ({
                                     ...current,
                                     email: value,
@@ -52,10 +55,10 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                     console.log(error);
                 })
                 .finally(() => {
-                    setLoading(false);
+                    setMountingScreen(false);
                 });
         })();
-    }, []);
+    }, [setIsChecked, setUser, AsyncStorage]);
 
     const signUp = async (data: IFormRegister) => {
         setLoading(true);
@@ -184,6 +187,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                 logOut,
                 isChecked,
                 setIsChecked,
+                mountingScreen,
             }}
         >
             {children}

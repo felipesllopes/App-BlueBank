@@ -84,8 +84,8 @@ export const Login: React.FunctionComponent = () => {
 
                 <AccessButton
                     title="Clique aqui para "
-                    titleButton="recuperar senha"
-                    screen="RecoverPassword"
+                    titleButton="redefinir senha"
+                    screen="ResetPassword"
                 />
 
                 <SendButton

@@ -3,7 +3,12 @@ import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
 import { Alert } from "react-native";
-import { IFormLogin, IFormRegister, IUser } from "../interface";
+import {
+    IFormLogin,
+    IFormRegister,
+    IFormResetPassword,
+    IUser,
+} from "../interface";
 
 interface IAuthContext {
     user: IUser;
@@ -14,6 +19,10 @@ interface IAuthContext {
     setIsChecked: (value: boolean) => void;
     signUp(data: IFormRegister): void;
     signIn(data: IFormLogin): void;
+    resetPassword(
+        data: IFormResetPassword,
+        setMessage: (value: string) => void,
+    ): void;
     logOut(): void;
 }
 
@@ -146,6 +155,31 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
             });
     };
 
+    const resetPassword = async (
+        data: IFormResetPassword,
+        setMessage: (value: string) => void,
+    ) => {
+        setLoading(true);
+        await auth()
+            .sendPasswordResetEmail(data.email)
+            .then(() => {
+                Alert.alert(
+                    "E-mail enviado para " + data.email + ".",
+                    "Verifique sua caixa de entrada e caixa de spam.",
+                );
+                setMessage("E-mail enviado.");
+            })
+            .catch(error => {
+                alert(
+                    "Erro ao tentar recuperar e-mail. Verifique o e-mail cadastrado.",
+                );
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
+
     const logOut = async () => {
         Alert.alert("Deseja sair?", "Você será deslogado da sua conta.", [
             {
@@ -185,6 +219,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                 signUp,
                 signIn,
                 logOut,
+                resetPassword,
                 isChecked,
                 setIsChecked,
                 mountingScreen,

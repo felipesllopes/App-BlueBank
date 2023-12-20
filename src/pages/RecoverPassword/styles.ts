@@ -6,4 +6,13 @@ export const Container = styled.SafeAreaView`
     background-color: ${theme.colors.lightBlue};
 `;
 
-export const Text = styled.Text``;
+export const Text = styled.Text`
+    font-size: 18px;
+    margin: 20px;
+`;
+
+export const Message = styled.Text`
+    font-size: 18px;
+    text-align: center;
+    font-style: italic;
+`;

@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import theme from "../global/styles/theme";
 import { Login } from "../pages/Login";
-import { RecoverPassword } from "../pages/RecoverPassword";
+import { ResetPassword } from "../pages/RecoverPassword";
 import { Register } from "../pages/Register";
 
 const Stack = createNativeStackNavigator();
@@ -27,8 +27,8 @@ export const AuthRoutes: React.FunctionComponent = () => {
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="RecoverPassword"
-                component={RecoverPassword}
+                name="ResetPassword"
+                component={ResetPassword}
                 options={{ title: "Voltar" }}
             />
         </Stack.Navigator>

@@ -26,6 +26,10 @@ export interface IFormRegister {
     confirmPassword: string;
 }
 
+export interface IFormResetPassword {
+    email: string;
+}
+
 export interface IUser {
     name: string;
     cpf: string;

@@ -41,7 +41,7 @@ export const ResetPassword: React.FunctionComponent = () => {
                 iconName="mail"
                 name="email"
                 errors={errors.email && (errors.email?.message as string)}
-                placeholder="E-mail cadastrado"
+                placeholder="E-mail"
                 keyboardType="email-address"
                 autoCapitalize="none"
             />

@@ -1,3 +1,4 @@
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import theme from "../global/styles/theme";
@@ -11,13 +12,15 @@ import { ConfirmPix } from "../pages/Pix/ConfirmPix";
 import { Pix } from "../pages/Pix/Home";
 import { PayPix } from "../pages/Pix/PayPix";
 import { PaymentVoucher } from "../pages/Pix/PaymentVoucher";
+import { Profile } from "../pages/Profile";
 import { Transactions } from "../pages/Transactions";
-import { Transfers } from "../pages/Transfers";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
+import { Transfers } from "../pages/Transfers";
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-export const AppRoutes: React.FunctionComponent = () => {
+const HomeRoutes: React.FunctionComponent = () => {
     return (
         <Stack.Navigator
             screenOptions={{
@@ -104,5 +107,39 @@ export const AppRoutes: React.FunctionComponent = () => {
                 options={{ title: "Detalhes da transação" }}
             />
         </Stack.Navigator>
+    );
+};
+
+const ProfileRoutes: React.FunctionComponent = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Profile"
+                component={Profile}
+                options={{ headerShown: false }}
+            />
+        </Stack.Navigator>
+    );
+};
+
+export const AppRoutes: React.FunctionComponent = () => {
+    return (
+        <Drawer.Navigator
+            screenOptions={{
+                headerTintColor: theme.colors.white,
+                headerStyle: { backgroundColor: theme.colors.darkBlue },
+            }}
+        >
+            <Drawer.Screen
+                name="HomeRoutes"
+                component={HomeRoutes}
+                options={{ title: "Início" }}
+            />
+            <Drawer.Screen
+                name="ProfileRoutes"
+                component={ProfileRoutes}
+                options={{ title: "Dados do usuário" }}
+            />
+        </Drawer.Navigator>
     );
 };

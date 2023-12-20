@@ -6,11 +6,13 @@ export const handlePix = async (
     value: string,
     user: IUser,
     balance: number,
+    setLoading: (value: React.SetStateAction<boolean>) => void,
 ) => {
     const userUid = user.uid;
     const destinUid = destinatary.uid;
     const val = parseFloat(value);
 
+    setLoading(true);
     const key = firestore().collection("transactions").doc().id;
 
     await firestore()
@@ -21,8 +23,10 @@ export const handlePix = async (
         .set({
             type: "PIX enviado",
             value: val,
-            data: new Date().toLocaleString(),
+            date: new Date().toLocaleString(),
             balance: balance - val,
+            debit: true,
+            participant: destinatary.name,
         })
         .then(async () => {
             await firestore()
@@ -42,8 +46,10 @@ export const handlePix = async (
                         .set({
                             type: "PIX recebido",
                             value: val,
-                            data: new Date().toLocaleString(),
+                            date: new Date().toLocaleString(),
                             balance: destinatary.balance + val,
+                            debit: false,
+                            participant: user.name,
                         })
                         .then(async () => {
                             await firestore()
@@ -55,6 +61,9 @@ export const handlePix = async (
                                 .catch(error => {
                                     alert("Erro ao tentar realizar Pix.");
                                     console.log(error);
+                                })
+                                .finally(() => {
+                                    setLoading(false);
                                 });
                         })
                         .catch(error => {
@@ -70,5 +79,8 @@ export const handlePix = async (
         .catch(error => {
             alert("Erro ao tentar realizar Pix.");
             console.log(error);
+        })
+        .finally(() => {
+            setLoading(false);
         });
 };

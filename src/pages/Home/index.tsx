@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
+import { LoadingModal } from "../../components/LoadingModal";
 import { OtherServicesList } from "../../components/OtherServicesList";
 import { SendButton } from "../../components/SendButton";
 import { ServiceCardList } from "../../components/ServiceCardList";
@@ -24,7 +25,7 @@ import {
 } from "./styles";
 
 export const Home: React.FunctionComponent = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, loading } = useContext(AuthContext);
     const [visibleBalance, setVisibleBalance] = useState(false);
     const [balance, setBalance] = useState<number>(0);
     const { navigate } = useNavigation<IScreenNavigation>();
@@ -81,6 +82,8 @@ export const Home: React.FunctionComponent = () => {
             </Scroll>
 
             <SendButton onPress={logOut} title="Sair" />
+
+            <LoadingModal loading={loading} />
         </Container>
     );
 };

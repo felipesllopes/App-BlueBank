@@ -1,5 +1,6 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
+import { LoadingModal } from "../../../components/LoadingModal";
 import { SendButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getBalance } from "../../../functions/getBalance";
@@ -16,7 +17,6 @@ import {
     Value,
     ViewAlert,
 } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 
 interface RouteParams {
     destinatary: IUser;
@@ -30,6 +30,7 @@ export const ConfirmPix: React.FunctionComponent = () => {
     const [balance, setBalance] = useState(0);
     const val = parseFloat(value);
     const { navigate } = useNavigation<IScreenNavigationPixProps>();
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         (async () => {
@@ -38,7 +39,7 @@ export const ConfirmPix: React.FunctionComponent = () => {
     }, [user.uid]);
 
     const handleConfirmationPix = async () => {
-        await handlePix(destinatary, value, user, balance);
+        await handlePix(destinatary, value, user, balance, setLoading);
         navigate("PaymentVoucher", { value, destinatary });
     };
 
@@ -81,6 +82,8 @@ export const ConfirmPix: React.FunctionComponent = () => {
             </Scroll>
 
             <SendButton onPress={handleConfirmationPix} title="Confirmar" />
+
+            <LoadingModal loading={loading} />
         </Container>
     );
 };

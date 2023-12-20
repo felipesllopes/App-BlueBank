@@ -8,6 +8,7 @@ import {
     InputControl,
     InputPasswordControl,
 } from "../../components/InputControl";
+import { LoadingModal } from "../../components/LoadingModal";
 import { SendButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import theme from "../../global/styles/theme";
@@ -15,7 +16,8 @@ import { IFormLogin } from "../../interface";
 import { Container, ImgLogo, Scroll, TextCheck, ViewCheckBox } from "./styles";
 
 export const Login: React.FunctionComponent = () => {
-    const { signIn, isChecked, setIsChecked, user } = useContext(AuthContext);
+    const { signIn, isChecked, setIsChecked, user, loading } =
+        useContext(AuthContext);
 
     const schema = yup.object({
         email: yup
@@ -97,6 +99,8 @@ export const Login: React.FunctionComponent = () => {
                     screen="Register"
                 />
             </Scroll>
+
+            <LoadingModal loading={loading} />
         </Container>
     );
 };

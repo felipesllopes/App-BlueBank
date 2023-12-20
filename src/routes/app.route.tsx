@@ -13,6 +13,7 @@ import { PayPix } from "../pages/Pix/PayPix";
 import { PaymentVoucher } from "../pages/Pix/PaymentVoucher";
 import { Transactions } from "../pages/Transactions";
 import { Transfers } from "../pages/Transfers";
+import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -95,6 +96,12 @@ export const AppRoutes: React.FunctionComponent = () => {
                 name="PaymentVoucher"
                 component={PaymentVoucher}
                 options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="TransactionsDetails"
+                component={TransactionsDetails}
+                options={{ title: "Detalhes da transação" }}
             />
         </Stack.Navigator>
     );

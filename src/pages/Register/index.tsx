@@ -7,13 +7,14 @@ import {
     InputControl,
     InputPasswordControl,
 } from "../../components/InputControl";
+import { LoadingModal } from "../../components/LoadingModal";
 import { SendButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import { IFormRegister } from "../../interface";
 import { Container, ImgLogo, Scroll } from "./styles";
 
 export const Register: React.FunctionComponent = () => {
-    const { signUp } = useContext(AuthContext);
+    const { signUp, loading } = useContext(AuthContext);
 
     const schema = yup.object({
         email: yup
@@ -112,6 +113,8 @@ export const Register: React.FunctionComponent = () => {
                     screen="Login"
                 />
             </Scroll>
+
+            <LoadingModal loading={loading} />
         </Container>
     );
 };

@@ -1,6 +1,8 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { FlatList, FlatListProps } from "react-native";
 import styled from "styled-components/native";
 import theme from "../../global/styles/theme";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { ITransactions } from "../../interface";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
@@ -44,4 +46,24 @@ export const TextDate = styled.Text`
     text-align: center;
     margin: 10px;
     color: #666;
+`;
+
+export const LoadingList = styled.ActivityIndicator`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const FlatListTransactions = styled(
+    FlatList as new (
+        props: FlatListProps<ITransactions>,
+    ) => FlatList<ITransactions>,
+)``;
+
+export const NotFound = styled.Text`
+    font-size: 18px;
+    font-style: italic;
+    color: #333;
+    text-align: center;
+    margin-top: 50px;
 `;

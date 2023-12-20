@@ -33,3 +33,12 @@ export interface IUser {
     email: string;
     uid: string;
 }
+
+export interface ITransactions {
+    balance: number;
+    date: string;
+    type: string;
+    value: number;
+    debit: boolean;
+    participant: string;
+}

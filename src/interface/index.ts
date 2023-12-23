@@ -46,3 +46,9 @@ export interface ITransactions {
     debit: boolean;
     participant: string;
 }
+
+export interface IFormEditProfile {
+    name: string;
+    email: string;
+    cpf: string;
+}

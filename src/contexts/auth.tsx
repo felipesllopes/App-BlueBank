@@ -16,6 +16,7 @@ interface IAuthContext {
     loading: boolean;
     mountingScreen: boolean;
     isChecked: boolean;
+    setUser: (value: React.SetStateAction<IUser>) => void;
     setIsChecked: (value: boolean) => void;
     signUp(data: IFormRegister): void;
     signIn(data: IFormLogin): void;
@@ -216,6 +217,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                 user,
                 signed: !!user.uid,
                 loading,
+                setUser,
                 signUp,
                 signIn,
                 logOut,

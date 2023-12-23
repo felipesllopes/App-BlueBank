@@ -29,6 +29,23 @@ export const Input = styled.TextInput`
     padding: 3px 10px;
 `;
 
+export const ButtonCancel = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+`;
+
+export const TextCancel = styled.Text`
+    color: white;
+    font-size: 17px;
+    margin-right: 5px;
+`;
+
+export const IconCancel = styled(Ionicons)`
+    color: white;
+    font-size: 20px;
+`;
+
 export const Line = styled.View`
     width: 100%;
     border-width: 2px;

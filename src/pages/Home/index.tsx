@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
+import { DrawerButton } from "../../components/DrawerButton";
 import { LoadingModal } from "../../components/LoadingModal";
 import { OtherServicesList } from "../../components/OtherServicesList";
 import { SendButton } from "../../components/SendButton";
@@ -42,6 +43,8 @@ export const Home: React.FunctionComponent = () => {
 
     return (
         <Container>
+            <DrawerButton title="Início" />
+
             <Scroll>
                 <BoxLogo>
                     <Logo

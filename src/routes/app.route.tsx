@@ -126,8 +126,7 @@ export const AppRoutes: React.FunctionComponent = () => {
     return (
         <Drawer.Navigator
             screenOptions={{
-                headerTintColor: theme.colors.white,
-                headerStyle: { backgroundColor: theme.colors.darkBlue },
+                headerShown: false,
             }}
         >
             <Drawer.Screen

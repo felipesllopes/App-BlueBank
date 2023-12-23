@@ -1,79 +1,137 @@
-import firestore from "@react-native-firebase/firestore";
-import React, { useContext, useEffect, useState } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Keyboard } from "react-native";
+import * as yup from "yup";
+import { DrawerButton } from "../../components/DrawerButton";
+import { InputControl } from "../../components/InputControl";
+import { ModalConfirmPassword } from "../../components/ModalConfirmPassword";
 import { SendButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
+import { IFormEditProfile } from "../../interface";
 import {
+    ButtonCancel,
     Container,
     Icon,
-    Input,
-    InputName,
+    IconCancel,
     Line,
     Scroll,
     Text,
+    TextCancel,
     Title,
-    ViewData,
 } from "./styles";
 
 export const Profile: React.FunctionComponent = () => {
-    const { user } = useContext(AuthContext);
-    const [name, setName] = useState<string>("");
-    const [cpf, setCpf] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
+    const { user, setUser, isChecked } = useContext(AuthContext);
+    const [show, setShow] = useState<boolean>(false);
+    const [data, setData] = useState<IFormEditProfile>({} as IFormEditProfile);
 
-    useEffect(() => {
-        (async () => {
-            await firestore()
-                .collection("users")
-                .doc(user.uid)
-                .get()
-                .then(async data => {
-                    setName(await data.data().name);
-                    setCpf(await data.data().cpf);
-                    setEmail(await data.data().email);
-                });
-        })();
-    }, [user.uid]);
+    const schema = yup.object({
+        name: yup.string().required("Informe seu nome completo."),
+        email: yup
+            .string()
+            .email("E-mail inválido.")
+            .required("Informe seu e-mail."),
+        cpf: yup
+            .string()
+            .min(11, "Mínimo de 11 dígitos")
+            .required("Digite seu CPF."),
+    });
+
+    const {
+        control,
+        handleSubmit,
+        formState: { errors, isDirty }, // isDirty para saber se o formulario sofreu alteração
+        reset,
+    } = useForm({
+        resolver: yupResolver(schema),
+        defaultValues: {
+            name: user.name,
+            email: user.email,
+            cpf: user?.cpf,
+        },
+    });
+
+    const updateData = async (data: IFormEditProfile) => {
+        if (
+            user.cpf != data.cpf ||
+            user.email != data.email ||
+            user.name != data.name
+        ) {
+            setShow(true);
+            setData(data);
+            Keyboard.dismiss();
+        }
+    };
 
     return (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior="height">
-            <Container>
-                <Scroll>
-                    <Text style={{ margin: 10 }}>
-                        Clique no campo para editar a informação.
-                    </Text>
+        <Container>
+            <DrawerButton title="Dados do usuário" />
+            <Scroll>
+                <Text style={{ margin: 10 }}>
+                    Clique no campo para editar a informação.
+                </Text>
 
-                    <ViewData>
-                        <InputName>Nome:</InputName>
-                        <Input value={name} onChangeText={setName} />
-                    </ViewData>
-
-                    <ViewData>
-                        <InputName>E-mail:</InputName>
-                        <Input value={email} onChangeText={setEmail} />
-                    </ViewData>
-
-                    <ViewData>
-                        <InputName>CPF:</InputName>
-                        <Input value={cpf} onChangeText={setCpf} />
-                    </ViewData>
-
-                    <Line />
-                    <Icon name="lock-closed-outline" />
-                    <Title>Proteja seus dados!</Title>
-                    <Text>
-                        Nunca compartilhe seus dados com fontes suspeitas. No
-                        BlueBank, nunca entramos em contato com nossos clientes
-                        solicitando informações pessoais e bancárias. Desconfie,
-                        pois pode ser um golpe!
-                    </Text>
-                </Scroll>
-
-                <SendButton
-                    title="Salvar alterações"
-                    onPress={() => alert("Alterações salvas com sucesso!")}
+                <InputControl
+                    control={control}
+                    iconName="person"
+                    placeholder="Nome completo"
+                    autoCapitalize="words"
+                    name="name"
+                    errors={errors.name && (errors.name?.message as string)}
                 />
-            </Container>
-        </KeyboardAvoidingView>
+
+                <InputControl
+                    control={control}
+                    iconName="mail"
+                    name="email"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    placeholder="E-mail"
+                    errors={errors.email && (errors.email?.message as string)}
+                />
+
+                <InputControl
+                    control={control}
+                    iconName="card"
+                    name="cpf"
+                    keyboardType="numeric"
+                    placeholder="CPF"
+                    maxLength={11}
+                    errors={errors.cpf && (errors.cpf?.message as string)}
+                />
+
+                {/* O botão só será aberto se o isDirty sofrer alteração (for true) */}
+                {isDirty && (
+                    <ButtonCancel activeOpacity={0.7} onPress={() => reset()}>
+                        <TextCancel>Cancelar alterações</TextCancel>
+                        <IconCancel name="close-circle-outline" />
+                    </ButtonCancel>
+                )}
+
+                <Line />
+                <Icon name="lock-closed-outline" />
+                <Title>Proteja seus dados!</Title>
+                <Text>
+                    Nunca compartilhe seus dados com fontes suspeitas. No
+                    BlueBank, nunca entramos em contato com nossos clientes
+                    solicitando informações pessoais e bancárias. Desconfie,
+                    pois pode ser um golpe!
+                </Text>
+            </Scroll>
+
+            <SendButton
+                title="Salvar alterações"
+                onPress={handleSubmit(updateData)}
+            />
+            <ModalConfirmPassword
+                setShow={setShow}
+                show={show}
+                data={data}
+                user={user}
+                setUser={setUser}
+                isChecked={isChecked}
+            />
+        </Container>
     );
 };

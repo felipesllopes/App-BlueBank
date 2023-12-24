@@ -16,6 +16,7 @@ import { Profile } from "../pages/Profile";
 import { Transactions } from "../pages/Transactions";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
 import { Transfers } from "../pages/Transfers";
+import { CustomDrawer } from "../components/CustomDrawer";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -125,6 +126,7 @@ const ProfileRoutes: React.FunctionComponent = () => {
 export const AppRoutes: React.FunctionComponent = () => {
     return (
         <Drawer.Navigator
+            drawerContent={props => <CustomDrawer {...props} />}
             screenOptions={{
                 headerShown: false,
             }}

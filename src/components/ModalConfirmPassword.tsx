@@ -1,7 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { UseFormReset, useForm } from "react-hook-form";
 import { Modal } from "react-native";
 import styled from "styled-components/native";
 import * as yup from "yup";
@@ -59,7 +59,7 @@ export const ModalConfirmPassword: React.FunctionComponent<IProps> = ({
             setUser,
             isChecked,
             setShow,
-        ).then(() => {
+        ).then(async () => {
             reset();
         });
     };

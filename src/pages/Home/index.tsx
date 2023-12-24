@@ -4,7 +4,6 @@ import { View } from "react-native";
 import { DrawerButton } from "../../components/DrawerButton";
 import { LoadingModal } from "../../components/LoadingModal";
 import { OtherServicesList } from "../../components/OtherServicesList";
-import { SendButton } from "../../components/SendButton";
 import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
 import { getBalance } from "../../functions/getBalance";
@@ -83,8 +82,6 @@ export const Home: React.FunctionComponent = () => {
                     <OtherServicesList />
                 </Body>
             </Scroll>
-
-            <SendButton onPress={logOut} title="Sair" />
 
             <LoadingModal loading={loading} />
         </Container>

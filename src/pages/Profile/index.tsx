@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Keyboard } from "react-native";
 import * as yup from "yup";
@@ -38,6 +38,12 @@ export const Profile: React.FunctionComponent = () => {
             .required("Digite seu CPF."),
     });
 
+    const defaultValues = {
+        name: user.name,
+        email: user.email,
+        cpf: user.cpf,
+    };
+
     const {
         control,
         handleSubmit,
@@ -45,31 +51,27 @@ export const Profile: React.FunctionComponent = () => {
         reset,
     } = useForm({
         resolver: yupResolver(schema),
-        defaultValues: {
-            name: user.name,
-            email: user.email,
-            cpf: user?.cpf,
-        },
+        defaultValues,
     });
 
+    useEffect(() => {
+        // quando o valor da state user mudar, proveniente da função handleDataChange(),
+        // o useEffect será chamado e o reset() atualizará o valor padrão pro novo salvo no user
+        reset(defaultValues);
+    }, [user]);
+
     const updateData = async (data: IFormEditProfile) => {
-        if (
-            user.cpf != data.cpf ||
-            user.email != data.email ||
-            user.name != data.name
-        ) {
-            setShow(true);
-            setData(data);
-            Keyboard.dismiss();
-        }
+        setShow(true);
+        setData(data);
+        Keyboard.dismiss();
     };
 
     return (
         <Container>
             <DrawerButton title="Dados do usuário" />
             <Scroll>
-                <Text style={{ margin: 10 }}>
-                    Clique no campo para editar a informação.
+                <Text style={{ margin: 10, marginBottom: 25 }}>
+                    Clique para editar a informação.
                 </Text>
 
                 <InputControl
@@ -121,6 +123,7 @@ export const Profile: React.FunctionComponent = () => {
             </Scroll>
 
             <SendButton
+                disabled={!isDirty}
                 title="Salvar alterações"
                 onPress={handleSubmit(updateData)}
             />

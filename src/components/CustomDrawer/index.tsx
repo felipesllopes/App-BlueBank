@@ -52,6 +52,12 @@ export const CustomDrawer: React.FunctionComponent<
             <View style={{ marginBottom: 12 }} />
 
             <DrawerServiceCard
+                screen="CashSimulationRoutes"
+                title="Simulador"
+                source={require("../../assets/transactions.png")}
+            />
+
+            <DrawerServiceCard
                 screen="Transactions"
                 source={require("../../assets/transactions.png")}
                 title="Transações"

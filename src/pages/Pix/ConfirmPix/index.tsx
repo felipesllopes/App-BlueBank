@@ -26,7 +26,7 @@ interface RouteParams {
 export const ConfirmPix: React.FunctionComponent = () => {
     const route = useRoute();
     const { destinatary, value } = route.params as RouteParams;
-    const { user } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
     const [balance, setBalance] = useState(0);
     const val = parseFloat(value);
     const { navigate } = useNavigation<IScreenNavigationPixProps>();
@@ -39,7 +39,7 @@ export const ConfirmPix: React.FunctionComponent = () => {
     }, [user.uid]);
 
     const handleConfirmationPix = async () => {
-        await handlePix(destinatary, value, user, balance, setLoading);
+        await handlePix(destinatary, value, user, setUser, setLoading);
         navigate("PaymentVoucher", { value, destinatary });
     };
 

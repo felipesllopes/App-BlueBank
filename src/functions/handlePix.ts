@@ -5,7 +5,7 @@ export const handlePix = async (
     destinatary: IUser,
     value: string,
     user: IUser,
-    balance: number,
+    setUser: (value: IUser) => void,
     setLoading: (value: React.SetStateAction<boolean>) => void,
 ) => {
     const userUid = user.uid;
@@ -24,7 +24,7 @@ export const handlePix = async (
             type: "PIX enviado",
             value: val,
             date: new Date().toLocaleString(),
-            balance: balance - val,
+            balance: user.balance - val,
             debit: true,
             participant: destinatary.name,
         })
@@ -33,9 +33,13 @@ export const handlePix = async (
                 .collection("users")
                 .doc(userUid)
                 .update({
-                    balance: balance - val,
+                    balance: user.balance - val,
                 })
                 .then(async () => {
+                    setUser({
+                        ...user,
+                        balance: user.balance - val,
+                    });
                     const key = firestore().collection("transactions").doc().id;
 
                     await firestore()

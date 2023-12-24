@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import Checkbox from "expo-checkbox";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { AccessButton } from "../../components/AccessButton";
@@ -14,10 +14,21 @@ import { AuthContext } from "../../contexts/auth";
 import theme from "../../global/styles/theme";
 import { IFormLogin } from "../../interface";
 import { Container, ImgLogo, Scroll, TextCheck, ViewCheckBox } from "./styles";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { LoadingScreen } from "../../components/LoadingScreen";
 
 export const Login: React.FunctionComponent = () => {
     const { signIn, isChecked, setIsChecked, user, loading } =
         useContext(AuthContext);
+    const [isReady, setIsReady] = useState<boolean>(false);
+
+    useEffect(() => {
+        (async () => {
+            await Ionicons.loadFont().then(() => {
+                setIsReady(true);
+            });
+        })();
+    }, []);
 
     const schema = yup.object({
         email: yup
@@ -47,6 +58,10 @@ export const Login: React.FunctionComponent = () => {
     const handleLogin = (data: IFormLogin) => {
         signIn(data);
     };
+
+    if (!isReady) {
+        return <LoadingScreen />;
+    }
 
     return (
         <Container>

@@ -7,7 +7,7 @@ import theme from "../global/styles/theme";
 
 interface IProps {
     screen: string;
-    source: ImageSourcePropType;
+    source?: ImageSourcePropType;
     title: string;
 }
 

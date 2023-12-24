@@ -1,8 +1,10 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { CustomDrawer } from "../components/CustomDrawer";
 import theme from "../global/styles/theme";
 import { Cards } from "../pages/Cards";
+import { HomeCash } from "../pages/CashSimulation/HomeCash";
 import { Contract } from "../pages/Contract";
 import { Deposit } from "../pages/Deposit";
 import { Help } from "../pages/Help";
@@ -16,7 +18,7 @@ import { Profile } from "../pages/Profile";
 import { Transactions } from "../pages/Transactions";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
 import { Transfers } from "../pages/Transfers";
-import { CustomDrawer } from "../components/CustomDrawer";
+import { Operation } from "../pages/CashSimulation/Operation";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -123,6 +125,29 @@ const ProfileRoutes: React.FunctionComponent = () => {
     );
 };
 
+const CashSimulationRoutes: React.FunctionComponent = () => {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                animation: "slide_from_right",
+                headerTintColor: theme.colors.white,
+                headerStyle: { backgroundColor: theme.colors.darkBlue },
+            }}
+        >
+            <Stack.Screen
+                name="HomeCash"
+                component={HomeCash}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Operation"
+                component={Operation}
+            />
+        </Stack.Navigator>
+    );
+};
+
 export const AppRoutes: React.FunctionComponent = () => {
     return (
         <Drawer.Navigator
@@ -136,10 +161,17 @@ export const AppRoutes: React.FunctionComponent = () => {
                 component={HomeRoutes}
                 options={{ title: "Início" }}
             />
+
             <Drawer.Screen
                 name="ProfileRoutes"
                 component={ProfileRoutes}
                 options={{ title: "Dados do usuário" }}
+            />
+
+            <Drawer.Screen
+                name="CashSimulationRoutes"
+                component={CashSimulationRoutes}
+                options={{ title: "Simulação de Caixa" }}
             />
         </Drawer.Navigator>
     );

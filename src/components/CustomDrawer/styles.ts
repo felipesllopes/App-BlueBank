@@ -35,3 +35,15 @@ export const Line = styled.View`
     border-color: ${theme.colors.white};
     margin: 10px 0;
 `;
+
+export const IconCash = styled.Image`
+    height: 30px;
+    width: 30px;
+    align-self: center;
+    margin: 3px;
+`;
+
+export const TextCash = styled.Text`
+    font-size: 15px;
+    font-weight: bold;
+`;

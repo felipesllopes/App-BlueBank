@@ -13,7 +13,7 @@ export const OtherServicesList: React.FunctionComponent = () => {
             }}
         >
             <OtherServices
-                title="Precisa de ajuda"
+                title="Precisa de ajuda?"
                 description="Entre em contato conosco e tire as suas dúvidas."
                 screen="Help"
             />

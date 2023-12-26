@@ -11,7 +11,7 @@ import { IScreenNavigation } from "../../interface";
 import { Logo } from "../../pages/Home/styles";
 import { DrawerServiceCard } from "../DrawerServiceCard";
 import { SendButton } from "../SendButton";
-import { Container, Line, Text, UserIcon } from "./styles";
+import { Container, IconCash, Line, Text, TextCash, UserIcon } from "./styles";
 
 export const CustomDrawer: React.FunctionComponent<
     DrawerContentComponentProps
@@ -21,9 +21,10 @@ export const CustomDrawer: React.FunctionComponent<
 
     return (
         <DrawerContentScrollView
+            showsVerticalScrollIndicator={false}
             style={{
                 backgroundColor: theme.colors.lightBlue,
-                padding: 10,
+                paddingHorizontal: 10,
                 flex: 1,
             }}
         >
@@ -51,11 +52,16 @@ export const CustomDrawer: React.FunctionComponent<
             <Text>Mais serviços:</Text>
             <View style={{ marginBottom: 12 }} />
 
-            <DrawerServiceCard
-                screen="CashSimulationRoutes"
-                title="Simulador"
-                source={require("../../assets/transactions.png")}
-            />
+            <Container
+                onPress={() => navigate("CashSimulationRoutes")}
+                activeOpacity={0.8}
+            >
+                <IconCash
+                    source={require("../../assets/cashMachine.png")}
+                    resizeMode="contain"
+                />
+                <TextCash>CAIXA ELETRÔNICO</TextCash>
+            </Container>
 
             <DrawerServiceCard
                 screen="Transactions"
@@ -93,7 +99,13 @@ export const CustomDrawer: React.FunctionComponent<
                 title="Transferência"
             />
 
-            <View style={{ marginBottom: 40 }} />
+            <DrawerServiceCard
+                screen="Transfers"
+                source={require("../../assets/transfer.png")}
+                title="Transferência"
+            />
+
+            <View style={{ marginBottom: 20 }} />
 
             <SendButton title="Sair" onPress={logOut} />
         </DrawerContentScrollView>

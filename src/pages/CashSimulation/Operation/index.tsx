@@ -1,7 +1,9 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useContext, useLayoutEffect, useState } from "react";
+import { LoadingModal } from "../../../components/LoadingModal";
 import { AuthContext } from "../../../contexts/auth";
-import { handleOparations } from "../../../functions/handleOperations";
+import { handleDeposit } from "../../../functions/handleDeposit";
+import { handleWithdraw } from "../../../functions/handleWithdraw";
 import {
     Button,
     Container,
@@ -10,7 +12,6 @@ import {
     ViewButtons,
     ViewIcons,
 } from "./styles";
-import { LoadingModal } from "../../../components/LoadingModal";
 
 export const Operation: React.FunctionComponent = () => {
     const { setOptions, goBack } = useNavigation();
@@ -19,6 +20,7 @@ export const Operation: React.FunctionComponent = () => {
     const route = useRoute();
     const [loading, setLoading] = useState<boolean>(false);
     const operation = route?.params;
+    const [validValue, setValidValue] = useState<boolean>(false);
 
     useLayoutEffect(() => {
         setOptions({
@@ -28,12 +30,14 @@ export const Operation: React.FunctionComponent = () => {
 
     const confirm = async () => {
         let nameOperation = JSON.stringify(operation);
-        setLoading(true);
-        await handleOparations(nameOperation, user, setUser, value).then(() => {
-            clear();
-            cancel();
-            setLoading(false);
-        });
+        const val = parseFloat(value);
+        setLoading(false);
+        if (nameOperation == `"SAQUE"`) {
+            await handleWithdraw(user, setUser, val, setLoading, goBack);
+        }
+        if (nameOperation == `"DEPÓSITO"`) {
+            await handleDeposit(user, setUser, val, setLoading, goBack);
+        }
     };
 
     const clear = () => {
@@ -41,6 +45,7 @@ export const Operation: React.FunctionComponent = () => {
     };
 
     const cancel = () => {
+        setValue("");
         goBack();
     };
 

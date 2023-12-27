@@ -24,6 +24,9 @@ ________________________________________________________________________________
 
 <br/>
 
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+
 ### Description: <a name="description"></a>
 
 BlueBank is an innovative banking app that offers a financial services experience. BlueBank integrates seamlessly with the Firebase database, leveraging core services like Firestore and Authentication to create a robust platform.
@@ -52,6 +55,8 @@ Use the ATM functionality to easily enter and exit funds.
 Access features such as withdrawals, deposits.
 
 <br/>
+
+_______________________________________________________________________________________________________________________________________________________________________________________
 
 
 ### Image Screens <a name="image-screens"> </a>:
@@ -102,6 +107,8 @@ Access features such as withdrawals, deposits.
 
 <br/>
 
+_______________________________________________________________________________________________________________________________________________________________________________________
+
 
 ### Language and Technologies used <a name="language-technologies"></a>
 
@@ -111,6 +118,9 @@ Access features such as withdrawals, deposits.
 - Expo
 
 <br/>
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+
 
 ### Libraries used <a name="libraries"></a>
 

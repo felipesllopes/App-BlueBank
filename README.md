@@ -11,6 +11,8 @@
 ## Topics:
 
 - [Image Screens](#image-screens)
+- [Language and Technologies used](#language-technologies)
+- [Libraries](#libraries)
 
 <br/>
 
@@ -65,7 +67,7 @@
 <br/>
 
 
-### Language and Technologies used
+### Language and Technologies used <a name="language-technologies"></a>
 
 - Typescript
 - Node.Js
@@ -74,7 +76,7 @@
 
 <br/>
 
-### Libraries used
+### Libraries used <a name="libraries"></a>
 
 <table>
     <tr>

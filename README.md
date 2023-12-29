@@ -60,7 +60,7 @@ Access features such as withdrawals, deposits.
 _______________________________________________________________________________________________________________________________________________________________________________________
 
 
-### Image Screens <a name="image-screens"> </a>:
+### Image Screens: <a name="image-screens"> </a>
 
 #### Splash Screen:
 
@@ -111,7 +111,7 @@ ________________________________________________________________________________
 _______________________________________________________________________________________________________________________________________________________________________________________
 
 
-### Language and Technologies used <a name="language-technologies"></a>
+### Language and Technologies used: <a name="language-technologies"></a>
 
 - Typescript
 - Node.Js
@@ -123,7 +123,7 @@ ________________________________________________________________________________
 _______________________________________________________________________________________________________________________________________________________________________________________
 
 
-### Libraries used <a name="libraries"></a>
+### Libraries used: <a name="libraries"></a>
 
 <table>
     <tr>
@@ -150,6 +150,13 @@ ________________________________________________________________________________
         </td>
         <td>6.1.1</td>
         <td>Component styling</td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://docs.expo.dev/versions/latest/sdk/async-storage/" target="_blank">AsyncStorage</a>
+        </td>
+        <td>1.21.0</td>
+        <td>An asynchronous, unencrypted, persistent, key-value storage API</td>
     </tr>
     <tr>
         <td>
@@ -198,7 +205,7 @@ ________________________________________________________________________________
 <br/>
 
 _______________________________________________________________________________________________________________________________________________________________________________________
- ### Download:
+ ### Download: <a name="download"></a>
 
  You can download a preview version for Android here. Note: This file is not available on the Google Play Store. Make sure you really want to proceed with the download.
  

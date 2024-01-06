@@ -11,7 +11,7 @@
 - [Description](#description)
 - [Image Screens](#image-screens)
 - [Language and Technologies used](#language-technologies)
-- [Libraries](#libraries)
+- [Libraries used](#libraries)
 - [Download](#download)
 
 <br/>
@@ -129,75 +129,58 @@ ________________________________________________________________________________
     <tr>
         <td>Library</td>
         <td>Version</td>
-        <td>Description</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://firebase.google.com/" target="_blank">Firebase:</a>
-            <br />
-            <a href="https://rnfirebase.io/" target="_blank">app</a>
-            ,
-            <a href="https://rnfirebase.io/auth/usage" target="_blank">auth</a>
-            ,
-            <a href="https://rnfirebase.io/firestore/usage" target="_blank">firestore</a>
-        </td>
+        <td>hookform/resolvers</td>
+        <td>3.3.2</td>
+    </tr>
+    <tr>
+        <td>react-native-async-storage/async-storage</td>
+        <td>1.18.2</td>
+    </tr>
+    <tr>
+        <td>react-native-community/datetimepicker</td>
+        <td>7.2.0</td>
+    </tr>
+    <tr>
+        <td>react-native-firebase/app</td>
         <td>18.7.3</td>
-        <td>Database Service</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://styled-components.com/" target="_blank">Styled-components</a>
-        </td>
-        <td>6.1.1</td>
-        <td>Component styling</td>
+        <td>react-native-firebase/auth</td>
+        <td>18.7.3</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://docs.expo.dev/versions/latest/sdk/async-storage/" target="_blank">AsyncStorage</a>
-        </td>
-        <td>1.21.0</td>
-        <td>An asynchronous, unencrypted, persistent, key-value storage API</td>
+        <td>react-native-firebase/firestore</td>
+        <td>18.7.3</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://github.com/react-native-datetimepicker/datetimepicker" target="_blank">Datetimepicker</a>
-        </td>
-        <td>6.7.3</td>
-        <td>Select date and time</td>
+        <td>react-navigation/drawer</td>
+        <td>6.6.6</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://reactnavigation.org/" target="_blank">React Navigation</a>
-            : <br />
-            <a href="https://reactnavigation.org/docs/stack-navigator" target="_blank">Stack</a>
-            ,
-            <a href="https://reactnavigation.org/docs/drawer-navigator" target="_blank">Drawer</a>
-            ,
-            <a href="https://reactnavigation.org/docs/bottom-tab-navigator" target="_blank">Botton Tabs</a>
-        </td>
-        <td></td>
-        <td>Navigation between screens</td>
+        <td>react-navigation/native</td>
+        <td>6.1.9</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://www.npmjs.com/package/@hookform/resolvers" target="_blank">Hookform</a>
-        </td>
-        <td>7.49.2</td>
-        <td>High-performance, flexible and extensible forms</td>
+        <td>react-navigation/native-stack</td>
+        <td>6.9.17</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://github.com/jquense/yup" target="_blank">Yup</a>
-        </td>
-        <td>1.3.3</td>
-        <td>Schema builder for runtime value parsing and validation</td>
-    </tr>
-    <tr>
-        <td>
-            <a href="https://docs.expo.dev/versions/latest/sdk/checkbox/" target="_blank">Checkbox</a>
-        </td>
+        <td>expo-checkbox</td>
         <td>2.4.0</td>
-        <td>Component that provides basic checkbox functionality</td>
+    </tr>
+    <tr>
+        <td>react-hook-form</td>
+        <td>7.49.2</td>
+    </tr>
+    <tr>
+        <td>styled-components</td>
+        <td>6.1.1</td>
+    </tr>
+    <tr>
+        <td>yup</td>
+        <td>1.3.3</td>
     </tr>
 </table>
 

@@ -25,7 +25,7 @@ import {
 } from "./styles";
 
 export const Home: React.FunctionComponent = () => {
-    const { user, logOut, loading } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const [visibleBalance, setVisibleBalance] = useState(false);
     const [balance, setBalance] = useState<number>(0);
     const { navigate } = useNavigation<IScreenNavigation>();

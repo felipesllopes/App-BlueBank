@@ -99,12 +99,6 @@ export const CustomDrawer: React.FunctionComponent<
                 title="Transferência"
             />
 
-            <DrawerServiceCard
-                screen="Transfers"
-                source={require("../../assets/transfer.png")}
-                title="Transferência"
-            />
-
             <View style={{ marginBottom: 20 }} />
 
             <SendButton title="Sair" onPress={logOut} />

@@ -1,3 +1,4 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Checkbox from "expo-checkbox";
 import React, { useContext, useEffect, useState } from "react";
@@ -9,13 +10,12 @@ import {
     InputPasswordControl,
 } from "../../components/InputControl";
 import { LoadingModal } from "../../components/LoadingModal";
+import { LoadingScreen } from "../../components/LoadingScreen";
 import { SendButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import theme from "../../global/styles/theme";
 import { IFormLogin } from "../../interface";
 import { Container, ImgLogo, Scroll, TextCheck, ViewCheckBox } from "./styles";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { LoadingScreen } from "../../components/LoadingScreen";
 
 export const Login: React.FunctionComponent = () => {
     const { signIn, isChecked, setIsChecked, user, loading } =

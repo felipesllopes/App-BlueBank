@@ -202,4 +202,5 @@ ________________________________________________________________________________
 
  You can download a preview version for Android here. Note: This file is not available on the Google Play Store. Make sure you really want to proceed with the download.
  
- [![Download](https://img.shields.io/badge/Download-07C160?style=for-the-badge&logo=download&logoColor=white)](https://drive.google.com/file/d/1YEkjnW4RiyzUw8L6auxho8Ewq2tqBw16/view)
+ [![Download](https://img.shields.io/badge/Download-07C160?style=for-the-badge&logo=download&logoColor=white)](https://drive.google.com/file/d/1zDHw8SpdgFTWLk1dU39JK9iD8HZB30rS/view?usp=sharing)
+

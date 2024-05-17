@@ -3,7 +3,6 @@ import React from "react";
 import { ImageSourcePropType } from "react-native";
 import styled from "styled-components/native";
 import { IScreenNavigation } from "../interface";
-import theme from "../global/styles/theme";
 
 interface IProps {
     screen: string;
@@ -29,7 +28,7 @@ export const DrawerServiceCard: React.FunctionComponent<IProps> = ({
 const ContainerServices = styled.TouchableOpacity`
     align-items: center;
     padding: 7px;
-    background-color: rgba(100, 100, 100, 0.3);
+    background-color: rgba(200, 200, 200, 0.3);
     margin: 5px 0;
     border-radius: 5px;
     flex-direction: row;

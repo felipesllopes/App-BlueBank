@@ -9,9 +9,15 @@ export const OtherServicesList: React.FunctionComponent = () => {
             style={{
                 marginBottom: 10,
                 paddingBottom: 10,
-                height: 200,
+                // height: 200,
             }}
         >
+            <OtherServices
+                title="Negociar dívidas"
+                description="Negocie suas dívidas e encontre opções de pagamento flexíveis."
+                screen="Negotiation"
+            />
+
             <OtherServices
                 title="Precisa de ajuda?"
                 description="Entre em contato conosco e tire as suas dúvidas."
@@ -21,7 +27,7 @@ export const OtherServicesList: React.FunctionComponent = () => {
             <OtherServices
                 title="Contrato"
                 description="Leia os termos de contrato aqui."
-                screen="Help"
+                screen="Contract"
             />
         </ScrollView>
     );

@@ -3,7 +3,7 @@ import theme from "../../global/styles/theme";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.background};
 `;
 
 export const Text = styled.Text`

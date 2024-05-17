@@ -91,10 +91,12 @@ const ViewInput = styled.View`
     border-bottom-width: 2px;
     padding: 2px;
     margin-bottom: 25px;
+    border-color: ${theme.colors.text};
 `;
 
 const IconType = styled(Ionicon)`
     font-size: 24px;
+    color: ${theme.colors.text};
 `;
 
 const Input = styled.TextInput`
@@ -105,7 +107,7 @@ const Input = styled.TextInput`
 
 const IconEye = styled(Ionicon)`
     font-size: 24px;
-    color: #666;
+    color: ${theme.colors.text};
 `;
 
 const TextError = styled.Text`
@@ -113,7 +115,6 @@ const TextError = styled.Text`
     bottom: 6px;
     font-size: 15px;
     margin-left: 5px;
-    color: ${theme.colors.white};
     position: absolute;
     bottom: 0;
 `;

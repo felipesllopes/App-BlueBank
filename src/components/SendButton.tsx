@@ -26,11 +26,10 @@ export const SendButton: React.FunctionComponent<IProps> = ({
 };
 
 const Button = styled.TouchableOpacity`
-    background-color: ${theme.colors.darkBlue};
-    padding: 4px 20px;
-    border-radius: 5px;
+    background-color: ${theme.colors.primary};
+    padding: 8px;
+    border-radius: 10px;
     margin: 10px 20px 20px;
-    border-width: 1px;
 `;
 
 const TextButton = styled.Text`

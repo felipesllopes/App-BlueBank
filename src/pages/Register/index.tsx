@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { View } from "react-native";
 import * as yup from "yup";
 import { AccessButton } from "../../components/AccessButton";
 import {
@@ -8,10 +9,11 @@ import {
     InputPasswordControl,
 } from "../../components/InputControl";
 import { LoadingModal } from "../../components/LoadingModal";
+import { Logo_name_blue } from "../../components/Logo";
 import { SendButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import { IFormRegister } from "../../interface";
-import { Container, ImgLogo, Scroll } from "./styles";
+import { Container, Scroll } from "./styles";
 
 export const Register: React.FunctionComponent = () => {
     const { signUp, loading } = useContext(AuthContext);
@@ -50,7 +52,9 @@ export const Register: React.FunctionComponent = () => {
     return (
         <Container>
             <Scroll showsVerticalScrollIndicator={false}>
-                <ImgLogo source={require("../../assets/logo-bb.png")} />
+                <View style={{ alignItems: "center", marginVertical: 40 }}>
+                    <Logo_name_blue scale={2.2} />
+                </View>
 
                 <InputControl
                     iconName="person"

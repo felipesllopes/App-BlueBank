@@ -19,7 +19,7 @@ import {
     ViewTop,
 } from "./styles";
 
-export const Transactions: React.FunctionComponent = () => {
+export const Transacoes: React.FunctionComponent = () => {
     const [balance, setBalance] = useState<number>(0);
     const { user } = useContext(AuthContext);
     const [date, setDate] = useState(new Date());
@@ -66,7 +66,7 @@ export const Transactions: React.FunctionComponent = () => {
                 <TextDate>{date.toLocaleDateString()}</TextDate>
 
                 {loading ? (
-                    <LoadingList color={theme.colors.darkBlue} size={"large"} />
+                    <LoadingList color={theme.colors.primary} size={"large"} />
                 ) : (
                     <FlatListTransactions
                         data={transactions}

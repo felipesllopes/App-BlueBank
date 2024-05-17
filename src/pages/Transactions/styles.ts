@@ -6,7 +6,7 @@ import { ITransactions } from "../../interface";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.secondary};
 `;
 
 export const TextBalance = styled.Text`
@@ -45,7 +45,7 @@ export const TextDate = styled.Text`
     font-weight: bold;
     text-align: center;
     margin: 10px;
-    color: #666;
+    color: ${theme.colors.text};
 `;
 
 export const LoadingList = styled.ActivityIndicator`

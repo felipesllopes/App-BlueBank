@@ -1,49 +1,68 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import styled from "styled-components/native";
 import { ServiceCard } from "./ServiceCard";
 
 export const ServiceCardList: React.FunctionComponent = () => {
     return (
-        <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            style={{ marginBottom: 10 }}
-        >
-            <ServiceCard
-                source={require("../assets/cards.png")}
-                screen="Cards"
-                nameCard="Cartões"
-            />
+        <Container>
+            <BoxServices style={{ marginBottom: 10 }}>
+                <ServiceCard
+                    source={require("../assets/IconsService/cartao.png")}
+                    screen="Cartao"
+                    nameCard="Cartões"
+                />
 
-            <ServiceCard
-                source={require("../assets/deposit.png")}
-                screen="Deposit"
-                nameCard="Depósito"
-            />
+                <ServiceCard
+                    source={require("../assets/IconsService/fatura.png")}
+                    screen="Fatura"
+                    nameCard="Fatura"
+                />
 
-            <ServiceCard
-                source={require("../assets/payment.png")}
-                screen="Payment"
-                nameCard="Pagamento"
-            />
+                <ServiceCard
+                    source={require("../assets/IconsService/recarga.png")}
+                    screen="Recarga"
+                    nameCard="Recarga"
+                />
 
-            <ServiceCard
-                source={require("../assets/pix.png")}
-                screen="Pix"
-                nameCard="Pix"
-            />
+                <ServiceCard
+                    source={require("../assets/IconsService/pix.png")}
+                    screen="Pix"
+                    nameCard="Pix"
+                />
+            </BoxServices>
 
-            <ServiceCard
-                source={require("../assets/transactions.png")}
-                screen="Transactions"
-                nameCard="Transações"
-            />
+            <BoxServices>
+                <ServiceCard
+                    source={require("../assets/IconsService/transacao.png")}
+                    screen="Transacoes"
+                    nameCard="Transações"
+                />
 
-            <ServiceCard
-                source={require("../assets/transfer.png")}
-                screen="Transfers"
-                nameCard="Transferência"
-            />
-        </ScrollView>
+                <ServiceCard
+                    source={require("../assets/IconsService/transferencia.png")}
+                    screen="Transferencia"
+                    nameCard="Transferência"
+                />
+
+                <ServiceCard
+                    source={require("../assets/IconsService/poupanca.png")}
+                    screen="Poupanca"
+                    nameCard="Poupança"
+                />
+
+                <ServiceCard
+                    source={require("../assets/IconsService/investimento.png")}
+                    screen="Investimento"
+                    nameCard="Investimentos"
+                />
+            </BoxServices>
+        </Container>
     );
 };
+
+const Container = styled.View``;
+
+const BoxServices = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`;

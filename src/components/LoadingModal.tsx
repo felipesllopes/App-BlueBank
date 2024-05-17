@@ -13,7 +13,7 @@ export const LoadingModal: React.FunctionComponent<IProps> = ({ loading }) => {
             <Container>
                 <ActivityIndicator
                     size={"large"}
-                    color={theme.colors.darkBlue}
+                    color={theme.colors.primary}
                 />
             </Container>
         </Modal>

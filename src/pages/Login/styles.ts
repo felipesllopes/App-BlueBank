@@ -3,25 +3,18 @@ import theme from "../../global/styles/theme";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.background};
 `;
 
 export const Scroll = styled.ScrollView`
     width: 100%;
 `;
 
-export const ImgLogo = styled.Image`
-    height: 110px;
-    width: 110px;
-    align-self: center;
-    margin: 30px 0;
-`;
-
 export const ViewCheckBox = styled.View`
     flex-direction: row;
     align-items: center;
     align-self: center;
-    margin-bottom: 20px;
+    margin: 10px 0 20px;
 `;
 
 export const TextCheck = styled.Text`

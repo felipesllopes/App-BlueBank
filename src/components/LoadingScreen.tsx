@@ -5,7 +5,7 @@ import theme from "../global/styles/theme";
 export const LoadingScreen: React.FunctionComponent = () => {
     return (
         <Container
-            source={require("../assets/splashscreen.png")}
+            source={require("../assets/Logo/splashscreen.png")}
             resizeMode="contain"
         ></Container>
     );
@@ -13,5 +13,5 @@ export const LoadingScreen: React.FunctionComponent = () => {
 
 const Container = styled.ImageBackground`
     flex: 1;
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.primary};
 `;

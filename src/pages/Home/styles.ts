@@ -1,10 +1,24 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import styled from "styled-components/native";
 import theme from "../../global/styles/theme";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.secondary};
+`;
+
+export const ContainerDrawer = styled.View`
+    background-color: ${theme.colors.primary};
+    padding: 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+export const IconDrawer = styled(Ionicons)`
+    font-size: 25px;
+    color: ${theme.colors.white};
 `;
 
 export const Scroll = styled.ScrollView`
@@ -31,54 +45,53 @@ export const BankName = styled.Text`
     color: ${theme.colors.white};
 `;
 
-export const BoxFloat = styled.View`
-    position: absolute;
-    background-color: ${theme.colors.white};
-    border-radius: 20px;
+export const Welcome = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+    color: ${theme.colors.white};
+    text-align: center;
+    margin-top: 20px;
+`;
+
+export const BoxBalance = styled.View`
+    background-color: ${theme.colors.black};
+    border-radius: 14px;
     align-items: center;
     align-self: center;
-    padding: 7px 30px;
-    top: 100px;
-    z-index: 2;
-`;
-
-export const Welcome = styled.Text`
-    font-size: 17px;
-    font-weight: bold;
-    margin-bottom: 7px;
-    font-style: italic;
-`;
-
-export const HorizontalBar = styled.View`
-    height: 2px;
-    background-color: ${theme.colors.black};
-    width: 100%;
+    padding: 20px;
+    margin: 20px;
+    width: 85%;
 `;
 
 export const ShowBalance = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-bottom: 8px;
 `;
 
 export const TextBalance = styled.Text`
     text-align: center;
-    font-size: 17px;
+    font-size: 19px;
+    color: ${theme.colors.white};
 `;
 
-export const ButtonCaret = styled(FontAwesome)`
-    margin-left: 10px;
-    font-size: 30px;
+export const IconVisible = styled(FontAwesome)`
+    margin-left: 14px;
+    font-size: 26px;
+    color: ${theme.colors.white};
 `;
 
 export const Transactions = styled.Text`
     text-align: center;
     font-size: 16px;
     font-weight: bold;
-    text-decoration: underline;
+    background-color: white;
+    border-radius: 6px;
+    padding: 1px 3px;
+    margin-top: 20px;
 `;
 
 export const Body = styled.View`
     padding: 10px;
-    margin-top: 40%;
 `;

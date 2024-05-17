@@ -23,7 +23,7 @@ export const DrawerButton: React.FunctionComponent<IProps> = ({ title }) => {
 };
 
 const Container = styled.View`
-    background-color: ${theme.colors.darkBlue};
+    background-color: ${theme.colors.primary};
     padding: 15px;
     flex-direction: row;
     align-items: center;
@@ -39,5 +39,4 @@ const Title = styled.Text`
     color: ${theme.colors.white};
     margin-left: 30px;
     font-weight: bold;
-    /* font-weight: bold; */
 `;

@@ -20,7 +20,7 @@ export const ViewAlert = styled.View`
 `;
 
 export const IconAlert = styled(Ionicons)`
-    background-color: ${theme.colors.darkBlue};
+    background-color: ${theme.colors.primary};
     align-items: center;
     align-self: center;
     border-radius: 50px;
@@ -34,7 +34,7 @@ export const TextConfirm = styled.Text`
 
 export const Text = styled.Text`
     font-size: 15px;
-    color: #666;
+    color: ${theme.colors.text};
 `;
 
 export const Value = styled.TextInput`

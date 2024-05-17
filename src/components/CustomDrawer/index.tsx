@@ -23,7 +23,7 @@ export const CustomDrawer: React.FunctionComponent<
         <DrawerContentScrollView
             showsVerticalScrollIndicator={false}
             style={{
-                backgroundColor: theme.colors.lightBlue,
+                backgroundColor: theme.colors.secondary,
                 paddingHorizontal: 10,
                 flex: 1,
             }}

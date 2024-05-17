@@ -13,7 +13,7 @@ export const AuthRoutes: React.FunctionComponent = () => {
             screenOptions={{
                 animation: "slide_from_right",
                 headerTintColor: theme.colors.white,
-                headerStyle: { backgroundColor: theme.colors.darkBlue },
+                headerStyle: { backgroundColor: theme.colors.primary },
             }}
         >
             <Stack.Screen

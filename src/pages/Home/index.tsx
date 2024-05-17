@@ -1,22 +1,19 @@
-import { useNavigation } from "@react-navigation/native";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
-import { View } from "react-native";
-import { DrawerButton } from "../../components/DrawerButton";
 import { LoadingModal } from "../../components/LoadingModal";
+import { Logo_name_white } from "../../components/Logo";
 import { OtherServicesList } from "../../components/OtherServicesList";
 import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
 import { getBalance } from "../../functions/getBalance";
 import { IScreenNavigation } from "../../interface";
 import {
-    BankName,
     Body,
-    BoxFloat,
-    BoxLogo,
-    ButtonCaret,
+    BoxBalance,
     Container,
-    HorizontalBar,
-    Logo,
+    ContainerDrawer,
+    IconDrawer,
+    IconVisible,
     Scroll,
     ShowBalance,
     TextBalance,
@@ -29,6 +26,7 @@ export const Home: React.FunctionComponent = () => {
     const [visibleBalance, setVisibleBalance] = useState(false);
     const [balance, setBalance] = useState<number>(0);
     const { navigate } = useNavigation<IScreenNavigation>();
+    const { dispatch } = useNavigation();
 
     useEffect(() => {
         (async () => {
@@ -42,40 +40,37 @@ export const Home: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <DrawerButton title="Início" />
+            <ContainerDrawer>
+                <Logo_name_white scale={3.3} />
+                <IconDrawer
+                    name="menu-sharp"
+                    onPress={() => dispatch(DrawerActions.toggleDrawer())}
+                />
+            </ContainerDrawer>
 
             <Scroll>
-                <BoxLogo>
-                    <Logo
-                        source={require("../../assets/logo-bb.png")}
-                        resizeMode="contain"
-                    />
-                    <BankName>Blue Bank</BankName>
-                </BoxLogo>
-
-                <BoxFloat style={{ elevation: 10 }}>
-                    <Welcome>Olá, {user && user.name}!</Welcome>
-                    <HorizontalBar />
+                <Welcome>Olá, {user && user.name}</Welcome>
+                <BoxBalance style={{ elevation: 10 }}>
                     <ShowBalance>
                         <TextBalance>Saldo disponível</TextBalance>
-                        <ButtonCaret
+                        <IconVisible
                             onPress={handlevisibleBalance}
-                            name={visibleBalance ? "caret-up" : "caret-down"}
+                            name={visibleBalance ? "eye" : "eye-slash"}
                         />
                     </ShowBalance>
 
-                    <View style={{ display: visibleBalance ? "flex" : "none" }}>
-                        <TextBalance>
-                            R$
-                            {balance.toLocaleString("pt-BR", {
-                                minimumFractionDigits: 2,
-                            })}
-                        </TextBalance>
-                        <Transactions onPress={() => navigate("Transactions")}>
-                            Transações
-                        </Transactions>
-                    </View>
-                </BoxFloat>
+                    <TextBalance>
+                        R$
+                        {visibleBalance
+                            ? balance.toLocaleString("pt-BR", {
+                                  minimumFractionDigits: 2,
+                              })
+                            : "*****"}
+                    </TextBalance>
+                    <Transactions onPress={() => navigate("Transactions")}>
+                        Transações
+                    </Transactions>
+                </BoxBalance>
 
                 <Body>
                     <ServiceCardList />

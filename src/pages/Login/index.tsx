@@ -11,11 +11,13 @@ import {
 } from "../../components/InputControl";
 import { LoadingModal } from "../../components/LoadingModal";
 import { LoadingScreen } from "../../components/LoadingScreen";
+import { Logo_name_blue } from "../../components/Logo";
 import { SendButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import theme from "../../global/styles/theme";
 import { IFormLogin } from "../../interface";
-import { Container, ImgLogo, Scroll, TextCheck, ViewCheckBox } from "./styles";
+import { Container, Scroll, TextCheck, ViewCheckBox } from "./styles";
+import { View } from "react-native";
 
 export const Login: React.FunctionComponent = () => {
     const { signIn, isChecked, setIsChecked, user, loading } =
@@ -66,7 +68,9 @@ export const Login: React.FunctionComponent = () => {
     return (
         <Container>
             <Scroll showsVerticalScrollIndicator={false}>
-                <ImgLogo source={require("../../assets/logo-bb.png")} />
+                <View style={{ alignItems: "center", marginVertical: 50 }}>
+                    <Logo_name_blue scale={2} />
+                </View>
 
                 <InputControl
                     iconName="mail"
@@ -92,7 +96,7 @@ export const Login: React.FunctionComponent = () => {
                     <Checkbox
                         value={isChecked}
                         onValueChange={setIsChecked}
-                        color={theme.colors.darkBlue}
+                        color={theme.colors.text}
                     />
                     <TextCheck>Manter e-mail conectado.</TextCheck>
                 </ViewCheckBox>

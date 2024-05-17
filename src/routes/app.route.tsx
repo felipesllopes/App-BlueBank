@@ -3,22 +3,25 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { CustomDrawer } from "../components/CustomDrawer";
 import theme from "../global/styles/theme";
-import { Cards } from "../pages/Cards";
+import { Cartao } from "../pages/Cartao";
 import { HomeCash } from "../pages/CashSimulation/HomeCash";
+import { Operation } from "../pages/CashSimulation/Operation";
 import { Contract } from "../pages/Contract";
-import { Deposit } from "../pages/Deposit";
+import { Fatura } from "../pages/Fatura";
 import { Help } from "../pages/Help";
 import { Home } from "../pages/Home";
-import { Payment } from "../pages/Payment";
+import { Investimento } from "../pages/Investimento";
+import { Negotiation } from "../pages/Negotiation";
 import { ConfirmPix } from "../pages/Pix/ConfirmPix";
 import { Pix } from "../pages/Pix/Home";
 import { PayPix } from "../pages/Pix/PayPix";
 import { PaymentVoucher } from "../pages/Pix/PaymentVoucher";
 import { Profile } from "../pages/Profile";
-import { Transactions } from "../pages/Transactions";
+import { Recarga } from "../pages/Recarga";
+import { Poupanca } from "../pages/Poupanca";
+import { Transacoes } from "../pages/Transactions";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
-import { Transfers } from "../pages/Transfers";
-import { Operation } from "../pages/CashSimulation/Operation";
+import { Transferencia } from "../pages/Transferencia";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -29,7 +32,7 @@ const HomeRoutes: React.FunctionComponent = () => {
             screenOptions={{
                 animation: "slide_from_right",
                 headerTintColor: theme.colors.white,
-                headerStyle: { backgroundColor: theme.colors.darkBlue },
+                headerStyle: { backgroundColor: theme.colors.primary },
             }}
         >
             <Stack.Screen
@@ -45,32 +48,24 @@ const HomeRoutes: React.FunctionComponent = () => {
             />
 
             <Stack.Screen
-                name="Cards"
-                component={Cards}
+                name="Cartao"
+                component={Cartao}
                 options={{ title: "Cartões" }}
             />
 
-            <Stack.Screen
-                name="Deposit"
-                component={Deposit}
-                options={{ title: "Depósito" }}
-            />
+            <Stack.Screen name="Fatura" component={Fatura} />
+
+            <Stack.Screen name="Recarga" component={Recarga} />
 
             <Stack.Screen
-                name="Payment"
-                component={Payment}
-                options={{ title: "Pagamento" }}
-            />
-
-            <Stack.Screen
-                name="Transfers"
-                component={Transfers}
+                name="Transferencia"
+                component={Transferencia}
                 options={{ title: "Transferência" }}
             />
 
             <Stack.Screen
-                name="Transactions"
-                component={Transactions}
+                name="Transacoes"
+                component={Transacoes}
                 options={{ title: "Transações" }}
             />
 
@@ -84,6 +79,12 @@ const HomeRoutes: React.FunctionComponent = () => {
                 name="Contract"
                 component={Contract}
                 options={{ title: "Contrato" }}
+            />
+
+            <Stack.Screen
+                name="Negotiation"
+                component={Negotiation}
+                options={{ title: "Negociação" }}
             />
 
             <Stack.Screen
@@ -109,6 +110,18 @@ const HomeRoutes: React.FunctionComponent = () => {
                 component={TransactionsDetails}
                 options={{ title: "Detalhes da transação" }}
             />
+
+            <Stack.Screen
+                name="Investimento"
+                component={Investimento}
+                options={{ title: "Investimentos" }}
+            />
+
+            <Stack.Screen
+                name="Poupanca"
+                component={Poupanca}
+                options={{ title: "Poupança" }}
+            />
         </Stack.Navigator>
     );
 };
@@ -131,7 +144,7 @@ const CashSimulationRoutes: React.FunctionComponent = () => {
             screenOptions={{
                 animation: "slide_from_right",
                 headerTintColor: theme.colors.white,
-                headerStyle: { backgroundColor: theme.colors.darkBlue },
+                headerStyle: { backgroundColor: theme.colors.primary },
             }}
         >
             <Stack.Screen
@@ -140,10 +153,7 @@ const CashSimulationRoutes: React.FunctionComponent = () => {
                 options={{ headerShown: false }}
             />
 
-            <Stack.Screen
-                name="Operation"
-                component={Operation}
-            />
+            <Stack.Screen name="Operation" component={Operation} />
         </Stack.Navigator>
     );
 };

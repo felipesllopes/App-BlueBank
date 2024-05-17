@@ -100,7 +100,7 @@ export const PayPix: React.FunctionComponent = () => {
                 style={{
                     backgroundColor: validation()
                         ? theme.colors.gray
-                        : theme.colors.darkBlue,
+                        : theme.colors.primary,
                     borderWidth: validation() ? 0 : 1,
                     elevation: 3,
                 }}

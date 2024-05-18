@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { AuthContext } from "../contexts/auth";
-import { AppRoutes } from "./app.route";
+import { AppRoutes, TabRoutes } from "./app.route";
 import { AuthRoutes } from "./auth.route";
 
 export const Routes: React.FunctionComponent = () => {
@@ -15,5 +15,5 @@ export const Routes: React.FunctionComponent = () => {
         return <LoadingScreen />;
     }
 
-    return signed ? <AppRoutes /> : <AuthRoutes />;
+    return signed ? <TabRoutes /> : <AuthRoutes />;
 };

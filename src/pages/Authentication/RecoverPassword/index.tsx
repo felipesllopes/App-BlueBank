@@ -2,10 +2,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { InputControl } from "../../components/InputControl";
-import { SendButton } from "../../components/SendButton";
-import { AuthContext } from "../../contexts/auth";
-import { IFormResetPassword } from "../../interface";
+import { InputControl } from "../../../components/InputControl";
+import { SendButton } from "../../../components/SendButton";
+import { AuthContext } from "../../../contexts/auth";
+import { IFormResetPassword } from "../../../interface";
 import { Container, Message, Text } from "./styles";
 
 export const ResetPassword: React.FunctionComponent = () => {

@@ -1,30 +1,78 @@
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { CustomDrawer } from "../components/CustomDrawer";
 import theme from "../global/styles/theme";
+import { Boleto } from "../pages/Boleto";
 import { Cartao } from "../pages/Cartao";
 import { HomeCash } from "../pages/CashSimulation/HomeCash";
 import { Operation } from "../pages/CashSimulation/Operation";
-import { Contract } from "../pages/Contract";
+import { Contrato } from "../pages/Contract";
 import { Fatura } from "../pages/Fatura";
-import { Help } from "../pages/Help";
+import { Help as Ajuda } from "../pages/Help";
 import { Home } from "../pages/Home";
 import { Investimento } from "../pages/Investimento";
-import { Negotiation } from "../pages/Negotiation";
+import { Negociacao } from "../pages/Negotiation";
 import { ConfirmPix } from "../pages/Pix/ConfirmPix";
 import { Pix } from "../pages/Pix/Home";
 import { PayPix } from "../pages/Pix/PayPix";
 import { PaymentVoucher } from "../pages/Pix/PaymentVoucher";
+import { Poupanca } from "../pages/Poupanca";
 import { Profile } from "../pages/Profile";
 import { Recarga } from "../pages/Recarga";
-import { Poupanca } from "../pages/Poupanca";
 import { Transacoes } from "../pages/Transactions";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
 import { Transferencia } from "../pages/Transferencia";
+import { Qr_Code } from "../pages/Qr_Code";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
+
+export const TabRoutes: React.FunctionComponent = () => {
+    return (
+        <Tab.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <Tab.Screen
+                name="AppRoutes"
+                component={AppRoutes}
+                options={{
+                    title: "Início",
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="home" color={color} size={size} />
+                    ),
+                }}
+            />
+
+            <Tab.Screen
+                name="Qr_Code"
+                component={Qr_Code}
+                options={{
+                    title: "QR Code",
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="qr-code" color={color} size={size} />
+                    ),
+                }}
+            />
+
+            <Tab.Screen
+                name="ProfileRoutes"
+                component={ProfileRoutes}
+                options={{
+                    title: "Perfil",
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="person" size={size} color={color} />
+                    ),
+                }}
+            />
+        </Tab.Navigator>
+    );
+};
 
 const HomeRoutes: React.FunctionComponent = () => {
     return (
@@ -69,21 +117,17 @@ const HomeRoutes: React.FunctionComponent = () => {
                 options={{ title: "Transações" }}
             />
 
-            <Stack.Screen
-                name="Help"
-                component={Help}
-                options={{ title: "Ajuda" }}
-            />
+            <Stack.Screen name="Ajuda" component={Ajuda} />
 
             <Stack.Screen
-                name="Contract"
-                component={Contract}
+                name="Contrato"
+                component={Contrato}
                 options={{ title: "Contrato" }}
             />
 
             <Stack.Screen
-                name="Negotiation"
-                component={Negotiation}
+                name="Negociacao"
+                component={Negociacao}
                 options={{ title: "Negociação" }}
             />
 
@@ -122,19 +166,21 @@ const HomeRoutes: React.FunctionComponent = () => {
                 component={Poupanca}
                 options={{ title: "Poupança" }}
             />
+
+            <Stack.Screen name="Boleto" component={Boleto} />
         </Stack.Navigator>
     );
 };
 
 const ProfileRoutes: React.FunctionComponent = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen
+        <Drawer.Navigator>
+            <Drawer.Screen
                 name="Profile"
                 component={Profile}
                 options={{ headerShown: false }}
             />
-        </Stack.Navigator>
+        </Drawer.Navigator>
     );
 };
 

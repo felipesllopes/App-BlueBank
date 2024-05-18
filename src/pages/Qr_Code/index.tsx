@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Text } from "./styles";
 
-export const Negociacao: React.FunctionComponent = () => {
+export const Qr_Code: React.FunctionComponent = () => {
     return (
         <Container>
-            <Text>Negociação</Text>
+            <Text>Tela de QR Code</Text>
         </Container>
     );
 };

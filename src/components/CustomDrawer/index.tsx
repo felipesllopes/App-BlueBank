@@ -64,20 +64,20 @@ export const CustomDrawer: React.FunctionComponent<
             </Container>
 
             <DrawerServiceCard
-                screen="Transactions"
-                source={require("../../assets/transactions.png")}
+                screen="Transacoes"
+                source={require("../../assets/IconsService/transacao.png")}
                 title="Transações"
             />
 
             <DrawerServiceCard
-                screen="Cards"
-                source={require("../../assets/cards.png")}
+                screen="Cartao"
+                source={require("../../assets/IconsService/cartao.png")}
                 title="Cartões"
             />
 
             <DrawerServiceCard
-                screen="Deposit"
-                source={require("../../assets/deposit.png")}
+                screen="Deposito"
+                source={require("../../assets/IconsService/deposito.png")}
                 title="Depósito"
             />
 

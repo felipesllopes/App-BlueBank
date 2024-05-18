@@ -2,12 +2,15 @@ import { DrawerActions, useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { LoadingModal } from "../../components/LoadingModal";
 import { Logo_name_white } from "../../components/Logo";
+import { Margin } from "../../components/Margin";
 import { OtherServicesList } from "../../components/OtherServicesList";
 import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
+import { getBackgroundImage } from "../../functions/getBackgroundImage";
 import { getBalance } from "../../functions/getBalance";
 import { IScreenNavigation } from "../../interface";
 import {
+    Background,
     Body,
     BoxBalance,
     Container,
@@ -48,35 +51,45 @@ export const Home: React.FunctionComponent = () => {
                 />
             </ContainerDrawer>
 
-            <Scroll>
-                <Welcome>Olá, {user && user.name}</Welcome>
-                <BoxBalance style={{ elevation: 10 }}>
-                    <ShowBalance>
-                        <TextBalance>Saldo disponível</TextBalance>
-                        <IconVisible
-                            onPress={handlevisibleBalance}
-                            name={visibleBalance ? "eye" : "eye-slash"}
-                        />
-                    </ShowBalance>
+            <Background source={getBackgroundImage()}>
+                <Scroll>
+                    <Welcome>Olá, {user && user.name}</Welcome>
 
-                    <TextBalance>
-                        R$
-                        {visibleBalance
-                            ? balance.toLocaleString("pt-BR", {
-                                  minimumFractionDigits: 2,
-                              })
-                            : "*****"}
-                    </TextBalance>
-                    <Transactions onPress={() => navigate("Transactions")}>
-                        Transações
-                    </Transactions>
-                </BoxBalance>
+                    <Margin pixels={20} />
 
-                <Body>
-                    <ServiceCardList />
-                    <OtherServicesList />
-                </Body>
-            </Scroll>
+                    <BoxBalance style={{ elevation: 10 }}>
+                        <ShowBalance>
+                            <TextBalance>Saldo disponível</TextBalance>
+                            <IconVisible
+                                onPress={handlevisibleBalance}
+                                name={visibleBalance ? "eye" : "eye-slash"}
+                            />
+                        </ShowBalance>
+
+                        <TextBalance>
+                            R$
+                            {visibleBalance
+                                ? balance.toLocaleString("pt-BR", {
+                                      minimumFractionDigits: 2,
+                                  })
+                                : "*****"}
+                        </TextBalance>
+                        <Transactions onPress={() => navigate("Transactions")}>
+                            Transações
+                        </Transactions>
+                    </BoxBalance>
+
+                    <Margin pixels={40} />
+
+                    <Body>
+                        <ServiceCardList />
+
+                        <Margin pixels={40} />
+
+                        <OtherServicesList />
+                    </Body>
+                </Scroll>
+            </Background>
 
             <LoadingModal loading={loading} />
         </Container>

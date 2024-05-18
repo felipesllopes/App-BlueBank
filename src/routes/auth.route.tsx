@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import theme from "../global/styles/theme";
-import { Login } from "../pages/Login";
-import { ResetPassword } from "../pages/RecoverPassword";
-import { Register } from "../pages/Register";
+import { Login } from "../pages/Authentication/Login";
+import { ResetPassword } from "../pages/Authentication/RecoverPassword";
+import { Register } from "../pages/Authentication/Register";
 
 const Stack = createNativeStackNavigator();
 

@@ -92,11 +92,12 @@ const ViewInput = styled.View`
     padding: 2px;
     margin-bottom: 25px;
     border-color: ${theme.colors.text};
+    border-color: ${theme.colors.primary};
 `;
 
 const IconType = styled(Ionicon)`
     font-size: 24px;
-    color: ${theme.colors.text};
+    color: ${theme.colors.primary};
 `;
 
 const Input = styled.TextInput`

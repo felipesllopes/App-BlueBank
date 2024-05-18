@@ -4,18 +4,18 @@ import Checkbox from "expo-checkbox";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { AccessButton } from "../../components/AccessButton";
+import { AccessButton } from "../../../components/AccessButton";
 import {
     InputControl,
     InputPasswordControl,
-} from "../../components/InputControl";
-import { LoadingModal } from "../../components/LoadingModal";
-import { LoadingScreen } from "../../components/LoadingScreen";
-import { Logo_name_blue } from "../../components/Logo";
-import { SendButton } from "../../components/SendButton";
-import { AuthContext } from "../../contexts/auth";
-import theme from "../../global/styles/theme";
-import { IFormLogin } from "../../interface";
+} from "../../../components/InputControl";
+import { LoadingModal } from "../../../components/LoadingModal";
+import { LoadingScreen } from "../../../components/LoadingScreen";
+import { Logo_name_blue } from "../../../components/Logo";
+import { SendButton } from "../../../components/SendButton";
+import { AuthContext } from "../../../contexts/auth";
+import theme from "../../../global/styles/theme";
+import { IFormLogin } from "../../../interface";
 import { Container, Scroll, TextCheck, ViewCheckBox } from "./styles";
 import { View } from "react-native";
 

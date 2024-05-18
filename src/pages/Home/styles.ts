@@ -16,6 +16,11 @@ export const ContainerDrawer = styled.View`
     justify-content: space-between;
 `;
 
+export const Background = styled.ImageBackground`
+    flex: 1;
+    width: 100%;
+`;
+
 export const IconDrawer = styled(Ionicons)`
     font-size: 25px;
     color: ${theme.colors.white};
@@ -24,6 +29,7 @@ export const IconDrawer = styled(Ionicons)`
 export const Scroll = styled.ScrollView`
     flex: 1;
     width: 100%;
+    background-color: rgba(102, 163, 255, 0.85);
 `;
 
 export const BoxLogo = styled.View`
@@ -59,7 +65,6 @@ export const BoxBalance = styled.View`
     align-items: center;
     align-self: center;
     padding: 20px;
-    margin: 20px;
     width: 85%;
 `;
 

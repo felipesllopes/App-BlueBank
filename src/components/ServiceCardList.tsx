@@ -33,9 +33,9 @@ export const ServiceCardList: React.FunctionComponent = () => {
 
             <BoxServices>
                 <ServiceCard
-                    source={require("../assets/IconsService/transacao.png")}
-                    screen="Transacoes"
-                    nameCard="Transações"
+                    source={require("../assets/IconsService/boleto.png")}
+                    screen="Boleto"
+                    nameCard="Boleto"
                 />
 
                 <ServiceCard

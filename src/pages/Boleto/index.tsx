@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Text } from "./styles";
 
-export const Negociacao: React.FunctionComponent = () => {
+export const Boleto: React.FunctionComponent = () => {
     return (
         <Container>
-            <Text>Negociação</Text>
+            <Text>Tela de Boleto</Text>
         </Container>
     );
 };

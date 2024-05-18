@@ -3,16 +3,16 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { View } from "react-native";
 import * as yup from "yup";
-import { AccessButton } from "../../components/AccessButton";
+import { AccessButton } from "../../../components/AccessButton";
 import {
     InputControl,
     InputPasswordControl,
-} from "../../components/InputControl";
-import { LoadingModal } from "../../components/LoadingModal";
-import { Logo_name_blue } from "../../components/Logo";
-import { SendButton } from "../../components/SendButton";
-import { AuthContext } from "../../contexts/auth";
-import { IFormRegister } from "../../interface";
+} from "../../../components/InputControl";
+import { LoadingModal } from "../../../components/LoadingModal";
+import { Logo_name_blue } from "../../../components/Logo";
+import { SendButton } from "../../../components/SendButton";
+import { AuthContext } from "../../../contexts/auth";
+import { IFormRegister } from "../../../interface";
 import { Container, Scroll } from "./styles";
 
 export const Register: React.FunctionComponent = () => {

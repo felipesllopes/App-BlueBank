@@ -15,19 +15,19 @@ export const OtherServicesList: React.FunctionComponent = () => {
             <OtherServices
                 title="Negociar dívidas"
                 description="Negocie suas dívidas e encontre opções de pagamento flexíveis."
-                screen="Negotiation"
+                screen="Negociacao"
             />
 
             <OtherServices
                 title="Precisa de ajuda?"
                 description="Entre em contato conosco e tire as suas dúvidas."
-                screen="Help"
+                screen="Ajuda"
             />
 
             <OtherServices
                 title="Contrato"
                 description="Leia os termos de contrato aqui."
-                screen="Contract"
+                screen="Contrato"
             />
         </ScrollView>
     );

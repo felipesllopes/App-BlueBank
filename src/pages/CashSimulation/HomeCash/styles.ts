@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import theme from "../../../global/styles/theme";
 
 export const Container = styled.SafeAreaView`
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.secondary};
     flex: 1;
 `;
 
@@ -19,7 +19,7 @@ export const ViewButtons = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
-    background-color: ${theme.colors.darkBlue};
+    background-color: ${theme.colors.primary};
     padding: 5px 0;
     width: 40%;
     border-radius: 5px;

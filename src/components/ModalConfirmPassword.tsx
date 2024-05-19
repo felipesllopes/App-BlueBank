@@ -106,7 +106,7 @@ const Screen = styled.View`
 `;
 
 const Container = styled.View`
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.background};
     border-radius: 10px;
     padding: 20px;
 `;

@@ -20,6 +20,7 @@ import {
     TextCancel,
     Title,
 } from "./styles";
+import { HeaderDrawer, HeaderDrawer_2 } from "../../components/HeaderDrawer";
 
 export const Profile: React.FunctionComponent = () => {
     const { user, setUser, isChecked } = useContext(AuthContext);
@@ -68,7 +69,8 @@ export const Profile: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <DrawerButton title="Dados do usuário" />
+            <HeaderDrawer_2 title="Dados do usuário" />
+
             <Scroll>
                 <Text style={{ margin: 10, marginBottom: 25 }}>
                     Clique para editar a informação.
@@ -116,7 +118,7 @@ export const Profile: React.FunctionComponent = () => {
                 <Title>Proteja seus dados!</Title>
                 <Text>
                     Nunca compartilhe seus dados com fontes suspeitas. No
-                    BlueBank, nunca entramos em contato com nossos clientes
+                    Bluebank, nunca entramos em contato com nossos clientes
                     solicitando informações pessoais e bancárias. Desconfie,
                     pois pode ser um golpe!
                 </Text>

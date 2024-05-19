@@ -1,5 +1,4 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import styled from "styled-components/native";
 import theme from "../../global/styles/theme";
 
@@ -8,22 +7,9 @@ export const Container = styled.SafeAreaView`
     background-color: ${theme.colors.secondary};
 `;
 
-export const ContainerDrawer = styled.View`
-    background-color: ${theme.colors.primary};
-    padding: 15px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-`;
-
 export const Background = styled.ImageBackground`
     flex: 1;
     width: 100%;
-`;
-
-export const IconDrawer = styled(Ionicons)`
-    font-size: 25px;
-    color: ${theme.colors.white};
 `;
 
 export const Scroll = styled.ScrollView`

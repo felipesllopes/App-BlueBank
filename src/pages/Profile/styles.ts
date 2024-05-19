@@ -36,20 +36,20 @@ export const ButtonCancel = styled.TouchableOpacity`
 `;
 
 export const TextCancel = styled.Text`
-    color: white;
+    /* color: white; */
     font-size: 17px;
     margin-right: 5px;
 `;
 
 export const IconCancel = styled(Ionicons)`
-    color: white;
+    /* color: white; */
     font-size: 20px;
 `;
 
 export const Line = styled.View`
     width: 100%;
     border-width: 2px;
-    border-color: ${theme.colors.darkBlue};
+    border-color: ${theme.colors.primary};
     margin: 20px 0;
 `;
 

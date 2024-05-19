@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useContext, useLayoutEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { LoadingModal } from "../../../components/LoadingModal";
 import { AuthContext } from "../../../contexts/auth";
 import { handleDeposit } from "../../../functions/handleDeposit";
@@ -14,24 +14,17 @@ import {
 } from "./styles";
 
 export const Operation: React.FunctionComponent = () => {
-    const { setOptions, goBack } = useNavigation();
+    const { goBack } = useNavigation();
     const [value, setValue] = useState<string>("");
     const { user, setUser } = useContext(AuthContext);
     const route = useRoute();
     const [loading, setLoading] = useState<boolean>(false);
-    const operation = route?.params;
-    const [validValue, setValidValue] = useState<boolean>(false);
-
-    useLayoutEffect(() => {
-        setOptions({
-            title: operation,
-        });
-    }, [operation, setOptions]);
+    const nameOperation = JSON.stringify(route?.params);
 
     const confirm = async () => {
-        let nameOperation = JSON.stringify(operation);
         const val = parseFloat(value);
         setLoading(false);
+
         if (nameOperation == `"SAQUE"`) {
             await handleWithdraw(user, setUser, val, setLoading, goBack);
         }
@@ -51,6 +44,7 @@ export const Operation: React.FunctionComponent = () => {
 
     return (
         <Container>
+            <TextButton>{route?.params}</TextButton>
             <ViewIcons>
                 <Input
                     value={value}
@@ -64,6 +58,7 @@ export const Operation: React.FunctionComponent = () => {
                         onPress={confirm}
                         activeOpacity={0.8}
                         style={{ backgroundColor: "green", elevation: 4 }}
+                        disabled={!value}
                     >
                         <TextButton>CONFIRMAR</TextButton>
                     </Button>
@@ -72,6 +67,7 @@ export const Operation: React.FunctionComponent = () => {
                         activeOpacity={0.8}
                         onPress={clear}
                         style={{ backgroundColor: "yellow", elevation: 4 }}
+                        disabled={!value}
                     >
                         <TextButton>LIMPAR</TextButton>
                     </Button>

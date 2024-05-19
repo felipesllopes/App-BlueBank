@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { DrawerButton } from "../../../components/DrawerButton";
 import { Button, Container, TextButton, Title, ViewButtons } from "./styles";
 
 interface INavigation {
@@ -12,12 +11,11 @@ export const HomeCash: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <DrawerButton title="Simulação de Caixa" />
             <Title>ESCOLHA A OPERAÇÃO:</Title>
 
             <ViewButtons>
                 <Button
-                    onPress={() => navigate("Operation", "SAQUE")}
+                    onPress={() => navigate("Operation", `SAQUE`)}
                     activeOpacity={0.7}
                     style={{ elevation: 5 }}
                 >
@@ -25,7 +23,7 @@ export const HomeCash: React.FunctionComponent = () => {
                 </Button>
 
                 <Button
-                    onPress={() => navigate("Operation", "DEPÓSITO")}
+                    onPress={() => navigate("Operation", `DEPÓSITO`)}
                     activeOpacity={0.7}
                     style={{ elevation: 5 }}
                 >

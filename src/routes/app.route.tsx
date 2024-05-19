@@ -1,3 +1,4 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -20,12 +21,11 @@ import { PayPix } from "../pages/Pix/PayPix";
 import { PaymentVoucher } from "../pages/Pix/PaymentVoucher";
 import { Poupanca } from "../pages/Poupanca";
 import { Profile } from "../pages/Profile";
+import { Qr_Code } from "../pages/Qr_Code";
 import { Recarga } from "../pages/Recarga";
 import { Transacoes } from "../pages/Transactions";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
 import { Transferencia } from "../pages/Transferencia";
-import { Qr_Code } from "../pages/Qr_Code";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -36,6 +36,12 @@ export const TabRoutes: React.FunctionComponent = () => {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
+                tabBarInactiveBackgroundColor: theme.colors.primary,
+                tabBarActiveBackgroundColor: theme.colors.primary,
+                tabBarActiveTintColor: theme.colors.accent,
+                tabBarInactiveTintColor: theme.colors.white,
+                tabBarStyle: { borderTopWidth: 0 },
+                tabBarLabelStyle: { fontSize: 11 },
             }}
         >
             <Tab.Screen
@@ -61,8 +67,8 @@ export const TabRoutes: React.FunctionComponent = () => {
             />
 
             <Tab.Screen
-                name="ProfileRoutes"
-                component={ProfileRoutes}
+                name="Profile"
+                component={Profile}
                 options={{
                     title: "Perfil",
                     tabBarIcon: ({ color, size }) => (
@@ -90,9 +96,9 @@ const HomeRoutes: React.FunctionComponent = () => {
             />
 
             <Stack.Screen
-                name="Pix"
-                component={Pix}
-                options={{ title: "Pix" }}
+                name="Transacoes"
+                component={Transacoes}
+                options={{ title: "Transações" }}
             />
 
             <Stack.Screen
@@ -105,6 +111,10 @@ const HomeRoutes: React.FunctionComponent = () => {
 
             <Stack.Screen name="Recarga" component={Recarga} />
 
+            <Stack.Screen name="Pix" component={Pix} />
+
+            <Stack.Screen name="Boleto" component={Boleto} />
+
             <Stack.Screen
                 name="Transferencia"
                 component={Transferencia}
@@ -112,9 +122,21 @@ const HomeRoutes: React.FunctionComponent = () => {
             />
 
             <Stack.Screen
-                name="Transacoes"
-                component={Transacoes}
-                options={{ title: "Transações" }}
+                name="Poupanca"
+                component={Poupanca}
+                options={{ title: "Poupança" }}
+            />
+
+            <Stack.Screen
+                name="Investimento"
+                component={Investimento}
+                options={{ title: "Investimentos" }}
+            />
+
+            <Stack.Screen
+                name="Negociacao"
+                component={Negociacao}
+                options={{ title: "Negociação" }}
             />
 
             <Stack.Screen name="Ajuda" component={Ajuda} />
@@ -123,12 +145,6 @@ const HomeRoutes: React.FunctionComponent = () => {
                 name="Contrato"
                 component={Contrato}
                 options={{ title: "Contrato" }}
-            />
-
-            <Stack.Screen
-                name="Negociacao"
-                component={Negociacao}
-                options={{ title: "Negociação" }}
             />
 
             <Stack.Screen
@@ -156,31 +172,11 @@ const HomeRoutes: React.FunctionComponent = () => {
             />
 
             <Stack.Screen
-                name="Investimento"
-                component={Investimento}
-                options={{ title: "Investimentos" }}
+                name="CashSimulationRoutes"
+                component={CashSimulationRoutes}
+                options={{ title: "Caixa eletrônico" }}
             />
-
-            <Stack.Screen
-                name="Poupanca"
-                component={Poupanca}
-                options={{ title: "Poupança" }}
-            />
-
-            <Stack.Screen name="Boleto" component={Boleto} />
         </Stack.Navigator>
-    );
-};
-
-const ProfileRoutes: React.FunctionComponent = () => {
-    return (
-        <Drawer.Navigator>
-            <Drawer.Screen
-                name="Profile"
-                component={Profile}
-                options={{ headerShown: false }}
-            />
-        </Drawer.Navigator>
     );
 };
 
@@ -191,13 +187,10 @@ const CashSimulationRoutes: React.FunctionComponent = () => {
                 animation: "slide_from_right",
                 headerTintColor: theme.colors.white,
                 headerStyle: { backgroundColor: theme.colors.primary },
+                headerShown: false,
             }}
         >
-            <Stack.Screen
-                name="HomeCash"
-                component={HomeCash}
-                options={{ headerShown: false }}
-            />
+            <Stack.Screen name="HomeCash" component={HomeCash} />
 
             <Stack.Screen name="Operation" component={Operation} />
         </Stack.Navigator>
@@ -216,18 +209,6 @@ export const AppRoutes: React.FunctionComponent = () => {
                 name="HomeRoutes"
                 component={HomeRoutes}
                 options={{ title: "Início" }}
-            />
-
-            <Drawer.Screen
-                name="ProfileRoutes"
-                component={ProfileRoutes}
-                options={{ title: "Dados do usuário" }}
-            />
-
-            <Drawer.Screen
-                name="CashSimulationRoutes"
-                component={CashSimulationRoutes}
-                options={{ title: "Simulação de Caixa" }}
             />
         </Drawer.Navigator>
     );

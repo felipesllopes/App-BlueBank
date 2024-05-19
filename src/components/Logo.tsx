@@ -28,3 +28,27 @@ export const Logo_name_white: React.FunctionComponent<IProps> = ({ scale }) => {
         />
     );
 };
+
+export const Logo_white: React.FunctionComponent<IProps> = ({ scale }) => {
+    return (
+        <Image
+            source={require("../assets/Logo/logo-white.png")}
+            style={{
+                height: 301 / scale,
+                width: 401 / scale,
+            }}
+        />
+    );
+};
+
+export const Logo_blue: React.FunctionComponent<IProps> = ({ scale }) => {
+    return (
+        <Image
+            source={require("../assets/Logo/logo-blue.png")}
+            style={{
+                height: 301 / scale,
+                width: 401 / scale,
+            }}
+        />
+    );
+};

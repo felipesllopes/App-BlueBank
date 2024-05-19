@@ -39,13 +39,13 @@ export const CustomDrawer: React.FunctionComponent<
                 <Text>Início</Text>
             </Container>
 
-            <Container
+            {/* <Container
                 onPress={() => navigate("ProfileRoutes")}
                 activeOpacity={0.8}
             >
                 <UserIcon name="person-circle" />
                 <Text style={{ fontWeight: "normal" }}>{user.name}</Text>
-            </Container>
+            </Container> */}
 
             <Line />
 
@@ -57,7 +57,7 @@ export const CustomDrawer: React.FunctionComponent<
                 activeOpacity={0.8}
             >
                 <IconCash
-                    source={require("../../assets/cashMachine.png")}
+                    source={require("../../assets/IconsService/caixa_eletronico.png")}
                     resizeMode="contain"
                 />
                 <TextCash>CAIXA ELETRÔNICO</TextCash>
@@ -82,20 +82,14 @@ export const CustomDrawer: React.FunctionComponent<
             />
 
             <DrawerServiceCard
-                screen="Payment"
-                source={require("../../assets/payment.png")}
-                title="Pagamento"
-            />
-
-            <DrawerServiceCard
                 screen="Pix"
-                source={require("../../assets/pix.png")}
+                source={require("../../assets/IconsService/pix.png")}
                 title="Pix"
             />
 
             <DrawerServiceCard
-                screen="Transfers"
-                source={require("../../assets/transfer.png")}
+                screen="Transferencia"
+                source={require("../../assets/IconsService/transferencia.png")}
                 title="Transferência"
             />
 

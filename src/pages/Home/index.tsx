@@ -1,7 +1,7 @@
-import { DrawerActions, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
+import { HeaderDrawer } from "../../components/HeaderDrawer";
 import { LoadingModal } from "../../components/LoadingModal";
-import { Logo_name_white } from "../../components/Logo";
 import { Margin } from "../../components/Margin";
 import { OtherServicesList } from "../../components/OtherServicesList";
 import { ServiceCardList } from "../../components/ServiceCardList";
@@ -14,14 +14,12 @@ import {
     Body,
     BoxBalance,
     Container,
-    ContainerDrawer,
-    IconDrawer,
     IconVisible,
     Scroll,
     ShowBalance,
     TextBalance,
     Transactions,
-    Welcome,
+    Welcome
 } from "./styles";
 
 export const Home: React.FunctionComponent = () => {
@@ -29,7 +27,6 @@ export const Home: React.FunctionComponent = () => {
     const [visibleBalance, setVisibleBalance] = useState(false);
     const [balance, setBalance] = useState<number>(0);
     const { navigate } = useNavigation<IScreenNavigation>();
-    const { dispatch } = useNavigation();
 
     useEffect(() => {
         (async () => {
@@ -43,13 +40,7 @@ export const Home: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <ContainerDrawer>
-                <Logo_name_white scale={3.3} />
-                <IconDrawer
-                    name="menu-sharp"
-                    onPress={() => dispatch(DrawerActions.toggleDrawer())}
-                />
-            </ContainerDrawer>
+            <HeaderDrawer />
 
             <Background source={getBackgroundImage()}>
                 <Scroll>
@@ -74,7 +65,7 @@ export const Home: React.FunctionComponent = () => {
                                   })
                                 : "*****"}
                         </TextBalance>
-                        <Transactions onPress={() => navigate("Transactions")}>
+                        <Transactions onPress={() => navigate("Transacoes")}>
                             Transações
                         </Transactions>
                     </BoxBalance>

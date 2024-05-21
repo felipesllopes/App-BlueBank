@@ -5,34 +5,17 @@ import theme from "../../global/styles/theme";
 export const Container = styled.TouchableOpacity`
     align-items: center;
     padding: 5px;
-    background-color: rgba(200, 200, 200, 0.3);
     margin: 5px 0;
-    border-radius: 5px;
-    border-width: 1px;
+    flex-direction: row;
+    align-self: center;
 `;
 
-export const Logo = styled.Image`
-    height: 80px;
-    width: 80px;
-`;
-
-export const Text = styled.Text`
-    font-size: 16px;
-    color: white;
-    font-weight: bold;
-    margin-top: 5px;
-    text-align: center;
-`;
-
-export const UserIcon = styled(Ionicons)`
-    font-size: 30px;
-    color: white;
-`;
-
-export const Line = styled.View`
-    width: 100%;
-    border-width: 1px;
-    border-color: ${theme.colors.white};
+export const ContainerCash = styled.TouchableOpacity`
+    background-color: ${theme.colors.white};
+    align-items: center;
+    border-radius: 10px;
+    align-self: center;
+    padding: 2px 10px;
     margin: 10px 0;
 `;
 
@@ -43,7 +26,9 @@ export const IconCash = styled.Image`
     margin: 3px;
 `;
 
-export const TextCash = styled.Text`
-    font-size: 15px;
-    font-weight: bold;
+export const TextService = styled.Text`
+    font-size: 16px;
+    color: white;
+    margin-top: 5px;
+    text-align: center;
 `;

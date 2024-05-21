@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
-import { SendButton } from "../../../components/SendButton";
+import { PrimaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getBalance } from "../../../functions/getBalance";
 import theme from "../../../global/styles/theme";
@@ -94,7 +94,7 @@ export const PayPix: React.FunctionComponent = () => {
                 </ViewPayer>
             </Scroll>
 
-            <SendButton
+            <PrimaryButton
                 onPress={() => navigate("ConfirmPix", { value, destinatary })}
                 title="Continuar"
                 style={{

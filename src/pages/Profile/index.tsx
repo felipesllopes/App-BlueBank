@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { DrawerButton } from "../../components/DrawerButton";
 import { InputControl } from "../../components/InputControl";
 import { ModalConfirmPassword } from "../../components/ModalConfirmPassword";
-import { SendButton } from "../../components/SendButton";
+import { PrimaryButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import { IFormEditProfile } from "../../interface";
 import {
@@ -124,7 +124,7 @@ export const Profile: React.FunctionComponent = () => {
                 </Text>
             </Scroll>
 
-            <SendButton
+            <PrimaryButton
                 disabled={!isDirty}
                 title="Salvar alterações"
                 onPress={handleSubmit(updateData)}

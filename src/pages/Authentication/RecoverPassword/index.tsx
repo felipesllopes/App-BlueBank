@@ -3,10 +3,12 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { InputControl } from "../../../components/InputControl";
-import { SendButton } from "../../../components/SendButton";
+import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
+import { getBackgroundImage } from "../../../functions/getBackgroundImage";
 import { IFormResetPassword } from "../../../interface";
-import { Container, Message, Text } from "./styles";
+import { Container, Scroll, Wallpaper } from "../Login/styles";
+import { Message, Text } from "./styles";
 
 export const ResetPassword: React.FunctionComponent = () => {
     const { resetPassword } = useContext(AuthContext);
@@ -35,23 +37,31 @@ export const ResetPassword: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Text>Digite o e-mail cadastrado:</Text>
-            <InputControl
-                control={control}
-                iconName="mail"
-                name="email"
-                errors={errors.email && (errors.email?.message as string)}
-                placeholder="E-mail"
-                keyboardType="email-address"
-                autoCapitalize="none"
-            />
+            <Wallpaper source={getBackgroundImage()}>
+                <Scroll>
+                    <Text>Digite o e-mail cadastrado:</Text>
+                    <InputControl
+                        control={control}
+                        iconName="mail"
+                        name="email"
+                        errors={
+                            errors.email && (errors.email?.message as string)
+                        }
+                        placeholder="E-mail"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                    />
 
-            <SendButton
-                onPress={handleSubmit(handlePassword)}
-                title="Redefinir senha"
-            />
+                    <Message>{message}</Message>
 
-            <Message>{message}</Message>
+                    <PrimaryButton
+                        onPress={handleSubmit(handlePassword)}
+                        title="REDEFINIR SENHA"
+                    />
+
+                    <SecondaryButton screen="Login" title="ENTRAR" />
+                </Scroll>
+            </Wallpaper>
         </Container>
     );
 };

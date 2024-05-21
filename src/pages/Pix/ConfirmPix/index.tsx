@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { LoadingModal } from "../../../components/LoadingModal";
-import { SendButton } from "../../../components/SendButton";
+import { PrimaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getBalance } from "../../../functions/getBalance";
 import { handlePix } from "../../../functions/handlePix";
@@ -81,7 +81,7 @@ export const ConfirmPix: React.FunctionComponent = () => {
                 </Data>
             </Scroll>
 
-            <SendButton onPress={handleConfirmationPix} title="Confirmar" />
+            <PrimaryButton onPress={handleConfirmationPix} title="Confirmar" />
 
             <LoadingModal loading={loading} />
         </Container>

@@ -1,26 +1,29 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { ImageSourcePropType } from "react-native";
 import styled from "styled-components/native";
+import theme from "../global/styles/theme";
 import { IScreenNavigation } from "../interface";
 
 interface IProps {
     screen: string;
-    source?: ImageSourcePropType;
     title: string;
 }
 
 export const DrawerServiceCard: React.FunctionComponent<IProps> = ({
     screen,
-    source,
     title,
 }) => {
     const { navigate } = useNavigation<IScreenNavigation>();
 
     return (
-        <ContainerServices onPress={() => navigate(screen)} activeOpacity={0.8}>
-            <ImgIcon source={source} />
+        <ContainerServices onPress={() => navigate(screen)}>
             <TextService>{title}</TextService>
+            <Ionicons
+                name="arrow-forward"
+                size={20}
+                color={theme.colors.white}
+            />
         </ContainerServices>
     );
 };
@@ -28,20 +31,15 @@ export const DrawerServiceCard: React.FunctionComponent<IProps> = ({
 const ContainerServices = styled.TouchableOpacity`
     align-items: center;
     padding: 7px;
-    background-color: rgba(200, 200, 200, 0.3);
     margin: 5px 0;
-    border-radius: 5px;
+    border-bottom-width: 0.5px;
     flex-direction: row;
-    justify-content: center;
-    border-width: 1px;
-`;
-
-const ImgIcon = styled.Image`
-    width: 24px;
-    height: 24px;
+    justify-content: space-between;
+    border-color: ${theme.colors.gray};
 `;
 
 const TextService = styled.Text`
     font-size: 16px;
     margin-left: 10px;
+    color: white;
 `;

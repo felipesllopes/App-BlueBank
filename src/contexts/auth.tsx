@@ -165,10 +165,10 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
             .sendPasswordResetEmail(data.email)
             .then(() => {
                 Alert.alert(
-                    "E-mail enviado para " + data.email + ".",
+                    "E-mail enviado",
                     "Verifique sua caixa de entrada e caixa de spam.",
                 );
-                setMessage("E-mail enviado.");
+                setMessage(`E-mail enviado para: \n ${data.email}`);
             })
             .catch(error => {
                 alert(
@@ -182,7 +182,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
     };
 
     const logOut = async () => {
-        Alert.alert("Deseja sair?", "Você será deslogado da sua conta.", [
+        Alert.alert("Sair da conta", "Tem certeza que deseja desconectar?", [
             {
                 text: "Cancelar",
                 style: "cancel",

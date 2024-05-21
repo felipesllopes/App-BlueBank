@@ -1,18 +1,24 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
+import { AuthContext } from "../contexts/auth";
 import theme from "../global/styles/theme";
 import { Logo_white } from "./Logo";
 
 export const HeaderDrawer: React.FunctionComponent = () => {
     const { dispatch } = useNavigation();
+    const { logOut } = useContext(AuthContext);
 
     return (
         <ContainerDrawer style={{ elevation: 10 }}>
             <Logo_white scale={11} />
             <ContainerIcons>
-                <Icon style={{ marginRight: 14 }} name="log-out-outline" />
+                <Icon
+                    style={{ marginRight: 14 }}
+                    name="log-out-outline"
+                    onPress={logOut}
+                />
                 <Icon
                     name="menu-sharp"
                     onPress={() => dispatch(DrawerActions.toggleDrawer())}

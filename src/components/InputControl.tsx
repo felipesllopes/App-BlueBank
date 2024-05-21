@@ -82,7 +82,7 @@ export const InputPasswordControl: React.FunctionComponent<
 };
 
 const Container = styled.View`
-    margin: 0 20px 10px;
+    margin-bottom: 10px;
 `;
 
 const ViewInput = styled.View`

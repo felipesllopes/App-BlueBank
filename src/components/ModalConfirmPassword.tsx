@@ -10,7 +10,7 @@ import theme from "../global/styles/theme";
 import { IFormEditProfile, IUser } from "../interface";
 import { InputPasswordControl } from "./InputControl";
 import { LoadingModal } from "./LoadingModal";
-import { SendButton } from "./SendButton";
+import { PrimaryButton } from "./SendButton";
 
 interface IProps {
     show: boolean;
@@ -87,7 +87,7 @@ export const ModalConfirmPassword: React.FunctionComponent<IProps> = ({
                         }
                     />
 
-                    <SendButton
+                    <PrimaryButton
                         onPress={handleSubmit(confirmAlterData)}
                         title="Confirmar"
                     />

@@ -1,10 +1,11 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigation } from "@react-navigation/native";
 import Checkbox from "expo-checkbox";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { View } from "react-native";
 import * as yup from "yup";
-import { AccessButton } from "../../../components/AccessButton";
 import {
     InputControl,
     InputPasswordControl,
@@ -12,17 +13,25 @@ import {
 import { LoadingModal } from "../../../components/LoadingModal";
 import { LoadingScreen } from "../../../components/LoadingScreen";
 import { Logo_name_blue } from "../../../components/Logo";
-import { SendButton } from "../../../components/SendButton";
+import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import theme from "../../../global/styles/theme";
-import { IFormLogin } from "../../../interface";
-import { Container, Scroll, TextCheck, ViewCheckBox } from "./styles";
-import { View } from "react-native";
+import { IFormLogin, IScreenNavigation } from "../../../interface";
+import {
+    Container,
+    Scroll,
+    TextCheck,
+    TextRecoverPassword,
+    ViewCheckBox,
+    Wallpaper,
+} from "./styles";
+import { getBackgroundImage } from "../../../functions/getBackgroundImage";
 
 export const Login: React.FunctionComponent = () => {
     const { signIn, isChecked, setIsChecked, user, loading } =
         useContext(AuthContext);
     const [isReady, setIsReady] = useState<boolean>(false);
+    const { navigate } = useNavigation<IScreenNavigation>();
 
     useEffect(() => {
         (async () => {
@@ -67,58 +76,58 @@ export const Login: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Scroll showsVerticalScrollIndicator={false}>
-                <View style={{ alignItems: "center", marginVertical: 50 }}>
-                    <Logo_name_blue scale={2} />
-                </View>
+            <Wallpaper source={getBackgroundImage()}>
+                <Scroll showsVerticalScrollIndicator={false}>
+                    <View style={{ alignItems: "center", marginVertical: 50 }}>
+                        <Logo_name_blue scale={2} />
+                    </View>
 
-                <InputControl
-                    iconName="mail"
-                    placeholder="E-mail"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    control={control}
-                    name="email"
-                    errors={errors.email && (errors.email?.message as string)}
-                />
-
-                <InputPasswordControl
-                    placeholder="Senha"
-                    autoCapitalize="none"
-                    control={control}
-                    name="password"
-                    errors={
-                        errors.password && (errors.password?.message as string)
-                    }
-                />
-
-                <ViewCheckBox>
-                    <Checkbox
-                        value={isChecked}
-                        onValueChange={setIsChecked}
-                        color={theme.colors.text}
+                    <InputControl
+                        iconName="mail"
+                        placeholder="E-mail"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        control={control}
+                        name="email"
+                        errors={
+                            errors.email && (errors.email?.message as string)
+                        }
                     />
-                    <TextCheck>Manter e-mail conectado.</TextCheck>
-                </ViewCheckBox>
 
-                <AccessButton
-                    title="Clique aqui para "
-                    titleButton="redefinir senha"
-                    screen="ResetPassword"
-                />
+                    <InputPasswordControl
+                        placeholder="Senha"
+                        autoCapitalize="none"
+                        control={control}
+                        name="password"
+                        errors={
+                            errors.password &&
+                            (errors.password?.message as string)
+                        }
+                    />
 
-                <SendButton
-                    title="Entrar"
-                    onPress={handleSubmit(handleLogin)}
-                />
+                    <ViewCheckBox>
+                        <TextCheck>SALVAR E-MAIL </TextCheck>
+                        <Checkbox
+                            value={isChecked}
+                            onValueChange={setIsChecked}
+                            color={theme.colors.text}
+                        />
+                    </ViewCheckBox>
 
-                <AccessButton
-                    title="Não tem conta? "
-                    titleButton="Se registar"
-                    screen="Register"
-                />
-            </Scroll>
+                    <PrimaryButton
+                        title="ENTRAR"
+                        onPress={handleSubmit(handleLogin)}
+                    />
 
+                    <SecondaryButton title="CRIAR CONTA" screen={"Register"} />
+
+                    <TextRecoverPassword
+                        onPress={() => navigate("ResetPassword")}
+                    >
+                        RECUPERAR SENHA
+                    </TextRecoverPassword>
+                </Scroll>
+            </Wallpaper>
             <LoadingModal loading={loading} />
         </Container>
     );

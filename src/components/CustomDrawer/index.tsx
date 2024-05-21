@@ -3,21 +3,18 @@ import {
     DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
-import React, { useContext } from "react";
-import { View } from "react-native";
-import { AuthContext } from "../../contexts/auth";
+import React from "react";
+import { Text } from "react-native";
 import theme from "../../global/styles/theme";
 import { IScreenNavigation } from "../../interface";
-import { Logo } from "../../pages/Home/styles";
 import { DrawerServiceCard } from "../DrawerServiceCard";
-import { SendButton } from "../SendButton";
-import { Container, IconCash, Line, Text, TextCash, UserIcon } from "./styles";
+import { Logo_blue } from "../Logo";
+import { Container, ContainerCash, IconCash, TextService } from "./styles";
 
 export const CustomDrawer: React.FunctionComponent<
     DrawerContentComponentProps
 > = () => {
     const { navigate } = useNavigation<IScreenNavigation>();
-    const { user, logOut } = useContext(AuthContext);
 
     return (
         <DrawerContentScrollView
@@ -32,70 +29,45 @@ export const CustomDrawer: React.FunctionComponent<
                 onPress={() => navigate("HomeRoutes")}
                 activeOpacity={0.8}
             >
-                <Logo
-                    source={require("../../assets/logo-bb.png")}
-                    resizeMode="contain"
-                />
-                <Text>Início</Text>
+                <Logo_blue scale={10} />
+                <TextService style={{ marginLeft: 10 }}>Início</TextService>
             </Container>
 
-            {/* <Container
-                onPress={() => navigate("ProfileRoutes")}
-                activeOpacity={0.8}
-            >
-                <UserIcon name="person-circle" />
-                <Text style={{ fontWeight: "normal" }}>{user.name}</Text>
-            </Container> */}
-
-            <Line />
-
-            <Text>Mais serviços:</Text>
-            <View style={{ marginBottom: 12 }} />
-
-            <Container
+            <ContainerCash
                 onPress={() => navigate("CashSimulationRoutes")}
                 activeOpacity={0.8}
+                style={{ elevation: 10 }}
             >
                 <IconCash
                     source={require("../../assets/IconsService/caixa_eletronico.png")}
                     resizeMode="contain"
                 />
-                <TextCash>CAIXA ELETRÔNICO</TextCash>
-            </Container>
+                <Text>CAIXA ELETRÔNICO</Text>
+            </ContainerCash>
 
-            <DrawerServiceCard
-                screen="Transacoes"
-                source={require("../../assets/IconsService/transacao.png")}
-                title="Transações"
-            />
+            <DrawerServiceCard screen="Transacoes" title="Transações" />
 
-            <DrawerServiceCard
-                screen="Cartao"
-                source={require("../../assets/IconsService/cartao.png")}
-                title="Cartões"
-            />
+            <DrawerServiceCard screen="Cartao" title="Cartões" />
 
-            <DrawerServiceCard
-                screen="Deposito"
-                source={require("../../assets/IconsService/deposito.png")}
-                title="Depósito"
-            />
+            <DrawerServiceCard screen="Fatura" title="Fatura" />
 
-            <DrawerServiceCard
-                screen="Pix"
-                source={require("../../assets/IconsService/pix.png")}
-                title="Pix"
-            />
+            <DrawerServiceCard screen="Recarga" title="Recarga" />
 
-            <DrawerServiceCard
-                screen="Transferencia"
-                source={require("../../assets/IconsService/transferencia.png")}
-                title="Transferência"
-            />
+            <DrawerServiceCard screen="Pix" title="Pix" />
 
-            <View style={{ marginBottom: 20 }} />
+            <DrawerServiceCard screen="Boleto" title="Boleto" />
 
-            <SendButton title="Sair" onPress={logOut} />
+            <DrawerServiceCard screen="Transferencia" title="Transferência" />
+
+            <DrawerServiceCard screen="Poupanca" title="Poupança" />
+
+            <DrawerServiceCard screen="Investimento" title="Investimentos" />
+
+            <DrawerServiceCard screen="Negociacao" title="Negociar dívidas" />
+
+            <DrawerServiceCard screen="Ajuda" title="Ajuda" />
+
+            <DrawerServiceCard screen="Contrato" title="Contrato" />
         </DrawerContentScrollView>
     );
 };

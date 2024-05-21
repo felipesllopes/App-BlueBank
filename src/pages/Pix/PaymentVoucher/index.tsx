@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
 import { Text } from "react-native";
-import { SendButton } from "../../../components/SendButton";
+import { PrimaryButton } from "../../../components/SendButton";
 import { IScreenNavigation, IUser } from "../../../interface";
 import {
     Container,
@@ -59,7 +59,7 @@ export const PaymentVoucher: React.FunctionComponent = () => {
                 <Data>{new Date().toLocaleString()}</Data>
             </Scroll>
 
-            <SendButton title="Fechar" onPress={() => navigate("Home")} />
+            <PrimaryButton title="Fechar" onPress={() => navigate("Home")} />
         </Container>
     );
 };

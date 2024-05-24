@@ -3,24 +3,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Keyboard } from "react-native";
 import * as yup from "yup";
-import { DrawerButton } from "../../components/DrawerButton";
+import { HeaderDrawer_2 } from "../../components/HeaderDrawer";
 import { InputControl } from "../../components/InputControl";
 import { ModalConfirmPassword } from "../../components/ModalConfirmPassword";
-import { PrimaryButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
+import theme from "../../global/styles/theme";
 import { IFormEditProfile } from "../../interface";
 import {
-    ButtonCancel,
     Container,
-    Icon,
-    IconCancel,
-    Line,
+    PrimaryButton,
     Scroll,
+    SecondaryButton,
     Text,
-    TextCancel,
-    Title,
+    TextButton,
 } from "./styles";
-import { HeaderDrawer, HeaderDrawer_2 } from "../../components/HeaderDrawer";
 
 export const Profile: React.FunctionComponent = () => {
     const { user, setUser, isChecked } = useContext(AuthContext);
@@ -73,7 +69,7 @@ export const Profile: React.FunctionComponent = () => {
 
             <Scroll>
                 <Text style={{ margin: 10, marginBottom: 25 }}>
-                    Clique para editar a informação.
+                    Clique sobre o texto para editar a informação.
                 </Text>
 
                 <InputControl
@@ -105,30 +101,40 @@ export const Profile: React.FunctionComponent = () => {
                     errors={errors.cpf && (errors.cpf?.message as string)}
                 />
 
-                {/* O botão só será aberto se o isDirty sofrer alteração (for true) */}
-                {isDirty && (
-                    <ButtonCancel activeOpacity={0.7} onPress={() => reset()}>
-                        <TextCancel>Cancelar alterações</TextCancel>
-                        <IconCancel name="close-circle-outline" />
-                    </ButtonCancel>
-                )}
+                <PrimaryButton
+                    disabled={!isDirty}
+                    onPress={handleSubmit(updateData)}
+                >
+                    <TextButton
+                        style={{
+                            color: isDirty
+                                ? theme.colors.white
+                                : theme.colors.gray,
+                        }}
+                    >
+                        Salvar alterações
+                    </TextButton>
+                </PrimaryButton>
 
-                <Line />
-                <Icon name="lock-closed-outline" />
-                <Title>Proteja seus dados!</Title>
-                <Text>
-                    Nunca compartilhe seus dados com fontes suspeitas. No
-                    Bluebank, nunca entramos em contato com nossos clientes
-                    solicitando informações pessoais e bancárias. Desconfie,
-                    pois pode ser um golpe!
-                </Text>
+                <SecondaryButton
+                    disabled={!isDirty}
+                    onPress={() => {
+                        reset();
+                        Keyboard.dismiss();
+                    }}
+                >
+                    <TextButton
+                        style={{
+                            color: !isDirty
+                                ? theme.colors.gray
+                                : theme.colors.black,
+                        }}
+                    >
+                        Cancelar alterações
+                    </TextButton>
+                </SecondaryButton>
             </Scroll>
 
-            <PrimaryButton
-                disabled={!isDirty}
-                title="Salvar alterações"
-                onPress={handleSubmit(updateData)}
-            />
             <ModalConfirmPassword
                 setShow={setShow}
                 show={show}

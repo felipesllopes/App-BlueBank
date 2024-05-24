@@ -8,18 +8,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Scroll = styled.ScrollView`
-    flex: 1;
-    width: 100%;
-    padding: 10px;
-`;
-
-export const ViewData = styled.View`
-    margin-bottom: 10px;
-`;
-
-export const InputName = styled.Text`
-    font-size: 18px;
-    font-weight: bold;
+    padding: 0 20px;
 `;
 
 export const Input = styled.TextInput`
@@ -29,32 +18,11 @@ export const Input = styled.TextInput`
     padding: 3px 10px;
 `;
 
-export const ButtonCancel = styled.TouchableOpacity`
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: center;
-`;
-
-export const TextCancel = styled.Text`
-    /* color: white; */
-    font-size: 17px;
-    margin-right: 5px;
-`;
-
-export const IconCancel = styled(Ionicons)`
-    /* color: white; */
-    font-size: 20px;
-`;
-
 export const Line = styled.View`
     width: 100%;
     border-width: 2px;
     border-color: ${theme.colors.primary};
     margin: 20px 0;
-`;
-
-export const Body = styled.View`
-    flex: 1;
 `;
 
 export const Icon = styled(Ionicons)`
@@ -63,13 +31,29 @@ export const Icon = styled(Ionicons)`
     margin-bottom: 10px;
 `;
 
-export const Title = styled.Text`
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-`;
-
 export const Text = styled.Text`
     font-size: 18px;
+    font-weight: 500;
     text-align: center;
+`;
+
+export const PrimaryButton = styled.TouchableOpacity`
+    background-color: ${theme.colors.primary};
+    padding: 14px;
+    align-items: center;
+    border-radius: 8px;
+    margin: 20px 0 10px;
+`;
+
+export const SecondaryButton = styled.TouchableOpacity`
+    padding: 10px;
+    align-items: center;
+    border-width: 2px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-color: ${theme.colors.primary};
+`;
+
+export const TextButton = styled.Text`
+    font-size: 17px;
 `;

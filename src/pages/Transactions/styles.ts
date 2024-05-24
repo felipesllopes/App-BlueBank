@@ -9,31 +9,53 @@ export const Container = styled.SafeAreaView`
     background-color: ${theme.colors.secondary};
 `;
 
+export const HeaderTab = styled.View`
+    background-color: ${theme.colors.primary};
+    padding: 14px 18px;
+    flex-direction: row;
+`;
+
+export const IconTab = styled(Ionicons)`
+    color: ${theme.colors.white};
+    font-size: 25px;
+`;
+
+export const TitleTab = styled.Text`
+    font-size: 18px;
+    font-weight: 500;
+    color: ${theme.colors.white};
+`;
+
+export const Box = styled.View`
+    align-items: center;
+    margin: 26px;
+`;
+
 export const TextBalance = styled.Text`
+    color: #ddd;
+    font-size: 16px;
+    margin-bottom: 10px;
+`;
+
+export const TextValue = styled.Text`
     font-size: 20px;
     color: white;
     text-align: center;
     font-weight: bold;
-    margin: 20px;
 `;
 
 export const Body = styled.View`
     background-color: ${theme.colors.white};
     flex: 1;
-    border-top-left-radius: 60px;
-    border-top-right-radius: 60px;
 `;
 
-export const ViewTop = styled.View`
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    margin: 10px;
-`;
-
-export const TextTransactions = styled.Text`
-    font-size: 20px;
-    font-weight: bold;
+export const ContainerList = styled.View`
+    margin: 30px;
+    align-self: center;
+    flex: 1;
+    width: 90%;
+    border-radius: 10px;
+    background-color: ${theme.colors.background};
 `;
 
 export const IconDate = styled(Ionicons)`
@@ -41,9 +63,9 @@ export const IconDate = styled(Ionicons)`
 `;
 
 export const TextDate = styled.Text`
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: right;
     margin: 10px;
     color: ${theme.colors.text};
 `;

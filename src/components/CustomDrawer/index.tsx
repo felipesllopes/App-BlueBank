@@ -25,10 +25,7 @@ export const CustomDrawer: React.FunctionComponent<
                 flex: 1,
             }}
         >
-            <Container
-                onPress={() => navigate("HomeRoutes")}
-                activeOpacity={0.8}
-            >
+            <Container onPress={() => navigate(" ")} activeOpacity={0.8}>
                 <Logo_blue scale={10} />
                 <TextService style={{ marginLeft: 10 }}>Início</TextService>
             </Container>

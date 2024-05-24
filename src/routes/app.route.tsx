@@ -5,16 +5,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { CustomDrawer } from "../components/CustomDrawer";
 import theme from "../global/styles/theme";
+import { Help as Ajuda } from "../pages/Ajuda";
 import { Boleto } from "../pages/Boleto";
 import { Cartao } from "../pages/Cartao";
 import { HomeCash } from "../pages/CashSimulation/HomeCash";
-import { Operation } from "../pages/CashSimulation/Operation";
-import { Contrato } from "../pages/Contract";
+import { Operacao } from "../pages/CashSimulation/Operacao";
+import { Contrato } from "../pages/Contrato";
 import { Fatura } from "../pages/Fatura";
-import { Help as Ajuda } from "../pages/Help";
 import { Home } from "../pages/Home";
 import { Investimento } from "../pages/Investimento";
-import { Negociacao } from "../pages/Negotiation";
+import { Negociacao } from "../pages/Negociacao";
 import { ConfirmPix } from "../pages/Pix/ConfirmPix";
 import { Pix } from "../pages/Pix/Home";
 import { PayPix } from "../pages/Pix/PayPix";
@@ -98,7 +98,7 @@ const HomeRoutes: React.FunctionComponent = () => {
             <Stack.Screen
                 name="Transacoes"
                 component={Transacoes}
-                options={{ title: "Transações" }}
+                options={{ headerShown: false }}
             />
 
             <Stack.Screen
@@ -192,7 +192,7 @@ const CashSimulationRoutes: React.FunctionComponent = () => {
         >
             <Stack.Screen name="HomeCash" component={HomeCash} />
 
-            <Stack.Screen name="Operation" component={Operation} />
+            <Stack.Screen name="Operacao" component={Operacao} />
         </Stack.Navigator>
     );
 };

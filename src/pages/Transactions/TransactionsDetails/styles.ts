@@ -7,7 +7,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Header = styled.View`
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.secondary};
 `;
 
 export const BoxText = styled.View`
@@ -15,7 +15,7 @@ export const BoxText = styled.View`
 `;
 
 export const TextBold = styled.Text`
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: ${theme.colors.white};
 `;

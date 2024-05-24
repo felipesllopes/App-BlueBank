@@ -13,7 +13,7 @@ import {
     ViewIcons,
 } from "./styles";
 
-export const Operation: React.FunctionComponent = () => {
+export const Operacao: React.FunctionComponent = () => {
     const { goBack } = useNavigation();
     const [value, setValue] = useState<string>("");
     const { user, setUser } = useContext(AuthContext);

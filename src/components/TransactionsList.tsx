@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import styled from "styled-components/native";
+import theme from "../global/styles/theme";
 import { ITransactions } from "../interface";
 
 interface IProps {
@@ -24,7 +25,7 @@ export const TransactionsList: React.FunctionComponent<IProps> = ({ data }) => {
                     <Type>{data.type}</Type>
 
                     <Balance>
-                        Saldo: R$
+                        R$
                         {data.balance.toLocaleString("pt-BR", {
                             minimumFractionDigits: 2,
                         })}
@@ -48,10 +49,9 @@ export const TransactionsList: React.FunctionComponent<IProps> = ({ data }) => {
 const Container = styled.TouchableOpacity`
     flex: 1;
     margin: 10px;
-    background-color: #f3f3f3;
-    border-radius: 10px;
+    background-color: ${theme.colors.background};
     padding: 10px 14px;
-    border-width: 1px;
+    border-bottom-width: 1px;
 `;
 
 const Box = styled.View``;
@@ -62,17 +62,14 @@ const BoxType = styled.View`
 `;
 
 const Type = styled.Text`
-    font-weight: bold;
-    color: #555;
+    font-weight: 500;
+    font-size: 17px;
 `;
 
-const Value = styled.Text`
-    font-size: 17px;
-    font-weight: bold;
-`;
+const Value = styled.Text``;
 
 const Balance = styled.Text`
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
     color: #333;
 `;

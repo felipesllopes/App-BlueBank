@@ -82,3 +82,7 @@ export const Balance = styled.Text`
     font-weight: bold;
     margin: 0 3px;
 `;
+
+export const MarginButton = styled.View`
+    margin: 0 10px 5px;
+`;

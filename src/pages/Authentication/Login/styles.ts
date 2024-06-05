@@ -25,14 +25,13 @@ export const ViewCheckBox = styled.View`
 `;
 
 export const TextCheck = styled.Text`
-    font-size: 15px;
+    /* font-size: 15px; */
     margin-left: 5px;
 `;
 
 export const TextRecoverPassword = styled.Text`
-    font-size: 15px;
     text-align: center;
     margin: 15px 10px 20px;
     text-decoration: underline;
-    font-weight: bold;
+    font-weight: 500;
 `;

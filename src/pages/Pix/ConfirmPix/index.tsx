@@ -17,6 +17,7 @@ import {
     Value,
     ViewAlert,
 } from "./styles";
+import { MarginButton } from "../PayPix/styles";
 
 interface RouteParams {
     destinatary: IUser;
@@ -81,7 +82,12 @@ export const ConfirmPix: React.FunctionComponent = () => {
                 </Data>
             </Scroll>
 
-            <PrimaryButton onPress={handleConfirmationPix} title="Confirmar" />
+            <MarginButton>
+                <PrimaryButton
+                    onPress={handleConfirmationPix}
+                    title="CONFIRMAR"
+                />
+            </MarginButton>
 
             <LoadingModal loading={loading} />
         </Container>

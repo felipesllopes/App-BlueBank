@@ -45,6 +45,7 @@ export const SecondaryButton: React.FunctionComponent<
                 elevation: 4,
                 backgroundColor: theme.colors.background,
                 borderWidth: 1,
+                borderColor: theme.colors.primary,
             }}
             {...otherProps}
         >
@@ -63,7 +64,8 @@ const Button = styled.TouchableOpacity`
 `;
 
 const TextButton = styled.Text`
-    font-size: 19px;
+    font-size: 16px;
+    font-weight: 600;
     color: ${theme.colors.white};
     text-align: center;
 `;

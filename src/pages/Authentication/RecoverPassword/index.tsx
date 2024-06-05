@@ -52,7 +52,9 @@ export const ResetPassword: React.FunctionComponent = () => {
                         autoCapitalize="none"
                     />
 
-                    <Message>{message}</Message>
+                    {message && (
+                        <Message style={{ elevation: 5 }}>{message}</Message>
+                    )}
 
                     <PrimaryButton
                         onPress={handleSubmit(handlePassword)}

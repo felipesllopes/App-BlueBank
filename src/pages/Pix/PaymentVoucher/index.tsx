@@ -12,6 +12,7 @@ import {
     Value,
     ViewAlert,
 } from "./styles";
+import { MarginButton } from "../PayPix/styles";
 
 interface RouteParams {
     destinatary: IUser;
@@ -59,7 +60,12 @@ export const PaymentVoucher: React.FunctionComponent = () => {
                 <Data>{new Date().toLocaleString()}</Data>
             </Scroll>
 
-            <PrimaryButton title="Fechar" onPress={() => navigate("Home")} />
+            <MarginButton>
+                <PrimaryButton
+                    title="FECHAR"
+                    onPress={() => navigate("Home")}
+                />
+            </MarginButton>
         </Container>
     );
 };

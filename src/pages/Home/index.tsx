@@ -4,6 +4,7 @@ import { HeaderDrawer } from "../../components/HeaderDrawer";
 import { LoadingModal } from "../../components/LoadingModal";
 import { Margin } from "../../components/Margin";
 import { OtherServicesList } from "../../components/OtherServicesList";
+import { RegisterBiometrics } from "../../components/RegisterBiometrics";
 import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
 import { getBackgroundImage } from "../../functions/getBackgroundImage";
@@ -19,7 +20,7 @@ import {
     ShowBalance,
     TextBalance,
     Transactions,
-    Welcome
+    Welcome,
 } from "./styles";
 
 export const Home: React.FunctionComponent = () => {
@@ -76,6 +77,10 @@ export const Home: React.FunctionComponent = () => {
                         <ServiceCardList />
 
                         <Margin pixels={40} />
+
+                        <RegisterBiometrics />
+
+                        <Margin pixels={30} />
 
                         <OtherServicesList />
                     </Body>

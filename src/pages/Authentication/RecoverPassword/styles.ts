@@ -11,6 +11,11 @@ export const Message = styled.Text`
     font-size: 17px;
     text-align: center;
     font-style: italic;
-    margin: 5px 10px 10px;
+    margin: 5px 10px 20px;
     color: ${theme.colors.text};
+    background-color: ${theme.colors.background};
+    padding: 20px 10px;
+    border-radius: 10px;
+    align-self: center;
+    border-width: 1px;
 `;

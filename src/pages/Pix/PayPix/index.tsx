@@ -1,6 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
+import { Logo_blue } from "../../../components/Logo";
 import { PrimaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getBalance } from "../../../functions/getBalance";
@@ -12,7 +13,7 @@ import {
     Container,
     Cpf,
     Line,
-    Logo,
+    MarginButton,
     Name,
     Scroll,
     Title,
@@ -72,11 +73,8 @@ export const PayPix: React.FunctionComponent = () => {
 
                 <ViewPayer style={{ elevation: 5 }}>
                     <ViewTop>
-                        <Logo
-                            source={require("../../../assets/logo-bb.png")}
-                            resizeMode="contain"
-                        />
-                        <View>
+                        <Logo_blue scale={10} />
+                        <View style={{ marginLeft: 10 }}>
                             <Account>Conta</Account>
                             <Account>0000 - Cc 000000-0</Account>
                         </View>
@@ -94,18 +92,22 @@ export const PayPix: React.FunctionComponent = () => {
                 </ViewPayer>
             </Scroll>
 
-            <PrimaryButton
-                onPress={() => navigate("ConfirmPix", { value, destinatary })}
-                title="Continuar"
-                style={{
-                    backgroundColor: validation()
-                        ? theme.colors.gray
-                        : theme.colors.primary,
-                    borderWidth: validation() ? 0 : 1,
-                    elevation: 3,
-                }}
-                disabled={validation() ? true : false}
-            />
+            <MarginButton>
+                <PrimaryButton
+                    onPress={() =>
+                        navigate("ConfirmPix", { value, destinatary })
+                    }
+                    title="CONTINUAR"
+                    style={{
+                        backgroundColor: validation()
+                            ? theme.colors.gray
+                            : theme.colors.primary,
+                        borderWidth: validation() ? 0 : 1,
+                        elevation: 3,
+                    }}
+                    disabled={validation() ? true : false}
+                />
+            </MarginButton>
         </Container>
     );
 };

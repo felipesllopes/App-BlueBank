@@ -69,6 +69,7 @@ Monitoring of investments within the application.
 
 ## Image Screens: <a name="image-screens"> </a>
 
+![tela1](https://github.com/felipesllopes/App-Bluebank/assets/99768939/2bd9b836-8f7b-4ea8-8582-c3252431607b)
+![tela2](https://github.com/felipesllopes/App-Bluebank/assets/99768939/51ac7207-4ddc-4c02-b336-f39433242288)
+![tela3](https://github.com/felipesllopes/App-Bluebank/assets/99768939/c57aaff7-fe34-4140-a12f-a4e9b2542d38)
 
-![tela1](https://github.com/felipesllopes/App-BlueBank/assets/99768939/6eebf062-7cc8-410f-81d3-5de85ac31deb)
-![tela4](https://github.com/felipesllopes/App-BlueBank/assets/99768939/960cc1b6-9f48-43d3-9954-0959889a6c3e)

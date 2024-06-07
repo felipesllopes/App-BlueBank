@@ -29,33 +29,35 @@ export const TitleTab = styled.Text`
 export const Box = styled.View`
     align-items: center;
     margin: 26px;
+    margin-bottom: 80px;
 `;
 
 export const TextBalance = styled.Text`
-    color: #ddd;
+    color: #eee;
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 `;
 
 export const TextValue = styled.Text`
-    font-size: 20px;
+    font-size: 22px;
     color: white;
     text-align: center;
-    font-weight: bold;
+    font-weight: 500;
 `;
 
 export const Body = styled.View`
-    background-color: ${theme.colors.white};
+    background-color: ${theme.colors.background};
     flex: 1;
 `;
 
 export const ContainerList = styled.View`
-    margin: 30px;
+    margin: 0 30px 30px;
     align-self: center;
     flex: 1;
     width: 90%;
     border-radius: 10px;
-    background-color: ${theme.colors.background};
+    background-color: ${theme.colors.white};
+    top: -50px;
 `;
 
 export const IconDate = styled(Ionicons)`

@@ -78,9 +78,9 @@ export const Home: React.FunctionComponent = () => {
 
                         <Margin pixels={40} />
 
-                        <RegisterBiometrics />
+                        {/* <RegisterBiometrics />
 
-                        <Margin pixels={30} />
+                        <Margin pixels={30} /> */}
 
                         <OtherServicesList />
                     </Body>

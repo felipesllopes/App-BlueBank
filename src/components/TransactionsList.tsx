@@ -48,10 +48,10 @@ export const TransactionsList: React.FunctionComponent<IProps> = ({ data }) => {
 
 const Container = styled.TouchableOpacity`
     flex: 1;
-    margin: 10px;
-    background-color: ${theme.colors.background};
-    padding: 10px 14px;
-    border-bottom-width: 1px;
+    margin: 10px 10px 0;
+    /* background-color: ${theme.colors.gray}; */
+    padding: 5px;
+    border-top-width: 1px;
 `;
 
 const Box = styled.View``;

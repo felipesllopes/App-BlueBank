@@ -27,10 +27,11 @@
 ## Technologies used: <a name="technologies"></a>
 
 - <strong>Language:</strong> TypeScript;
-- <strong>Frameworks and Libraries:</strong> React Native, React Navigation, Styled-components;
-- <strong>Development Tools:</strong> Node.js, Npm, ESLint, Prettier;
-- <strong>Code editor:</strong> Visual Studio Code;
-- <strong>Emulators and Devices:</strong> Android Studio, Physical device;
+- <strong>Frameworks and Libraries:</strong> <a href="https://reactnative.dev">React Native</a>, <a href="https://reactnavigation.org/">React Navigation</a>, <a href="https://styled-components.com/">Styled-components</a>;
+- <strong>Development Tools:</strong> <a href="https://nodejs.org/en">Node.js</a>, Npm, <a href="https://eslint.org/">ESLint</a>, <a href="https://prettier.io/">Prettier</a>;
+- <strong>Code editor:</strong> <a href="https://code.visualstudio.com/">Visual Studio Code</a>;
+- <strong>Emulators and Devices:</strong> <a href="https://developer.android.com/studio?gad_source=1&gclid=CjwKCAjw34qzBhBmEiwAOUQcF9kSopNno5RWRSQ0WyLk1bB4XyOl_5QcNoTa-4kETbUYq4MxXY1bdRoCmXcQAvD_BwE&gclsrc=aw.ds&hl=pt-br">Android Studio</a>, Physical device;
+- <strong>Database:</strong> <a href="https://firebase.google.com/?utm_source=google&utm_medium=cpc&utm_campaign=latam-BR-all-pt-dr-SKWS-all-all-trial-e-dr-1707800-LUAC0008679&utm_content=text-ad-none-any-DEV_c-CRE_429626774316-ADGP_Hybrid%20%7C%20SKWS%20-%20EXA%20%7C%20Txt_Compute-Firebase-KWID_43700066431125567-kwd-312330826250&utm_term=KW_firebase-ST_Firebase&gad_source=1&gclid=CjwKCAjw34qzBhBmEiwAOUQcFzZS9ADfEYTLcgnvi8mruOFFZag1jPHDEOAgH-Dk_jBt9Rpxez6FEBoCc6IQAvD_BwE&gclsrc=aw.ds&hl=pt-br">Firebase</a>
 
 <br/>
 
@@ -69,7 +70,8 @@ Monitoring of investments within the application.
 
 ## Image Screens: <a name="image-screens"> </a>
 
-![tela1](https://github.com/felipesllopes/App-Bluebank/assets/99768939/2bd9b836-8f7b-4ea8-8582-c3252431607b)
-![tela2](https://github.com/felipesllopes/App-Bluebank/assets/99768939/51ac7207-4ddc-4c02-b336-f39433242288)
-![tela3](https://github.com/felipesllopes/App-Bluebank/assets/99768939/c57aaff7-fe34-4140-a12f-a4e9b2542d38)
+
+<img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/c82b7b67-30d4-47f3-ab31-dbd95499d993" alt="Tela login" width="325,6" height="680">
+<img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/62b3e60f-4ef5-4e81-9d5a-a8ee928e63be" alt="Tela Home" width="325,6" height="680">
+<img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/7e4a88d7-d12f-4215-a8e1-271b6f5992dd" alt="Tela transações" width="325,6" height="680">
 

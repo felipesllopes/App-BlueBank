@@ -1,4 +1,8 @@
-# App-Bluebank (in construction ⚠)
+# App-Bluebank
+
+> This is an application under development. The main development environment is Windows, and currently, the application is only compatible with the Android system.
+
+</br>
 
 <img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/06e00f8d-5e99-4909-bb07-5e13a989023b" alt="Logo BB" width="160,4" height="120,4">
 
@@ -13,6 +17,8 @@
 - [Technologies used](#technologies)
 - [Functionalities](#functionalities)
 - [Image Screens](#image-screens)
+- [Installation requirements](#installation-requirements)
+- [Setup Instructions](#setup-instructions)
 
 <br/>
 
@@ -74,4 +80,43 @@ Monitoring of investments within the application.
 <img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/c82b7b67-30d4-47f3-ab31-dbd95499d993" alt="Tela login" width="325,6" height="680">
 <img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/62b3e60f-4ef5-4e81-9d5a-a8ee928e63be" alt="Tela Home" width="325,6" height="680">
 <img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/7e4a88d7-d12f-4215-a8e1-271b6f5992dd" alt="Tela transações" width="325,6" height="680">
+
+</br>
+</br>
+
+## Installation requirements: <a name="installation-requirements"> </a>
+
+- Installing React Native:
+
+Install and configure <a href="https://reactnative.dev/docs/set-up-your-environment">React Native</a> as described in the official documentation.
+It is necessary to follow all the steps for the application to run correctly.
+
+- Android Studio Installation:
+
+Make sure you followed the previous step correctly and installed <a href="https://developer.android.com/studio?hl=pt-br">Android Studio</a>.
+
+
+</br>
+
+## Setup Instructions: <a name="setup-instructions"> </a>
+
+
+<strong>1. Clone the Repository:</strong>
+```
+git clone https://github.com/felipesllopes/App-Bluebank.git
+cd App-Bluebank
+```
+
+<strong>2. Install Dependencies:</strong>
+```
+npm install
+```
+
+<strong>3. Run the Application:</strong>
+
+> With the Android Studio emulator running or a physical device connected via a USB cable (developer mode must be enabled and USB debugging configured), run the following command:
+
+```
+npx react-native run-android
+```
 

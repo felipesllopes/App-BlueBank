@@ -18,6 +18,7 @@
 - [Image Screens](#image-screens)
 - [Installation requirements](#installation-requirements)
 - [Setup Instructions](#setup-instructions)
+- [Considerations](#considerations)
 
 <br/>
 
@@ -117,3 +118,9 @@ npm install
 ```
 npx react-native run-android
 ```
+
+
+## Considerations:
+
+Follow me if you liked this project, or <a href="https://github.com/felipesllopes/felipesllopes/tree/main/#contact">get in touch</a> if you have any questions or would want to contribute to the project.
+

@@ -4,11 +4,10 @@
 
 </br>
 
-<img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/06e00f8d-5e99-4909-bb07-5e13a989023b" alt="Logo BB" width="160,4" height="120,4">
+<img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/c43d4f93-7565-4190-b02f-97aababa1cee" alt="Icon Logo" width="120" height="120" />
 
 <br/>
 <br/>
-
 
 
 ## Topics:
@@ -21,7 +20,6 @@
 - [Setup Instructions](#setup-instructions)
 
 <br/>
-
 
 
 ## Description: <a name="description"></a>
@@ -119,4 +117,3 @@ npm install
 ```
 npx react-native run-android
 ```
-

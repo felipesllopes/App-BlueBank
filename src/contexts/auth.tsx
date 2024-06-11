@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
@@ -9,6 +8,7 @@ import {
     IFormResetPassword,
     IUser,
 } from "../interface";
+import { getItem, removeItem, setEmail, setPreference } from "../storage";
 
 interface IAuthContext {
     user: IUser;
@@ -40,35 +40,13 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
     const [mountingScreen, setMountingScreen] = useState<boolean>(false);
     const initialValue: number = 50;
 
+    // função para buscar dados de login na storage
     useEffect(() => {
         (async () => {
             setMountingScreen(true);
-            await AsyncStorage.getItem("@keyBoolean")
-                .then(async value => {
-                    if (value === "false") {
-                        setIsChecked(false);
-                        return;
-                    }
-                    if (value === "true") {
-                        setIsChecked(true);
-                        await AsyncStorage.getItem("@keyEmailUser").then(
-                            async value => {
-                                setUser(current => ({
-                                    ...current,
-                                    email: value,
-                                }));
-                            },
-                        );
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-                .finally(() => {
-                    setMountingScreen(false);
-                });
+            await getItem(setIsChecked, setUser, setMountingScreen);
         })();
-    }, [setIsChecked, setUser, AsyncStorage]);
+    }, [setIsChecked, setUser, getItem]);
 
     const signUp = async (data: IFormRegister) => {
         setLoading(true);
@@ -130,16 +108,11 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                         setUser(dados);
 
                         const valueBooleanString = isChecked ? "true" : "false";
-                        await AsyncStorage.setItem(
-                            "@keyBoolean",
-                            valueBooleanString,
-                        );
+
+                        await setPreference(valueBooleanString);
 
                         if (isChecked) {
-                            await AsyncStorage.setItem(
-                                "@keyEmailUser",
-                                data.email,
-                            );
+                            await setEmail(data.email);
                         }
                     })
                     .catch(error => {
@@ -194,10 +167,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                     await auth()
                         .signOut()
                         .then(async () => {
-                            await AsyncStorage.clear().then(() => {
-                                setUser({} as IUser);
-                                setIsChecked(false);
-                            });
+                            await removeItem(setUser, setIsChecked);
                         })
                         .catch(error => {
                             alert("Erro ao sair.");

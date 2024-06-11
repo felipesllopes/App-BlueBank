@@ -26,6 +26,7 @@ import {
     Wallpaper,
 } from "./styles";
 import { getBackgroundImage } from "../../../functions/getBackgroundImage";
+import { getBiometric } from "../../../storage";
 
 export const Login: React.FunctionComponent = () => {
     const { signIn, isChecked, setIsChecked, user, loading } =

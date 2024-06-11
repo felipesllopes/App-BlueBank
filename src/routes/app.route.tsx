@@ -26,6 +26,7 @@ import { Recarga } from "../pages/Recarga";
 import { Transacoes } from "../pages/Transactions";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
 import { Transferencia } from "../pages/Transferencia";
+import { Biometry } from "../pages/Biometry";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -175,6 +176,12 @@ const HomeRoutes: React.FunctionComponent = () => {
                 name="CashSimulationRoutes"
                 component={CashSimulationRoutes}
                 options={{ title: "Caixa eletrônico" }}
+            />
+
+            <Stack.Screen
+                name="Biometry"
+                component={Biometry}
+                options={{ title: "Biometria" }}
             />
         </Stack.Navigator>
     );

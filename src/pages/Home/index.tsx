@@ -1,15 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
+import { View } from "react-native";
+import { BiometricsRegistrationService } from "../../components/BiometricsRegistrationService";
 import { HeaderDrawer } from "../../components/HeaderDrawer";
 import { LoadingModal } from "../../components/LoadingModal";
 import { Margin } from "../../components/Margin";
 import { OtherServicesList } from "../../components/OtherServicesList";
-import { RegisterBiometrics } from "../../components/RegisterBiometrics";
 import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
 import { getBackgroundImage } from "../../functions/getBackgroundImage";
 import { getBalance } from "../../functions/getBalance";
 import { IScreenNavigation } from "../../interface";
+import { getBiometric } from "../../storage";
 import {
     Background,
     Body,
@@ -27,6 +29,7 @@ export const Home: React.FunctionComponent = () => {
     const { user, loading } = useContext(AuthContext);
     const [visibleBalance, setVisibleBalance] = useState(false);
     const [balance, setBalance] = useState<number>(0);
+    const [isBiometry, setIsBiometry] = useState<boolean>(false);
     const { navigate } = useNavigation<IScreenNavigation>();
 
     useEffect(() => {
@@ -34,6 +37,14 @@ export const Home: React.FunctionComponent = () => {
             await getBalance(user.uid, setBalance);
         })();
     }, [user.uid]);
+
+    useEffect(() => {
+        (async () => {
+            await getBiometric().then(async value => {
+                setIsBiometry(await value);
+            });
+        })();
+    }, [getBiometric, setIsBiometry]);
 
     const handlevisibleBalance = () => {
         setVisibleBalance(current => (current === true ? false : true));
@@ -78,9 +89,12 @@ export const Home: React.FunctionComponent = () => {
 
                         <Margin pixels={40} />
 
-                        {/* <RegisterBiometrics />
-
-                        <Margin pixels={30} /> */}
+                        {!isBiometry && (
+                            <View>
+                                <BiometricsRegistrationService />
+                                <Margin pixels={30} />
+                            </View>
+                        )}
 
                         <OtherServicesList />
                     </Body>

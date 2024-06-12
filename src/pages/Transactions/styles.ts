@@ -33,16 +33,15 @@ export const Box = styled.View`
 `;
 
 export const TextBalance = styled.Text`
-    color: #eee;
-    font-size: 16px;
-    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: 500;
 `;
 
 export const TextValue = styled.Text`
-    font-size: 22px;
+    font-size: 23px;
     color: white;
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
 `;
 
 export const Body = styled.View`
@@ -60,12 +59,8 @@ export const ContainerList = styled.View`
     top: -50px;
 `;
 
-export const IconDate = styled(Ionicons)`
-    font-size: 24px;
-`;
-
 export const TextDate = styled.Text`
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 500;
     text-align: right;
     margin: 10px;
@@ -85,9 +80,9 @@ export const FlatListTransactions = styled(
 )``;
 
 export const NotFound = styled.Text`
-    font-size: 18px;
+    font-size: 17px;
     font-style: italic;
-    color: #333;
+    color: ${theme.colors.text};
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20%;
 `;

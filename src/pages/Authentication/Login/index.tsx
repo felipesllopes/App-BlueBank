@@ -1,10 +1,10 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
-import Checkbox from "expo-checkbox";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { View } from "react-native";
+import ToggleSwitch from "toggle-switch-react-native";
 import * as yup from "yup";
 import {
     InputControl,
@@ -15,8 +15,10 @@ import { LoadingScreen } from "../../../components/LoadingScreen";
 import { Logo_name_blue } from "../../../components/Logo";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
+import { getBackgroundImage } from "../../../functions/getBackgroundImage";
 import theme from "../../../global/styles/theme";
 import { IFormLogin, IScreenNavigation } from "../../../interface";
+import { getItem } from "../../../storage";
 import {
     Container,
     Scroll,
@@ -25,22 +27,15 @@ import {
     ViewCheckBox,
     Wallpaper,
 } from "./styles";
-import { getBackgroundImage } from "../../../functions/getBackgroundImage";
-import { getBiometric } from "../../../storage";
 
 export const Login: React.FunctionComponent = () => {
-    const { signIn, isChecked, setIsChecked, user, loading } =
+    const { signIn, isChecked, setIsChecked, user, loading, setUser } =
         useContext(AuthContext);
-    const [isReady, setIsReady] = useState<boolean>(false);
-    const { navigate } = useNavigation<IScreenNavigation>();
 
-    useEffect(() => {
-        (async () => {
-            await Ionicons.loadFont().then(() => {
-                setIsReady(true);
-            });
-        })();
-    }, []);
+    const [isReady, setIsReady] = useState<boolean>(false);
+    const [isFontsLoaded, setIsFontsLoaded] = useState<boolean>(false);
+    const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
+    const { navigate } = useNavigation<IScreenNavigation>();
 
     const schema = yup.object({
         email: yup
@@ -53,22 +48,59 @@ export const Login: React.FunctionComponent = () => {
             .required("Digite a sua senha."),
     });
 
-    const defaultValues = {
-        email: isChecked ? user.email : "",
-        password: "",
-    };
-
     const {
         control,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm({
         resolver: yupResolver(schema),
-        defaultValues,
+        defaultValues: {
+            email: "",
+            password: "",
+        },
     });
+
+    useEffect(() => {
+        (async () => {
+            await Ionicons.loadFont().then(() => {
+                setIsFontsLoaded(true);
+            });
+        })();
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            await getItem(setIsChecked, setUser, setIsDataLoaded);
+        })();
+    }, [setIsChecked, setUser]);
+
+    useEffect(() => {
+        if (isFontsLoaded && isDataLoaded) {
+            setIsReady(true);
+        }
+    }, [isFontsLoaded, isDataLoaded]);
+
+    useEffect(() => {
+        if (isChecked) {
+            reset({
+                email: user.email,
+                password: "",
+            });
+        } else {
+            reset({
+                email: "",
+                password: "",
+            });
+        }
+    }, [isChecked, user.email, reset]);
 
     const handleLogin = (data: IFormLogin) => {
         signIn(data);
+    };
+
+    const handleToggle = (isOn: boolean) => {
+        setIsChecked(isOn);
     };
 
     if (!isReady) {
@@ -107,11 +139,12 @@ export const Login: React.FunctionComponent = () => {
                     />
 
                     <ViewCheckBox>
-                        <TextCheck>SALVAR E-MAIL </TextCheck>
-                        <Checkbox
-                            value={isChecked}
-                            onValueChange={setIsChecked}
-                            color={theme.colors.text}
+                        <TextCheck>SALVAR E-MAIL</TextCheck>
+                        <ToggleSwitch
+                            isOn={isChecked}
+                            onColor={theme.colors.primary}
+                            offColor={theme.colors.gray}
+                            onToggle={handleToggle}
                         />
                     </ViewCheckBox>
 

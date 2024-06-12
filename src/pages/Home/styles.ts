@@ -18,28 +18,9 @@ export const Scroll = styled.ScrollView`
     background-color: rgba(102, 163, 255, 0.85);
 `;
 
-export const BoxLogo = styled.View`
-    flex-direction: row;
-    justify-content: center;
-    margin: 20px 0;
-    align-items: center;
-`;
-
-export const Logo = styled.Image`
-    height: 45px;
-    width: 45px;
-`;
-
-export const BankName = styled.Text`
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: 10px;
-    color: ${theme.colors.white};
-`;
-
 export const Welcome = styled.Text`
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 500;
     color: ${theme.colors.white};
     text-align: center;
     margin-top: 20px;

@@ -5,12 +5,12 @@ import { IUser } from "../interface";
  * Função para buscar dados de login
  * @param setIsChecked
  * @param setUser
- * @param setMountingScreen
+ * @param setIsDataLoaded
  */
 export const getItem = async (
-    setIsChecked: (value: React.SetStateAction<boolean>) => void,
+    setIsChecked: (value: boolean) => void,
     setUser: (value: React.SetStateAction<IUser>) => void,
-    setMountingScreen: (value: React.SetStateAction<boolean>) => void,
+    setIsDataLoaded: (value: boolean) => void,
 ) => {
     await AsyncStorage.getItem("@keyBoolean")
         .then(async value => {
@@ -34,7 +34,7 @@ export const getItem = async (
             console.log(error);
         })
         .finally(() => {
-            setMountingScreen(false);
+            setIsDataLoaded(true);
         });
 };
 
@@ -59,14 +59,8 @@ export const setEmail = async (email: string) => {
  * @param setUser
  * @param setIsChecked
  */
-export const removeItem = async (
-    setUser: (value: React.SetStateAction<IUser>) => void,
-    setIsChecked: (value: React.SetStateAction<boolean>) => void,
-) => {
-    await AsyncStorage.clear().then(() => {
-        setUser({} as IUser);
-        setIsChecked(false);
-    });
+export const removeItem = async (setUser: (value: IUser) => void) => {
+    setUser({} as IUser);
 };
 
 /**

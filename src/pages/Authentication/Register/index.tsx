@@ -1,5 +1,6 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { View } from "react-native";
 import * as yup from "yup";
@@ -8,6 +9,7 @@ import {
     InputPasswordControl,
 } from "../../../components/InputControl";
 import { LoadingModal } from "../../../components/LoadingModal";
+import { LoadingScreen } from "../../../components/LoadingScreen";
 import { Logo_name_blue } from "../../../components/Logo";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
@@ -17,6 +19,15 @@ import { Container, Scroll, Wallpaper } from "../Login/styles";
 
 export const Register: React.FunctionComponent = () => {
     const { signUp, loading } = useContext(AuthContext);
+    const [isReady, setIsReady] = useState<boolean>(false);
+
+    useEffect(() => {
+        (async () => {
+            await Ionicons.loadFont().then(() => {
+                setIsReady(true);
+            });
+        })();
+    }, []);
 
     const schema = yup.object({
         email: yup
@@ -48,6 +59,10 @@ export const Register: React.FunctionComponent = () => {
     const handleRegister = (data: IFormRegister) => {
         signUp(data);
     };
+
+    if (!isReady) {
+        return <LoadingScreen />;
+    }
 
     return (
         <Container>

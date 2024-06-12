@@ -32,7 +32,7 @@ export const OtherServices: React.FunctionComponent<IProps> = ({
 const CardButton = styled.TouchableOpacity`
     background-color: ${theme.colors.white};
     border-radius: 10px;
-    padding: 6px;
+    padding: 6px 10px;
     margin: 6px;
     margin-bottom: 10px;
 `;

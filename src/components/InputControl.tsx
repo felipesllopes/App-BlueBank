@@ -82,7 +82,7 @@ export const InputPasswordControl: React.FunctionComponent<
 };
 
 const Container = styled.View`
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 `;
 
 const ViewInput = styled.View`
@@ -90,7 +90,7 @@ const ViewInput = styled.View`
     align-items: center;
     border-bottom-width: 2px;
     padding: 2px;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
     border-color: ${theme.colors.text};
     border-color: ${theme.colors.primary};
 `;
@@ -113,9 +113,7 @@ const IconEye = styled(Ionicon)`
 
 const TextError = styled.Text`
     position: absolute;
-    bottom: 6px;
-    font-size: 15px;
-    margin-left: 5px;
-    position: absolute;
+    margin-left: 10px;
     bottom: 0;
+    color: ${theme.colors.primary};
 `;

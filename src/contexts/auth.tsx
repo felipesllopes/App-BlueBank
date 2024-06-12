@@ -1,6 +1,6 @@
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import { Alert } from "react-native";
 import {
     IFormLogin,
@@ -8,13 +8,12 @@ import {
     IFormResetPassword,
     IUser,
 } from "../interface";
-import { getItem, removeItem, setEmail, setPreference } from "../storage";
+import { removeItem, setEmail, setPreference } from "../storage";
 
 interface IAuthContext {
     user: IUser;
     signed: boolean;
     loading: boolean;
-    mountingScreen: boolean;
     isChecked: boolean;
     setUser: (value: React.SetStateAction<IUser>) => void;
     setIsChecked: (value: boolean) => void;
@@ -37,17 +36,12 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
     const [user, setUser] = useState<IUser>({} as IUser);
     const [loading, setLoading] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<boolean>(false);
-    const [mountingScreen, setMountingScreen] = useState<boolean>(false);
-    const initialValue: number = 50;
+    const initialValue: number = 20;
 
-    // função para buscar dados de login na storage
-    useEffect(() => {
-        (async () => {
-            setMountingScreen(true);
-            await getItem(setIsChecked, setUser, setMountingScreen);
-        })();
-    }, [setIsChecked, setUser, getItem]);
-
+    /**
+     * Function to register the user.
+     * @param data
+     */
     const signUp = async (data: IFormRegister) => {
         setLoading(true);
         await auth()
@@ -87,6 +81,10 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
             });
     };
 
+    /**
+     * Function to perform user login.
+     * @param data
+     */
     const signIn = async (data: IFormLogin) => {
         setLoading(true);
         await auth()
@@ -129,6 +127,11 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
             });
     };
 
+    /**
+     * Function to reset password.
+     * @param data
+     * @param setMessage
+     */
     const resetPassword = async (
         data: IFormResetPassword,
         setMessage: (value: string) => void,
@@ -154,6 +157,9 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
             });
     };
 
+    /**
+     * Function to log out.
+     */
     const logOut = async () => {
         Alert.alert("Sair da conta", "Tem certeza que deseja desconectar?", [
             {
@@ -167,7 +173,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                     await auth()
                         .signOut()
                         .then(async () => {
-                            await removeItem(setUser, setIsChecked);
+                            await removeItem(setUser);
                         })
                         .catch(error => {
                             alert("Erro ao sair.");
@@ -194,7 +200,6 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                 resetPassword,
                 isChecked,
                 setIsChecked,
-                mountingScreen,
             }}
         >
             {children}

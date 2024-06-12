@@ -1,8 +1,10 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { InputControl } from "../../../components/InputControl";
+import { LoadingScreen } from "../../../components/LoadingScreen";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getBackgroundImage } from "../../../functions/getBackgroundImage";
@@ -13,6 +15,15 @@ import { Message, Text } from "./styles";
 export const ResetPassword: React.FunctionComponent = () => {
     const { resetPassword } = useContext(AuthContext);
     const [message, setMessage] = useState<string>("");
+    const [isReady, setIsReady] = useState<boolean>(false);
+
+    useEffect(() => {
+        (async () => {
+            await Ionicons.loadFont().then(() => {
+                setIsReady(true);
+            });
+        })();
+    }, []);
 
     const schema = yup.object({
         email: yup
@@ -34,6 +45,10 @@ export const ResetPassword: React.FunctionComponent = () => {
         resetPassword(data, setMessage);
         reset();
     };
+
+    if (!isReady) {
+        return <LoadingScreen />;
+    }
 
     return (
         <Container>

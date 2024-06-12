@@ -77,7 +77,7 @@ export const Transacoes: React.FunctionComponent = () => {
             </HeaderTab>
 
             <Box>
-                <TextBalance>Saldo atual</TextBalance>
+                <TextBalance>Saldo atual:</TextBalance>
                 <TextValue>
                     R$
                     {balance.toLocaleString("pt-BR", {

@@ -11,6 +11,7 @@ export const Wallpaper = styled.ImageBackground`
     width: 100%;
 `;
 
+<<<<<<< HEAD
 export const ViewOpacity = styled.View`
     background-color: rgba(240, 245, 255, 0.85);
     flex: 1;
@@ -55,6 +56,14 @@ export const Text = styled.Text`
     margin: 60px 0;
 `;
 
+=======
+export const Scroll = styled.ScrollView`
+    width: 100%;
+    background-color: rgba(240, 245, 255, 0.9);
+    padding: 0 20px;
+`;
+
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 export const ViewCheckBox = styled.View`
     flex-direction: row;
     align-items: center;

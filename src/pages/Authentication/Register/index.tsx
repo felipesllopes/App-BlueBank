@@ -2,6 +2,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+<<<<<<< HEAD
+=======
+import { View } from "react-native";
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 import * as yup from "yup";
 import {
     InputControl,
@@ -9,11 +13,16 @@ import {
 } from "../../../components/InputControl";
 import { LoadingModal } from "../../../components/LoadingModal";
 import { LoadingScreen } from "../../../components/LoadingScreen";
+<<<<<<< HEAD
 import { Logo_name_white } from "../../../components/Logo";
+=======
+import { Logo_name_blue } from "../../../components/Logo";
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getBackgroundImage } from "../../../functions/getBackgroundImage";
 import { IFormRegister } from "../../../interface";
+<<<<<<< HEAD
 import {
     Container,
     Scroll,
@@ -22,6 +31,9 @@ import {
     Wallpaper,
 } from "../Login/styles";
 import { View } from "react-native";
+=======
+import { Container, Scroll, Wallpaper } from "../Login/styles";
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 
 export const Register: React.FunctionComponent = () => {
     const { signUp, loading } = useContext(AuthContext);
@@ -73,6 +85,7 @@ export const Register: React.FunctionComponent = () => {
     return (
         <Container>
             <Wallpaper source={getBackgroundImage()}>
+<<<<<<< HEAD
                 <ViewOpacity>
                     <ViewLogo>
                         <Logo_name_white scale={2.3} />
@@ -147,6 +160,73 @@ export const Register: React.FunctionComponent = () => {
                         <SecondaryButton title="ENTRAR" screen={"Login"} />
                     </Scroll>
                 </ViewOpacity>
+=======
+                <Scroll showsVerticalScrollIndicator={false}>
+                    <View style={{ alignItems: "center", marginVertical: 40 }}>
+                        <Logo_name_blue scale={2.2} />
+                    </View>
+
+                    <InputControl
+                        iconName="person"
+                        placeholder="Nome completo"
+                        autoCapitalize="words"
+                        control={control}
+                        name="name"
+                        errors={errors.name && (errors.name?.message as string)}
+                    />
+
+                    <InputControl
+                        iconName="mail"
+                        placeholder="E-mail"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        control={control}
+                        name="email"
+                        errors={
+                            errors.email && (errors.email?.message as string)
+                        }
+                    />
+
+                    <InputControl
+                        iconName="card"
+                        placeholder="CPF"
+                        keyboardType="numeric"
+                        maxLength={11}
+                        control={control}
+                        name="cpf"
+                        errors={errors.cpf && (errors.cpf?.message as string)}
+                    />
+
+                    <InputPasswordControl
+                        placeholder="Senha"
+                        autoCapitalize="none"
+                        control={control}
+                        name="password"
+                        errors={
+                            errors.password &&
+                            (errors.password?.message as string)
+                        }
+                    />
+
+                    <InputPasswordControl
+                        placeholder="Confirmar senha"
+                        autoCapitalize="none"
+                        control={control}
+                        name="confirmPassword"
+                        errors={
+                            errors.confirmPassword &&
+                            (errors.confirmPassword?.message as string)
+                        }
+                    />
+
+                    <PrimaryButton
+                        title="CRIAR CONTA"
+                        onPress={handleSubmit(handleRegister)}
+                    />
+
+                    <SecondaryButton title="ENTRAR" screen={"Login"} />
+                </Scroll>
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
             </Wallpaper>
             <LoadingModal loading={loading} />
         </Container>

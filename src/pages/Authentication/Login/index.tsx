@@ -12,6 +12,7 @@ import {
 } from "../../../components/InputControl";
 import { LoadingModal } from "../../../components/LoadingModal";
 import { LoadingScreen } from "../../../components/LoadingScreen";
+<<<<<<< HEAD
 import { Logo_name_white } from "../../../components/Logo";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
@@ -32,10 +33,26 @@ import {
     ViewCheckBox,
     ViewLogo,
     ViewOpacity,
+=======
+import { Logo_name_blue } from "../../../components/Logo";
+import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
+import { AuthContext } from "../../../contexts/auth";
+import { getBackgroundImage } from "../../../functions/getBackgroundImage";
+import theme from "../../../global/styles/theme";
+import { IFormLogin, IScreenNavigation } from "../../../interface";
+import { getItem } from "../../../storage";
+import {
+    Container,
+    Scroll,
+    TextCheck,
+    TextRecoverPassword,
+    ViewCheckBox,
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
     Wallpaper,
 } from "./styles";
 
 export const Login: React.FunctionComponent = () => {
+<<<<<<< HEAD
     const {
         signIn,
         isChecked,
@@ -49,6 +66,14 @@ export const Login: React.FunctionComponent = () => {
     const [isFontsLoaded, setIsFontsLoaded] = useState<boolean>(false);
     const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
     const [isBiometry, setIsBiometry] = useState<boolean>(false);
+=======
+    const { signIn, isChecked, setIsChecked, user, loading, setUser } =
+        useContext(AuthContext);
+
+    const [isReady, setIsReady] = useState<boolean>(false);
+    const [isFontsLoaded, setIsFontsLoaded] = useState<boolean>(false);
+    const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
     const { navigate } = useNavigation<IScreenNavigation>();
 
     const schema = yup.object({
@@ -107,6 +132,7 @@ export const Login: React.FunctionComponent = () => {
                 password: "",
             });
         }
+<<<<<<< HEAD
     }, [user.email, reset]);
 
     useEffect(() => {
@@ -116,6 +142,9 @@ export const Login: React.FunctionComponent = () => {
             });
         })();
     }, [getBiometric, setIsBiometry]);
+=======
+    }, [isChecked, user.email, reset]);
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 
     const handleLogin = (data: IFormLogin) => {
         signIn(data);
@@ -132,6 +161,7 @@ export const Login: React.FunctionComponent = () => {
     return (
         <Container>
             <Wallpaper source={getBackgroundImage()}>
+<<<<<<< HEAD
 
                 <ViewOpacity>
                     <ViewLogo>
@@ -212,6 +242,59 @@ export const Login: React.FunctionComponent = () => {
                         </TextRecoverPassword>
                     </Scroll>
                 </ViewOpacity>
+=======
+                <Scroll showsVerticalScrollIndicator={false}>
+                    <View style={{ alignItems: "center", marginVertical: 50 }}>
+                        <Logo_name_blue scale={2} />
+                    </View>
+
+                    <InputControl
+                        iconName="mail"
+                        placeholder="E-mail"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        control={control}
+                        name="email"
+                        errors={
+                            errors.email && (errors.email?.message as string)
+                        }
+                    />
+
+                    <InputPasswordControl
+                        placeholder="Senha"
+                        autoCapitalize="none"
+                        control={control}
+                        name="password"
+                        errors={
+                            errors.password &&
+                            (errors.password?.message as string)
+                        }
+                    />
+
+                    <ViewCheckBox>
+                        <TextCheck>SALVAR E-MAIL</TextCheck>
+                        <ToggleSwitch
+                            isOn={isChecked}
+                            onColor={theme.colors.primary}
+                            offColor={theme.colors.gray}
+                            onToggle={handleToggle}
+                        />
+                    </ViewCheckBox>
+
+                    <PrimaryButton
+                        title="ENTRAR"
+                        onPress={handleSubmit(handleLogin)}
+                    />
+
+                    <SecondaryButton title="CRIAR CONTA" screen={"Register"} />
+
+                    <TextRecoverPassword
+                        onPress={() => navigate("ResetPassword")}
+                    >
+                        RECUPERAR SENHA
+                    </TextRecoverPassword>
+                </Scroll>
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
             </Wallpaper>
             <LoadingModal loading={loading} />
         </Container>

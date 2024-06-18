@@ -17,7 +17,10 @@ interface IAuthContext {
     isChecked: boolean;
     setUser: (value: React.SetStateAction<IUser>) => void;
     setIsChecked: (value: boolean) => void;
+<<<<<<< HEAD
     setLoading: (value: boolean) => void;
+=======
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
     signUp(data: IFormRegister): void;
     signIn(data: IFormLogin): void;
     resetPassword(
@@ -120,7 +123,11 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                     });
             })
             .catch(error => {
+<<<<<<< HEAD
                 alert("Erro ao fazer login");
+=======
+                alert("Erro ao tentar logar usuário.");
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
                 console.log(error);
             })
             .finally(async () => {
@@ -194,7 +201,10 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
                 user,
                 signed: !!user.uid,
                 loading,
+<<<<<<< HEAD
                 setLoading,
+=======
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
                 setUser,
                 signUp,
                 signIn,

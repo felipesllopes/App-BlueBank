@@ -9,7 +9,11 @@ import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getBackgroundImage } from "../../../functions/getBackgroundImage";
 import { IFormResetPassword } from "../../../interface";
+<<<<<<< HEAD
 import { Container, Scroll, ViewOpacity, Wallpaper } from "../Login/styles";
+=======
+import { Container, Scroll, Wallpaper } from "../Login/styles";
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 import { Message, Text } from "./styles";
 
 export const ResetPassword: React.FunctionComponent = () => {
@@ -53,6 +57,7 @@ export const ResetPassword: React.FunctionComponent = () => {
     return (
         <Container>
             <Wallpaper source={getBackgroundImage()}>
+<<<<<<< HEAD
                 <ViewOpacity>
                     <Scroll>
                         <Text>Digite o e-mail cadastrado:</Text>
@@ -83,6 +88,33 @@ export const ResetPassword: React.FunctionComponent = () => {
                         <SecondaryButton screen="Login" title="ENTRAR" />
                     </Scroll>
                 </ViewOpacity>
+=======
+                <Scroll>
+                    <Text>Digite o e-mail cadastrado:</Text>
+                    <InputControl
+                        control={control}
+                        iconName="mail"
+                        name="email"
+                        errors={
+                            errors.email && (errors.email?.message as string)
+                        }
+                        placeholder="E-mail"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                    />
+
+                    {message && (
+                        <Message style={{ elevation: 5 }}>{message}</Message>
+                    )}
+
+                    <PrimaryButton
+                        onPress={handleSubmit(handlePassword)}
+                        title="REDEFINIR SENHA"
+                    />
+
+                    <SecondaryButton screen="Login" title="ENTRAR" />
+                </Scroll>
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
             </Wallpaper>
         </Container>
     );

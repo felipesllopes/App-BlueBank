@@ -26,6 +26,10 @@ const Container = styled.TouchableOpacity`
     padding: 24px 10px;
     border-radius: 30px;
     width: 30%;
+<<<<<<< HEAD
+=======
+    /* border-width: 2px; */
+>>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 `;
 
 const Title = styled.Text`

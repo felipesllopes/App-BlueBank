@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "243912951397",
+    "firebase_url": "https://blue-bank-9f584-default-rtdb.firebaseio.com",
+    "project_id": "blue-bank-9f584",
+    "storage_bucket": "blue-bank-9f584.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243912951397:android:59abf99e2b2afc612aa88c",
+        "android_client_info": {
+          "package_name": "com.bluebank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243912951397-b4u1kqda9hr8flhq5j4div2me7nee5cq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJircOcxbp8GV8UHla1tuQw-8Bvylm_Q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243912951397-b4u1kqda9hr8flhq5j4div2me7nee5cq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

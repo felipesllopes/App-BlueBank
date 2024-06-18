@@ -132,6 +132,7 @@ export const Login: React.FunctionComponent = () => {
     return (
         <Container>
             <Wallpaper source={getBackgroundImage()}>
+
                 <ViewOpacity>
                     <ViewLogo>
                         <Logo_name_white scale={2.3} />

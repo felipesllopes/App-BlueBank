@@ -5,14 +5,9 @@ import { Keyboard } from "react-native";
 import * as yup from "yup";
 import { HeaderDrawer_2 } from "../../components/HeaderDrawer";
 import { InputControl } from "../../components/InputControl";
-<<<<<<< HEAD
 import { ModalPasswordConfirm } from "../../components/ModalPasswordConfirm";
 import { AuthContext } from "../../contexts/auth";
 import { getUpdateProfile } from "../../functions/getUptadeProfile";
-=======
-import { ModalConfirmPassword } from "../../components/ModalConfirmPassword";
-import { AuthContext } from "../../contexts/auth";
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 import theme from "../../global/styles/theme";
 import { IFormEditProfile } from "../../interface";
 import {
@@ -28,10 +23,7 @@ export const Profile: React.FunctionComponent = () => {
     const { user, setUser, isChecked } = useContext(AuthContext);
     const [show, setShow] = useState<boolean>(false);
     const [data, setData] = useState<IFormEditProfile>({} as IFormEditProfile);
-<<<<<<< HEAD
     const [password, setPassword] = useState<string>("");
-=======
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 
     const schema = yup.object({
         name: yup.string().required("Informe seu nome completo."),
@@ -73,25 +65,17 @@ export const Profile: React.FunctionComponent = () => {
         Keyboard.dismiss();
     };
 
-<<<<<<< HEAD
     const handleFunction = async () => {
         await getUpdateProfile(data, user, setUser, isChecked, setShow);
     };
 
-=======
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
     return (
         <Container>
             <HeaderDrawer_2 title="Dados do usuário" />
 
             <Scroll>
-<<<<<<< HEAD
                 <Text style={{ margin: 10, marginBottom: 30 }}>
                     Clique sobre o texto para editar os dados.
-=======
-                <Text style={{ margin: 10, marginBottom: 25 }}>
-                    Clique sobre o texto para editar a informação.
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
                 </Text>
 
                 <InputControl
@@ -126,10 +110,7 @@ export const Profile: React.FunctionComponent = () => {
                 <PrimaryButton
                     disabled={!isDirty}
                     onPress={handleSubmit(updateData)}
-<<<<<<< HEAD
                     activeOpacity={0.8}
-=======
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
                 >
                     <TextButton
                         style={{
@@ -138,20 +119,13 @@ export const Profile: React.FunctionComponent = () => {
                                 : theme.colors.gray,
                         }}
                     >
-<<<<<<< HEAD
                         SALVAR
-=======
-                        Salvar alterações
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
                     </TextButton>
                 </PrimaryButton>
 
                 <SecondaryButton
                     disabled={!isDirty}
-<<<<<<< HEAD
                     activeOpacity={0.6}
-=======
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
                     onPress={() => {
                         reset();
                         Keyboard.dismiss();
@@ -164,30 +138,16 @@ export const Profile: React.FunctionComponent = () => {
                                 : theme.colors.black,
                         }}
                     >
-<<<<<<< HEAD
                         CANCELAR
-=======
-                        Cancelar alterações
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
                     </TextButton>
                 </SecondaryButton>
             </Scroll>
 
-<<<<<<< HEAD
             <ModalPasswordConfirm
                 setPassword={setPassword}
                 setShow={setShow}
                 show={show}
                 handleFunction={handleFunction}
-=======
-            <ModalConfirmPassword
-                setShow={setShow}
-                show={show}
-                data={data}
-                user={user}
-                setUser={setUser}
-                isChecked={isChecked}
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
             />
         </Container>
     );

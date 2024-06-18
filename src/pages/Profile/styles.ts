@@ -33,10 +33,6 @@ export const Icon = styled(Ionicons)`
 
 export const Text = styled.Text`
     font-size: 18px;
-<<<<<<< HEAD
-=======
-    font-weight: 500;
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
     text-align: center;
 `;
 

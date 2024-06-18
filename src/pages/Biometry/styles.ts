@@ -20,17 +20,13 @@ export const Title = styled.Text`
     font-weight: 500;
     margin-bottom: 20px;
     text-align: center;
-<<<<<<< HEAD
     color: white;
-=======
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 `;
 
 export const Text = styled.Text`
     font-size: 18px;
     text-align: center;
     margin-bottom: 100px;
-<<<<<<< HEAD
     color: white;
 `;
 
@@ -40,23 +36,10 @@ export const Button = styled.TouchableOpacity`
     padding: 8px;
     border-radius: 100px;
     background-color: ${theme.colors.primary};
-=======
-`;
-
-export const Button = styled.TouchableOpacity`
-    border-width: 2px;
-    width: 100%;
-    margin-bottom: 18px;
-    padding: 5px;
-    border-radius: 100px;
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 `;
 
 export const TextButton = styled.Text`
     text-align: center;
     font-size: 18px;
-<<<<<<< HEAD
     color: white;
-=======
->>>>>>> d8d3304b2ccbfcea8ed0d036eae45aba3e518c25
 `;

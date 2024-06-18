@@ -9,7 +9,6 @@ export const OtherServicesList: React.FunctionComponent = () => {
             style={{
                 marginBottom: 10,
                 paddingBottom: 10,
-                // height: 200,
             }}
         >
             <OtherServices

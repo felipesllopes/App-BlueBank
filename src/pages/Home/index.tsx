@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { BiometricsRegistrationService } from "../../components/BiometricsRegistrationService";
 import { HeaderDrawer } from "../../components/HeaderDrawer";
 import { LoadingModal } from "../../components/LoadingModal";
+import { LoadingScreen } from "../../components/LoadingScreen";
 import { Margin } from "../../components/Margin";
 import { OtherServicesList } from "../../components/OtherServicesList";
 import { ServiceCardList } from "../../components/ServiceCardList";
@@ -26,11 +27,20 @@ import {
 } from "./styles";
 
 export const Home: React.FunctionComponent = () => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading, setLoading } = useContext(AuthContext);
     const [visibleBalance, setVisibleBalance] = useState(false);
     const [balance, setBalance] = useState<number>(0);
     const [isBiometry, setIsBiometry] = useState<boolean>(false);
     const { navigate } = useNavigation<IScreenNavigation>();
+    const [loadingFonts, setLoadingFonts] = useState<boolean>(true);
+
+    useEffect(() => {
+        (async () => {
+            await new Promise(resolve => setTimeout(resolve, 600));
+        })().finally(() => {
+            setLoadingFonts(false);
+        });
+    }, []);
 
     useEffect(() => {
         (async () => {
@@ -49,6 +59,10 @@ export const Home: React.FunctionComponent = () => {
     const handlevisibleBalance = () => {
         setVisibleBalance(current => (current === true ? false : true));
     };
+
+    if (loadingFonts) {
+        return <LoadingScreen />;
+    }
 
     return (
         <Container>

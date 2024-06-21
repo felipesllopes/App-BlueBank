@@ -32,13 +32,13 @@ export const Scroll = styled.ScrollView`
 
 export const ButtonBiometry = styled.TouchableOpacity`
     align-self: center;
-    align-items: center;
+    width: 40%;
+    border-radius: 10px;
 `;
 
 export const TextBiometry = styled.Text`
     font-size: 19px;
-    margin-bottom: 6px;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     color: ${theme.colors.primary};
 `;

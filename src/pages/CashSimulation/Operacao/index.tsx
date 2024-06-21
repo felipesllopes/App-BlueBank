@@ -16,9 +16,8 @@ import {
 export const Operacao: React.FunctionComponent = () => {
     const { goBack } = useNavigation();
     const [value, setValue] = useState<string>("");
-    const { user, setUser } = useContext(AuthContext);
+    const { user, setUser, setLoading } = useContext(AuthContext);
     const route = useRoute();
-    const [loading, setLoading] = useState<boolean>(false);
     const nameOperation = JSON.stringify(route?.params);
 
     const confirm = async () => {
@@ -81,7 +80,7 @@ export const Operacao: React.FunctionComponent = () => {
                     </Button>
                 </ViewButtons>
             </ViewIcons>
-            <LoadingModal loading={loading} />
+            <LoadingModal />
         </Container>
     );
 };

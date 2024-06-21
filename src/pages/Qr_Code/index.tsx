@@ -1,7 +1,6 @@
 import React from "react";
 import { HeaderDrawer_2 } from "../../components/HeaderDrawer";
 import { Body, Container, ContainerService, Icon, Text } from "./styles";
-import { BiometricAuth } from "../../components/Biometric";
 
 export const Qr_Code: React.FunctionComponent = () => {
     return (

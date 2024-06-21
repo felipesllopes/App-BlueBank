@@ -1,7 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import auth from "@react-native-firebase/auth";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Modal, View } from "react-native";
 import styled from "styled-components/native";
@@ -29,8 +29,7 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
     setPassword,
     handleFunction,
 }) => {
-    const { user } = useContext(AuthContext);
-    const [loading, setLoading] = useState<boolean>(false);
+    const { user, setLoading } = useContext(AuthContext);
     const schema = yup.object({
         password: yup
             .string()
@@ -101,7 +100,7 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
                         title="Confirmar"
                     />
                 </Container>
-                <LoadingModal loading={loading} />
+                <LoadingModal />
             </Screen>
         </Modal>
     );

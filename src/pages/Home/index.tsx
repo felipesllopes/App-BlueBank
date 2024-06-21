@@ -1,10 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
+import ReactNativeBiometrics from "react-native-biometrics";
 import { BiometricsRegistrationService } from "../../components/BiometricsRegistrationService";
 import { HeaderDrawer } from "../../components/HeaderDrawer";
-import { LoadingModal } from "../../components/LoadingModal";
-import { LoadingScreen } from "../../components/LoadingScreen";
 import { Margin } from "../../components/Margin";
 import { OtherServicesList } from "../../components/OtherServicesList";
 import { ServiceCardList } from "../../components/ServiceCardList";
@@ -27,20 +26,13 @@ import {
 } from "./styles";
 
 export const Home: React.FunctionComponent = () => {
-    const { user, loading, setLoading } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [visibleBalance, setVisibleBalance] = useState(false);
     const [balance, setBalance] = useState<number>(0);
     const [isBiometry, setIsBiometry] = useState<boolean>(false);
     const { navigate } = useNavigation<IScreenNavigation>();
-    const [loadingFonts, setLoadingFonts] = useState<boolean>(true);
-
-    useEffect(() => {
-        (async () => {
-            await new Promise(resolve => setTimeout(resolve, 600));
-        })().finally(() => {
-            setLoadingFonts(false);
-        });
-    }, []);
+    const rnBiometrics = new ReactNativeBiometrics();
+    const [suportedBiometry, setSuportedBiometry] = useState<boolean>();
 
     useEffect(() => {
         (async () => {
@@ -56,13 +48,19 @@ export const Home: React.FunctionComponent = () => {
         })();
     }, [getBiometric, setIsBiometry]);
 
+    useEffect(() => {
+        rnBiometrics.isSensorAvailable().then(resultObject => {
+            if (resultObject.available) {
+                setSuportedBiometry(true);
+            } else {
+                setSuportedBiometry(false);
+            }
+        });
+    }, [setSuportedBiometry]);
+
     const handlevisibleBalance = () => {
         setVisibleBalance(current => (current === true ? false : true));
     };
-
-    if (loadingFonts) {
-        return <LoadingScreen />;
-    }
 
     return (
         <Container>
@@ -103,19 +101,19 @@ export const Home: React.FunctionComponent = () => {
 
                         <Margin pixels={40} />
 
-                        {!isBiometry && (
-                            <View>
-                                <BiometricsRegistrationService />
-                                <Margin pixels={30} />
-                            </View>
-                        )}
+                        {/* Não exibir se a biometria já estiver cadastrada ou se não for suportada. */}
+                        {!suportedBiometry ||
+                            (!isBiometry && (
+                                <View>
+                                    <BiometricsRegistrationService />
+                                    <Margin pixels={30} />
+                                </View>
+                            ))}
 
                         <OtherServicesList />
                     </Body>
                 </Scroll>
             </Background>
-
-            <LoadingModal loading={loading} />
         </Container>
     );
 };

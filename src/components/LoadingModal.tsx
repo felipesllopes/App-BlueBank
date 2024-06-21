@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ActivityIndicator, Modal } from "react-native";
 import styled from "styled-components/native";
+import { AuthContext } from "../contexts/auth";
 import theme from "../global/styles/theme";
 
-interface IProps {
-    loading: boolean;
-}
+export const LoadingModal: React.FunctionComponent = () => {
+    const { loading } = useContext(AuthContext);
 
-export const LoadingModal: React.FunctionComponent<IProps> = ({ loading }) => {
     return (
         <Modal transparent={true} visible={loading} animationType="fade">
             <Container>

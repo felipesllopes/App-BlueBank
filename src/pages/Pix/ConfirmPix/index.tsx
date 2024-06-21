@@ -6,6 +6,7 @@ import { AuthContext } from "../../../contexts/auth";
 import { getBalance } from "../../../functions/getBalance";
 import { handlePix } from "../../../functions/handlePix";
 import { IScreenNavigationPixProps, IUser } from "../../../interface";
+import { MarginButton } from "../PayPix/styles";
 import {
     Container,
     Data,
@@ -17,7 +18,6 @@ import {
     Value,
     ViewAlert,
 } from "./styles";
-import { MarginButton } from "../PayPix/styles";
 
 interface RouteParams {
     destinatary: IUser;
@@ -27,11 +27,10 @@ interface RouteParams {
 export const ConfirmPix: React.FunctionComponent = () => {
     const route = useRoute();
     const { destinatary, value } = route.params as RouteParams;
-    const { user, setUser } = useContext(AuthContext);
+    const { user, setUser, setLoading } = useContext(AuthContext);
     const [balance, setBalance] = useState(0);
     const val = parseFloat(value);
     const { navigate } = useNavigation<IScreenNavigationPixProps>();
-    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         (async () => {
@@ -89,7 +88,7 @@ export const ConfirmPix: React.FunctionComponent = () => {
                 />
             </MarginButton>
 
-            <LoadingModal loading={loading} />
+            <LoadingModal />
         </Container>
     );
 };

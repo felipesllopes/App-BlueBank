@@ -23,7 +23,6 @@ import { getBiometric, getItem } from "../../../storage";
 import {
     ButtonBiometry,
     Container,
-    IconBiometry,
     Scroll,
     Text,
     TextBiometry,
@@ -36,15 +35,8 @@ import {
 } from "./styles";
 
 export const Login: React.FunctionComponent = () => {
-    const {
-        signIn,
-        isChecked,
-        setIsChecked,
-        user,
-        loading,
-        setLoading,
-        setUser,
-    } = useContext(AuthContext);
+    const { signIn, isChecked, setIsChecked, user, setLoading, setUser } =
+        useContext(AuthContext);
     const [isReady, setIsReady] = useState<boolean>(false);
     const [isFontsLoaded, setIsFontsLoaded] = useState<boolean>(false);
     const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
@@ -150,9 +142,6 @@ export const Login: React.FunctionComponent = () => {
                                     <TextBiometry>
                                         Entrar com biometria
                                     </TextBiometry>
-                                    <IconBiometry
-                                        source={require("../../../assets/biometry.png")}
-                                    />
                                 </ButtonBiometry>
 
                                 <Text>OU</Text>
@@ -213,7 +202,7 @@ export const Login: React.FunctionComponent = () => {
                     </Scroll>
                 </ViewOpacity>
             </Wallpaper>
-            <LoadingModal loading={loading} />
+            <LoadingModal />
         </Container>
     );
 };

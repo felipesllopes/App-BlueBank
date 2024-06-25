@@ -19,8 +19,8 @@ export const PrimaryButton: React.FunctionComponent<IPropsPrimaryButton> = ({
         <Button
             onPress={onPress}
             activeOpacity={0.7}
-            style={{ elevation: 4 }}
             {...otherProps}
+            style={{ elevation: 4, padding: 9.5 }}
         >
             <TextButton>{title}</TextButton>
         </Button>
@@ -46,6 +46,7 @@ export const SecondaryButton: React.FunctionComponent<
                 backgroundColor: theme.colors.background,
                 borderWidth: 1,
                 borderColor: theme.colors.primary,
+                padding: 8,
             }}
             {...otherProps}
         >
@@ -58,7 +59,6 @@ export const SecondaryButton: React.FunctionComponent<
 
 const Button = styled.TouchableOpacity`
     background-color: ${theme.colors.primary};
-    padding: 8px;
     border-radius: 10px;
     margin: 5px 0;
 `;

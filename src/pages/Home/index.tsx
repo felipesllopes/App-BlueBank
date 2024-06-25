@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
-import ReactNativeBiometrics from "react-native-biometrics";
 import { BiometricsRegistrationService } from "../../components/BiometricsRegistrationService";
 import { HeaderDrawer } from "../../components/HeaderDrawer";
 import { Margin } from "../../components/Margin";
@@ -10,6 +9,8 @@ import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
 import { getBackgroundImage } from "../../functions/getBackgroundImage";
 import { getBalance } from "../../functions/getBalance";
+import { getHaveBiometrics } from "../../functions/getHaveBiometrics";
+import { getSuportedBiometry } from "../../functions/getSuportedBiometry";
 import { IScreenNavigation } from "../../interface";
 import { getBiometric } from "../../storage";
 import {
@@ -31,7 +32,6 @@ export const Home: React.FunctionComponent = () => {
     const [balance, setBalance] = useState<number>(0);
     const [isBiometry, setIsBiometry] = useState<boolean>(false);
     const { navigate } = useNavigation<IScreenNavigation>();
-    const rnBiometrics = new ReactNativeBiometrics();
     const [suportedBiometry, setSuportedBiometry] = useState<boolean>();
 
     useEffect(() => {
@@ -42,20 +42,14 @@ export const Home: React.FunctionComponent = () => {
 
     useEffect(() => {
         (async () => {
-            await getBiometric().then(async value => {
-                setIsBiometry(await value);
-            });
+            await getHaveBiometrics(setIsBiometry);
         })();
     }, [getBiometric, setIsBiometry]);
 
     useEffect(() => {
-        rnBiometrics.isSensorAvailable().then(resultObject => {
-            if (resultObject.available) {
-                setSuportedBiometry(true);
-            } else {
-                setSuportedBiometry(false);
-            }
-        });
+        (async () => {
+            await getSuportedBiometry(setSuportedBiometry);
+        })();
     }, [setSuportedBiometry]);
 
     const handlevisibleBalance = () => {

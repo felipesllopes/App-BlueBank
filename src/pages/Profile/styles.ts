@@ -31,9 +31,11 @@ export const Icon = styled(Ionicons)`
     margin-bottom: 10px;
 `;
 
-export const Text = styled.Text`
+export const Title = styled.Text`
     font-size: 18px;
     text-align: center;
+    margin: 15px 10px 30px;
+    font-weight: 500;
 `;
 
 export const PrimaryButton = styled.TouchableOpacity`

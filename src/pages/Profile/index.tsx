@@ -15,7 +15,7 @@ import {
     PrimaryButton,
     Scroll,
     SecondaryButton,
-    Text,
+    Title,
     TextButton,
 } from "./styles";
 
@@ -74,9 +74,7 @@ export const Profile: React.FunctionComponent = () => {
             <HeaderDrawer_2 title="Dados do usuário" />
 
             <Scroll>
-                <Text style={{ margin: 10, marginBottom: 30 }}>
-                    Clique sobre o texto para editar os dados.
-                </Text>
+                <Title>Clique sobre os dados para editá-los.</Title>
 
                 <InputControl
                     control={control}

@@ -15,7 +15,7 @@ export const HomeCash: React.FunctionComponent = () => {
 
             <ViewButtons>
                 <Button
-                    onPress={() => navigate("Operation", `SAQUE`)}
+                    onPress={() => navigate("Operacao", `SAQUE`)}
                     activeOpacity={0.7}
                     style={{ elevation: 5 }}
                 >
@@ -23,7 +23,7 @@ export const HomeCash: React.FunctionComponent = () => {
                 </Button>
 
                 <Button
-                    onPress={() => navigate("Operation", `DEPÓSITO`)}
+                    onPress={() => navigate("Operacao", `DEPÓSITO`)}
                     activeOpacity={0.7}
                     style={{ elevation: 5 }}
                 >

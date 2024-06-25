@@ -17,6 +17,8 @@ import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getAuthWithBiometry } from "../../../functions/getAuthWithBiometry";
 import { getBackgroundImage } from "../../../functions/getBackgroundImage";
+import { getHaveBiometrics } from "../../../functions/getHaveBiometrics";
+import { getSuportedBiometry } from "../../../functions/getSuportedBiometry";
 import theme from "../../../global/styles/theme";
 import { IFormLogin, IScreenNavigation } from "../../../interface";
 import { getBiometric, getItem } from "../../../storage";
@@ -40,8 +42,8 @@ export const Login: React.FunctionComponent = () => {
     const [isReady, setIsReady] = useState<boolean>(false);
     const [isFontsLoaded, setIsFontsLoaded] = useState<boolean>(false);
     const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
-    const [isBiometry, setIsBiometry] = useState<boolean>(false);
-
+    const [haveBiometrics, setHaveBiometrics] = useState<boolean>(false);
+    const [suportedBiometrics, setSuportedBiometrics] = useState<boolean>();
     const { navigate } = useNavigation<IScreenNavigation>();
 
     const schema = yup.object({
@@ -104,11 +106,15 @@ export const Login: React.FunctionComponent = () => {
 
     useEffect(() => {
         (async () => {
-            await getBiometric().then(async value => {
-                setIsBiometry(await value);
-            });
+            await getHaveBiometrics(setHaveBiometrics);
         })();
-    }, [getBiometric, setIsBiometry]);
+    }, [getBiometric, setHaveBiometrics]);
+
+    useEffect(() => {
+        (async () => {
+            await getSuportedBiometry(setSuportedBiometrics);
+        })();
+    }, [getSuportedBiometry, setSuportedBiometrics]);
 
     const handleLogin = (data: IFormLogin) => {
         signIn(data);
@@ -131,21 +137,28 @@ export const Login: React.FunctionComponent = () => {
                     </ViewLogo>
 
                     <Scroll showsVerticalScrollIndicator={false}>
-                        {isBiometry ? (
-                            <View>
-                                <ButtonBiometry
-                                    onPress={() =>
-                                        getAuthWithBiometry(setUser, setLoading)
-                                    }
-                                    activeOpacity={0.6}
-                                >
-                                    <TextBiometry>
-                                        Entrar com biometria
-                                    </TextBiometry>
-                                </ButtonBiometry>
+                        {suportedBiometrics ? (
+                            haveBiometrics ? (
+                                <View>
+                                    <ButtonBiometry
+                                        onPress={() =>
+                                            getAuthWithBiometry(
+                                                setUser,
+                                                setLoading,
+                                            )
+                                        }
+                                        activeOpacity={0.6}
+                                    >
+                                        <TextBiometry>
+                                            Entrar com biometria
+                                        </TextBiometry>
+                                    </ButtonBiometry>
 
-                                <Text>OU</Text>
-                            </View>
+                                    <Text>OU</Text>
+                                </View>
+                            ) : (
+                                <View style={{ marginBottom: "10%" }} />
+                            )
                         ) : (
                             <View style={{ marginBottom: "10%" }} />
                         )}

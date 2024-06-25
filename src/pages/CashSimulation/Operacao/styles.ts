@@ -3,7 +3,14 @@ import theme from "../../../global/styles/theme";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${theme.colors.lightBlue};
+    background-color: ${theme.colors.secondary};
+`;
+
+export const TextOperation = styled.Text`
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+    margin: 20px 0 20px;
 `;
 
 export const ViewIcons = styled.View`
@@ -13,13 +20,12 @@ export const ViewIcons = styled.View`
 
 export const Input = styled.TextInput`
     background-color: white;
-    padding: 2px 7px;
-    font-size: 21px;
+    padding: 2px 6px;
+    font-size: 20px;
     border-radius: 5px;
     border-width: 2px;
-    border-color: ${theme.colors.darkBlue};
     flex: 1;
-    height: 40px;
+    height: 36px;
 `;
 
 export const ViewButtons = styled.View``;

@@ -9,6 +9,7 @@ import {
     Container,
     Input,
     TextButton,
+    TextOperation,
     ViewButtons,
     ViewIcons,
 } from "./styles";
@@ -43,7 +44,7 @@ export const Operacao: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <TextButton>{route?.params}</TextButton>
+            <TextOperation>{route?.params}</TextOperation>
             <ViewIcons>
                 <Input
                     value={value}

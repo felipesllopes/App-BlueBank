@@ -55,7 +55,7 @@ export const TextLogout = styled.Text`
     font-size: 19px;
 `;
 
-export const ButtonLogout = styled(Ionicons)`
+export const IconLogout = styled(Ionicons)`
     font-size: 24px;
     margin-left: 10px;
 `;

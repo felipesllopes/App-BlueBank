@@ -16,7 +16,6 @@ import { Logo_name_white } from "../../../components/Logo";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getAuthWithBiometry } from "../../../functions/getAuthWithBiometry";
-import { getBackgroundImage } from "../../../functions/getBackgroundImage";
 import { getHaveBiometrics } from "../../../functions/getHaveBiometrics";
 import { getSuportedBiometry } from "../../../functions/getSuportedBiometry";
 import theme from "../../../global/styles/theme";
@@ -130,7 +129,9 @@ export const Login: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Wallpaper source={getBackgroundImage()}>
+            <Wallpaper
+                source={require("../../../assets/Background/background.jpg")}
+            >
                 <ViewOpacity>
                     <ViewLogo>
                         <Logo_name_white scale={2.3} />

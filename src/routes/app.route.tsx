@@ -5,7 +5,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { CustomDrawer } from "../components/CustomDrawer";
 import theme from "../global/styles/theme";
-import { Help as Ajuda } from "../pages/Ajuda";
 import { Boleto } from "../pages/Boleto";
 import { Cartao } from "../pages/Cartao";
 import { HomeCash } from "../pages/CashSimulation/HomeCash";
@@ -27,6 +26,7 @@ import { Transacoes } from "../pages/Transactions";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
 import { Transferencia } from "../pages/Transferencia";
 import { Biometry } from "../pages/Biometry";
+import { AJuda } from "../pages/Ajuda";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -140,7 +140,7 @@ const HomeRoutes: React.FunctionComponent = () => {
                 options={{ title: "Negociação" }}
             />
 
-            <Stack.Screen name="Ajuda" component={Ajuda} />
+            <Stack.Screen name="Ajuda" component={AJuda} />
 
             <Stack.Screen
                 name="Contrato"

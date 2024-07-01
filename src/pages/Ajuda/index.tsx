@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Text } from "./styles";
 
-export const Help: React.FunctionComponent = () => {
+export const AJuda: React.FunctionComponent = () => {
     return (
         <Container>
             <Text>Precisa de ajuda?</Text>

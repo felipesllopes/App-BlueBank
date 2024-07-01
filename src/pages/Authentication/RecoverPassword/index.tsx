@@ -7,7 +7,6 @@ import { InputControl } from "../../../components/InputControl";
 import { LoadingScreen } from "../../../components/LoadingScreen";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
-import { getBackgroundImage } from "../../../functions/getBackgroundImage";
 import { IFormResetPassword } from "../../../interface";
 import { Container, Scroll, ViewOpacity, Wallpaper } from "../Login/styles";
 import { Message, Text } from "./styles";
@@ -52,7 +51,9 @@ export const ResetPassword: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Wallpaper source={getBackgroundImage()}>
+            <Wallpaper
+                source={require("../../../assets/Background/background.jpg")}
+            >
                 <ViewOpacity>
                     <Scroll>
                         <Text>Digite o e-mail cadastrado:</Text>

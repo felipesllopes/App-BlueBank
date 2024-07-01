@@ -10,7 +10,7 @@ import { IScreenNavigation } from "../../interface";
 import { DrawerServiceCard } from "../DrawerServiceCard";
 import { Logo_blue } from "../Logo";
 import {
-    ButtonLogout,
+    IconLogout,
     Container,
     ContainerCash,
     ContainerLogout,
@@ -81,8 +81,8 @@ export const CustomDrawer: React.FunctionComponent<
             </DrawerContentScrollView>
 
             <ContainerLogout onPress={logOut}>
-                <TextLogout>Sair do app</TextLogout>
-                <ButtonLogout name="log-out-outline" />
+                <TextLogout>Fazer Logout</TextLogout>
+                <IconLogout name="log-out-outline" />
             </ContainerLogout>
         </Container>
     );

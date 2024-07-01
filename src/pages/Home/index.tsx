@@ -2,16 +2,17 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
 import { BiometricsRegistrationService } from "../../components/BiometricsRegistrationService";
+import { CarouselSliders } from "../../components/CarouselSLiders";
 import { HeaderDrawer } from "../../components/HeaderDrawer";
 import { Margin } from "../../components/Margin";
 import { OtherServicesList } from "../../components/OtherServicesList";
 import { ServiceCardList } from "../../components/ServiceCardList";
 import { AuthContext } from "../../contexts/auth";
-import { getBackgroundImage } from "../../functions/getBackgroundImage";
 import { getBalance } from "../../functions/getBalance";
 import { getHaveBiometrics } from "../../functions/getHaveBiometrics";
 import { getSuportedBiometry } from "../../functions/getSuportedBiometry";
-import { IScreenNavigation } from "../../interface";
+import { handleSliders } from "../../functions/handleSliders";
+import { IScreenNavigation, ISliders } from "../../interface";
 import { getBiometric } from "../../storage";
 import {
     Background,
@@ -32,6 +33,7 @@ export const Home: React.FunctionComponent = () => {
     const [balance, setBalance] = useState<number>(0);
     const [isBiometry, setIsBiometry] = useState<boolean>(false);
     const { navigate } = useNavigation<IScreenNavigation>();
+    const [sliders, setSliders] = useState<ISliders[]>([]);
     const [suportedBiometry, setSuportedBiometry] = useState<boolean>();
 
     useEffect(() => {
@@ -52,15 +54,23 @@ export const Home: React.FunctionComponent = () => {
         })();
     }, [setSuportedBiometry]);
 
+    useEffect(() => {
+        (async () => {
+            await handleSliders(setSliders);
+        })();
+    }, [setSliders]);
+
     const handlevisibleBalance = () => {
-        setVisibleBalance(current => (current === true ? false : true));
+        setVisibleBalance(current => !current);
     };
 
     return (
         <Container>
             <HeaderDrawer />
 
-            <Background source={getBackgroundImage()}>
+            <Background
+                source={require("../../assets/Background/background.jpg")}
+            >
                 <Scroll>
                     <Welcome>Olá, {user && user.name}</Welcome>
 
@@ -83,6 +93,7 @@ export const Home: React.FunctionComponent = () => {
                                   })
                                 : "*****"}
                         </TextBalance>
+
                         <Transactions onPress={() => navigate("Transacoes")}>
                             Transações
                         </Transactions>
@@ -103,6 +114,8 @@ export const Home: React.FunctionComponent = () => {
                                     <Margin pixels={30} />
                                 </View>
                             ))}
+
+                        {sliders && <CarouselSliders sliders={sliders} />}
 
                         <OtherServicesList />
                     </Body>

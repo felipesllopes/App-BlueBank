@@ -52,3 +52,12 @@ export interface IFormEditProfile {
     email: string;
     cpf: string;
 }
+
+export interface ISliders {
+    mdpi: string;
+    hdpi: string;
+    xhdpi: string;
+    xxhdpi: string;
+    xxxhdpi: string;
+    title: string;
+}

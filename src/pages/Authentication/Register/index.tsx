@@ -13,7 +13,6 @@ import { LoadingScreen } from "../../../components/LoadingScreen";
 import { Logo_name_white } from "../../../components/Logo";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
-import { getBackgroundImage } from "../../../functions/getBackgroundImage";
 import { IFormRegister } from "../../../interface";
 import {
     Container,
@@ -24,7 +23,7 @@ import {
 } from "../Login/styles";
 
 export const Register: React.FunctionComponent = () => {
-    const { signUp, loading } = useContext(AuthContext);
+    const { signUp } = useContext(AuthContext);
     const [isReady, setIsReady] = useState<boolean>(false);
 
     useEffect(() => {
@@ -72,7 +71,9 @@ export const Register: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Wallpaper source={getBackgroundImage()}>
+            <Wallpaper
+                source={require("../../../assets/Background/background.jpg")}
+            >
                 <ViewOpacity>
                     <ViewLogo>
                         <Logo_name_white scale={2.3} />
@@ -148,7 +149,7 @@ export const Register: React.FunctionComponent = () => {
                     </Scroll>
                 </ViewOpacity>
             </Wallpaper>
-            <LoadingModal loading={loading} />
+            <LoadingModal />
         </Container>
     );
 };
